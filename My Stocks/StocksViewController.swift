@@ -11,15 +11,34 @@ class StocksViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    var timer = Timer()
+    
+    let emptyStock = StockModel()
+    var stocksArray = [StockModel]()
+    
+    let tikersArray = ["AAPL","TWTR","MSFT","TSLA", "AMZN"]
     let searchController = UISearchController(searchResultsController: nil)
     let dataManager = DataManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if stocksArray.isEmpty {
+            stocksArray = Array(repeating: emptyStock, count: tikersArray.count)
+        }
         setupSearchBar()
         setupTableView()
-        dataManager.performRequest(stockName: "TWTR") { stock in
-            print(stock)
+        getStocksData()
+        //updateTickers()
+    }
+    
+    
+    private func getStocksData() {
+        getStocksArray(tikersArray: tikersArray) { index, stock in
+            self.stocksArray[index] = stock
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
 
@@ -34,6 +53,7 @@ class StocksViewController: UIViewController {
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.separatorStyle = .none
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         let nib = UINib(nibName: "StockCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "Cell")
@@ -55,7 +75,7 @@ extension StocksViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return stocksArray.count
     }
     
     
@@ -64,7 +84,29 @@ extension StocksViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.row % 2 == 0 {
             cell.backgroundImage.backgroundColor = UIColor(hexString: "E9EAEA")
         }
+        cell.setupCell(stockModel: stocksArray[indexPath.row])
         
         return cell
     }
+}
+
+extension StocksViewController {
+    
+    private func updateTickers() {
+        timer = Timer.scheduledTimer(timeInterval: 5,
+                                     target: self,
+                                     selector: #selector(updateTableView),
+                                     userInfo: nil,
+                                     repeats: true)
+    }
+    
+    @objc func updateTableView() {
+        print("update")
+        stocksArray.removeAll()
+        if stocksArray.isEmpty {
+            stocksArray = Array(repeating: emptyStock, count: tikersArray.count)
+        }
+        getStocksData()
+    }
+    
 }

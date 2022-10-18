@@ -47,7 +47,7 @@ struct DataManager {
 //            let dayPercentChange = decodedData.dp
 //            let stock = DataModel(c: currentPrice, d: dayChange, dp: dayPercentChange)
             var stockModel = StockModel(datamodel: decodedData)
-            stockModel.stockName = stockName
+            stockModel?.stockName = stockName
             return stockModel
         } catch {
             fatalError("FATAL ERROR WHILE DECODING")

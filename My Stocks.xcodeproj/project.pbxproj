@@ -21,6 +21,7 @@
 		9F055BD728FEC5B40088D53B /* StockCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F055BD528FEC5B40088D53B /* StockCell.xib */; };
 		9F055BDA28FED1DA0088D53B /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F055BD928FED1DA0088D53B /* DataModel.swift */; };
 		9F055BDC28FED2DA0088D53B /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F055BDB28FED2DA0088D53B /* DataManager.swift */; };
+		9F055BDE28FEE7D90088D53B /* DataArrayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F055BDD28FEE7D90088D53B /* DataArrayManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		9F055BD528FEC5B40088D53B /* StockCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StockCell.xib; sourceTree = "<group>"; };
 		9F055BD928FED1DA0088D53B /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		9F055BDB28FED2DA0088D53B /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		9F055BDD28FEE7D90088D53B /* DataArrayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataArrayManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 		9F055BD828FED1BB0088D53B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9F055BDD28FEE7D90088D53B /* DataArrayManager.swift */,
 				9F055BDB28FED2DA0088D53B /* DataManager.swift */,
 				9F055BD928FED1DA0088D53B /* DataModel.swift */,
 			);
@@ -181,6 +184,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F055BB428FEBCB20088D53B /* AppDelegate.swift in Sources */,
+				9F055BDE28FEE7D90088D53B /* DataArrayManager.swift in Sources */,
 				9F055BB628FEBCB20088D53B /* SceneDelegate.swift in Sources */,
 				9F055BD628FEC5B40088D53B /* StockCell.swift in Sources */,
 				9F055BC828FEBDA80088D53B /* MainTabBarController.swift in Sources */,

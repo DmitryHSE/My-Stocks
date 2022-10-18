@@ -15,15 +15,19 @@ struct DataModel: Codable {
 }
 
 struct StockModel {
-    var stockName: String
-    let currentPrice: Double
-    let priceChange: Double
-    let percentChange: Double
+    var stockName: String = ""
+    var currentPrice: Double = 0.0
+    var priceChange: Double = 0.0
+    var percentChange: Double = 0.0
     
-    init(datamodel: DataModel) {
-        self.currentPrice = datamodel.c
-        self.priceChange = datamodel.d
-        self.percentChange = datamodel.dp
-        self.stockName = ""
+    init?(datamodel: DataModel) {
+        currentPrice = datamodel.c
+        priceChange = datamodel.d
+        percentChange = datamodel.dp
+        stockName = ""
+    }
+    
+    init() {
+        
     }
 }
