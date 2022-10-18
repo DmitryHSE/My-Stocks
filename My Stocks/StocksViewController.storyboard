@@ -32,11 +32,39 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="suO-Nm-dIb" id="FhA-DJ-R4m"/>
+                        <segue destination="mQk-Nl-y50" kind="presentation" identifier="SearchVC" id="vV2-6M-a3W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="128.98550724637681" y="80.357142857142847"/>
+        </scene>
+        <!--Search View Controller-->
+        <scene sceneID="T7S-0Q-WAj">
+            <objects>
+                <viewController id="mQk-Nl-y50" customClass="SearchViewController" customModule="My_Stocks" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UDf-4k-ojq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yOo-rB-oC8">
+                                <rect key="frame" x="174" y="379" width="67" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Button"/>
+                                <connections>
+                                    <action selector="buttonPressed:" destination="mQk-Nl-y50" eventType="touchUpInside" id="aOD-ri-1r0"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="JoY-TT-Fwm"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="oPs-Eq-Q5T"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ALn-Fs-gxS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1035" y="80"/>
         </scene>
     </scenes>
     <resources>

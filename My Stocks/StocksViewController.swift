@@ -12,17 +12,15 @@ class StocksViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var timer = Timer()
-    
     let emptyStock = StockModel()
     var stocksArray = [StockModel]()
     
-    let tikersArray = ["AAPL","TWTR","MSFT","TSLA", "AMZN"]
+    var tikersArray = ["AAPL","TWTR","MSFT","TSLA", "AMZN","GOOG", "META", "JNJ","XOM","V"]
     let searchController = UISearchController(searchResultsController: nil)
     let dataManager = DataManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         if stocksArray.isEmpty {
             stocksArray = Array(repeating: emptyStock, count: tikersArray.count)
         }
@@ -30,33 +28,8 @@ class StocksViewController: UIViewController {
         setupTableView()
         getStocksData()
         //updateTickers()
-    }
+        setupSearchButton()
     
-    
-    private func getStocksData() {
-        getStocksArray(tikersArray: tikersArray) { index, stock in
-            self.stocksArray[index] = stock
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
-    }
-
-    
-    private func setupSearchBar() {
-        searchController.searchBar.delegate = self
-        navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = false
-        searchController.obscuresBackgroundDuringPresentation = false
-    }
-    
-    private func setupTableView() {
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.separatorStyle = .none
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-        let nib = UINib(nibName: "StockCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: "Cell")
     }
 }
 
@@ -82,15 +55,62 @@ extension StocksViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! StockCell
         if indexPath.row % 2 == 0 {
-            cell.backgroundImage.backgroundColor = UIColor(hexString: "E9EAEA")
+            cell.backgroundImage.backgroundColor = UIColor(hexString: "f0f0f0")
+        } else {
+            cell.backgroundImage.backgroundColor = .white
         }
         cell.setupCell(stockModel: stocksArray[indexPath.row])
-        
         return cell
     }
 }
 
 extension StocksViewController {
+    
+    private func setupSearchButton() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search,
+                                                            target: self,
+                                                            action: #selector(performAdd(sender:)))
+    }
+    
+    @objc func performAdd(sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "SearchVC", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "SearchVC" {
+            print("performing segue")
+            let destinationVC = segue.destination as! SearchViewController
+            destinationVC.delegate = self
+        }
+    }
+    
+    private func getStocksData() {
+        print("getStocksData")
+        getStocksArray(tikersArray: tikersArray) { index, stock in
+            self.stocksArray[index] = stock
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+
+    
+    private func setupSearchBar() {
+        searchController.searchBar.delegate = self
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+        searchController.obscuresBackgroundDuringPresentation = false
+    }
+    
+    private func setupTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.separatorStyle = .none
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        let nib = UINib(nibName: "StockCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "Cell")
+    }
+    
     
     private func updateTickers() {
         timer = Timer.scheduledTimer(timeInterval: 5,
@@ -108,5 +128,20 @@ extension StocksViewController {
         }
         getStocksData()
     }
+    
+    func testMethod() {
+        print("Method called out of delegate method")
+    }
+    
+}
+
+extension StocksViewController: PassSearchResultsProtocol {
+    
+    func getSearchResults(newArray: [String]) {
+        print(newArray)
+        testMethod()
+    }
+    
+    
     
 }

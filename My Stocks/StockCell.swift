@@ -20,17 +20,27 @@ class StockCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        backgroundImage.layer.cornerRadius = backgroundImage.frame.height/2
+        backgroundImage.layer.cornerRadius = backgroundImage.frame.height/3
         backgroundImage.clipsToBounds = true
     }
 
+    @IBAction func addToFavoriteButtonTapped(_ sender: UIButton) {
+        if sender.tintColor == .systemYellow {
+            sender.tintColor = .systemGray
+        } else {
+            sender.tintColor = .systemYellow
+        }
+        
+    }
     func setupCell(stockModel: StockModel) {
         stockLabel.text = stockModel.stockName
         currentPriceLabel.text = "$" + String(format: "%.1f", stockModel.currentPrice)
         if stockModel.percentChange>0 {
             priceChangeLabel.text = "+" + String(format: "%.2f", stockModel.percentChange) + " %"
+            priceChangeLabel.textColor = UIColor(hexString: "24B35D")
         } else {
-            priceChangeLabel.text = "-"+"\(stockModel.percentChange)" + "%"
+            priceChangeLabel.text = String(format: "%.2f", stockModel.percentChange) + " %"
+            priceChangeLabel.textColor = UIColor(hexString: "FB2916")
         }
         
     }
