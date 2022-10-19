@@ -12,6 +12,7 @@ class SearchCell: UITableViewCell {
     var delegate: AddTickerToStockListProtocol?
     var showAlertDelegate: ShowAlertProtocol?
     
+    @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var companyLabel: UILabel!
     @IBOutlet weak var tickerLabel: UILabel!
     @IBOutlet weak var stockTypeLabel: UILabel!
@@ -22,6 +23,10 @@ class SearchCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
     }
     
     func setupSearchCell(stock: Stocks) {
@@ -48,7 +53,7 @@ class SearchCell: UITableViewCell {
                 
             } else {
                 delegate?.getTickerFromSearchScreen(ticker: symbol)
-                sender.isHidden = true
+                addButton.isHidden = true
             }
         }
     }

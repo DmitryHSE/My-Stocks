@@ -48,6 +48,20 @@ extension SearchViewController: UISearchBarDelegate {
 
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+       // print("SearchViewController.swift - viewForHeaderInSection \n: надпись по центру таблицы при пустой таблице 'Please enter search term above...'")
+        let label = UILabel()
+        label.text = "Please enter search term above..."
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        return label
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+       // print("SearchViewController.swift - heightForHeaderInSection \n: координаты для расположения надписи Please enter search term above...")
+        // если ячеек боль 0 то хедер прячется, если нет то распологается на экране
+        return stocks.count > 0 ? 0 : 250
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 68
