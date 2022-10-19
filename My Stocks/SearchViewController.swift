@@ -61,6 +61,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath) as! SearchCell
         cell.delegate = self
         cell.showAlertDelegate = self
+        cell.arrayWithAddedStocks = arrayWithAddedStocks
         cell.setupSearchCell(stock: stocks[indexPath.row])
         return cell
     }
@@ -105,10 +106,8 @@ extension SearchViewController {
 
 extension SearchViewController: AddTickerToStockListProtocol, ShowAlertProtocol {
     
-    func showAlert() {
-        wrongTickerAlert(name: "Invalid ticker", placeholder: "Choose another one") { text in
-            return
-        }
+    func showAlert(message: String) {
+        wrongTickerAlert(name: message)
     }
     
     

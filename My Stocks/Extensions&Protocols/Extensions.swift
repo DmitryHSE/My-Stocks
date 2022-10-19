@@ -41,7 +41,7 @@ extension UIColor {
 
 extension UIViewController {
     
-    func wrongTickerAlert(name:String, placeholder: String, completion: @escaping(String) -> Void) {
+    func wrongTickerAlert(name: String) {
         let alertController = UIAlertController(title: name, message: nil, preferredStyle: .alert)
         let alertOk = UIAlertAction(title: "OK", style: .default)
         alertController.addAction(alertOk)

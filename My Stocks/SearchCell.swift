@@ -17,6 +17,7 @@ class SearchCell: UITableViewCell {
     @IBOutlet weak var stockTypeLabel: UILabel!
     
     private var symbol = ""
+    var arrayWithAddedStocks = [String]()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -37,13 +38,18 @@ class SearchCell: UITableViewCell {
 
     @IBAction func addButtonTapped(_ sender: UIButton) {
         
-        if checkSymbol(symbol: symbol) {
-            print("Contain dots ->> ", symbol)
-            showAlertDelegate?.showAlert()
-            
+        if arrayWithAddedStocks.contains(where: {$0 == symbol}) {
+            print("Array alreade contains ", symbol)
+            showAlertDelegate?.showAlert(message: "Tiker already in the list")
         } else {
-            delegate?.getTickerFromSearchScreen(ticker: symbol)
-            sender.isHidden = true
+            if checkSymbol(symbol: symbol) {
+                print("Contain dots ->> ", symbol)
+                showAlertDelegate?.showAlert(message: "Invalid ticker")
+                
+            } else {
+                delegate?.getTickerFromSearchScreen(ticker: symbol)
+                sender.isHidden = true
+            }
         }
     }
 }

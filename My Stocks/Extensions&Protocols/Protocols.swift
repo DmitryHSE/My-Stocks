@@ -16,5 +16,5 @@ protocol AddTickerToStockListProtocol {
 }
 
 protocol ShowAlertProtocol {
-    func showAlert()
+    func showAlert(message: String)
 }
