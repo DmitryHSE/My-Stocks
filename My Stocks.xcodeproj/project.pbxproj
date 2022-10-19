@@ -19,10 +19,11 @@
 		9F055BD328FEC0840088D53B /* FavoriteViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F055BD228FEC0840088D53B /* FavoriteViewController.storyboard */; };
 		9F055BD628FEC5B40088D53B /* StockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F055BD428FEC5B40088D53B /* StockCell.swift */; };
 		9F055BD728FEC5B40088D53B /* StockCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F055BD528FEC5B40088D53B /* StockCell.xib */; };
-		9F055BDA28FED1DA0088D53B /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F055BD928FED1DA0088D53B /* DataModel.swift */; };
+		9F055BDA28FED1DA0088D53B /* DataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F055BD928FED1DA0088D53B /* DataModels.swift */; };
 		9F055BDC28FED2DA0088D53B /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F055BDB28FED2DA0088D53B /* DataManager.swift */; };
 		9F055BDE28FEE7D90088D53B /* DataArrayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F055BDD28FEE7D90088D53B /* DataArrayManager.swift */; };
 		9F055BE028FF00E50088D53B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F055BDF28FF00E50088D53B /* SearchViewController.swift */; };
+		9F055BE428FFCC230088D53B /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F055BE328FFCC230088D53B /* DataModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,10 +41,11 @@
 		9F055BD228FEC0840088D53B /* FavoriteViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FavoriteViewController.storyboard; sourceTree = "<group>"; };
 		9F055BD428FEC5B40088D53B /* StockCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockCell.swift; sourceTree = "<group>"; };
 		9F055BD528FEC5B40088D53B /* StockCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StockCell.xib; sourceTree = "<group>"; };
-		9F055BD928FED1DA0088D53B /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		9F055BD928FED1DA0088D53B /* DataModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModels.swift; sourceTree = "<group>"; };
 		9F055BDB28FED2DA0088D53B /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		9F055BDD28FEE7D90088D53B /* DataArrayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataArrayManager.swift; sourceTree = "<group>"; };
 		9F055BDF28FF00E50088D53B /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		9F055BE328FFCC230088D53B /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,7 +88,7 @@
 				9F055BD228FEC0840088D53B /* FavoriteViewController.storyboard */,
 				9F055BD428FEC5B40088D53B /* StockCell.swift */,
 				9F055BD528FEC5B40088D53B /* StockCell.xib */,
-				9F055BD828FED1BB0088D53B /* Model */,
+				9F055BD828FED1BB0088D53B /* Services */,
 				9F055BC928FEBF030088D53B /* Extensions */,
 				9F055BBC28FEBCB30088D53B /* Assets.xcassets */,
 				9F055BBE28FEBCB30088D53B /* LaunchScreen.storyboard */,
@@ -103,14 +105,31 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		9F055BD828FED1BB0088D53B /* Model */ = {
+		9F055BD828FED1BB0088D53B /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				9F055BE128FFCBE10088D53B /* Stocks window */,
+				9F055BE228FFCBF30088D53B /* Search window */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		9F055BE128FFCBE10088D53B /* Stocks window */ = {
 			isa = PBXGroup;
 			children = (
 				9F055BDD28FEE7D90088D53B /* DataArrayManager.swift */,
 				9F055BDB28FED2DA0088D53B /* DataManager.swift */,
-				9F055BD928FED1DA0088D53B /* DataModel.swift */,
+				9F055BD928FED1DA0088D53B /* DataModels.swift */,
 			);
-			path = Model;
+			path = "Stocks window";
+			sourceTree = "<group>";
+		};
+		9F055BE228FFCBF30088D53B /* Search window */ = {
+			isa = PBXGroup;
+			children = (
+				9F055BE328FFCC230088D53B /* DataModel.swift */,
+			);
+			path = "Search window";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,9 +210,10 @@
 				9F055BDE28FEE7D90088D53B /* DataArrayManager.swift in Sources */,
 				9F055BB628FEBCB20088D53B /* SceneDelegate.swift in Sources */,
 				9F055BD628FEC5B40088D53B /* StockCell.swift in Sources */,
+				9F055BE428FFCC230088D53B /* DataModel.swift in Sources */,
 				9F055BC828FEBDA80088D53B /* MainTabBarController.swift in Sources */,
 				9F055BCB28FEBF240088D53B /* Extensions.swift in Sources */,
-				9F055BDA28FED1DA0088D53B /* DataModel.swift in Sources */,
+				9F055BDA28FED1DA0088D53B /* DataModels.swift in Sources */,
 				9F055BD128FEC04A0088D53B /* FavoriteViewController.swift in Sources */,
 				9F055BDC28FED2DA0088D53B /* DataManager.swift in Sources */,
 				9F055BCD28FEBFF50088D53B /* StocksViewController.swift in Sources */,

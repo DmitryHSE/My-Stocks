@@ -129,19 +129,36 @@ extension StocksViewController {
         getStocksData()
     }
     
-    func testMethod() {
-        print("Method called out of delegate method")
-    }
-    
 }
 
 extension StocksViewController: PassSearchResultsProtocol {
     
     func getSearchResults(newArray: [String]) {
-        print(newArray)
-        testMethod()
+        tikersArray = newArray
+        stocksArray.removeAll()
+        stocksArray = Array(repeating: emptyStock, count: tikersArray.count)
+        getStocksData()
     }
-    
-    
-    
 }
+
+//extension StocksViewController {
+//
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        print("2-viewWillAppear")
+//    }
+//
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        print("3-viewDidAppear")
+//    }
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//        print("4-viewWillDisappear")
+//    }
+//    override func viewDidDisappear(_ animated: Bool) {
+//        super.viewDidDisappear(animated)
+//        print("5-viewDidDisappear")
+//    }
+//
+//}

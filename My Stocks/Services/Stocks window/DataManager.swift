@@ -9,8 +9,6 @@ import Foundation
 
 struct DataManager {
     
-    //let quoteUrl = "https://finnhub.io/api/v1/quote?symbol=AAPL&token=cclgp8qad3i79c6t85u0cclgp8qad3i79c6t85ug"
-    
     func performRequest(stockName: String, completion: @escaping (_ stock: StockModel) -> ()) {
         
         let urlString = "https://finnhub.io/api/v1/quote?symbol=\(stockName)&token=cclgp8qad3i79c6t85u0cclgp8qad3i79c6t85ug"
@@ -42,15 +40,12 @@ struct DataManager {
         let decoder = JSONDecoder()
         do {
             let decodedData =  try decoder.decode(DataModel.self, from: data)
-//            let currentPrice = decodedData.c
-//            let dayChange = decodedData.d
-//            let dayPercentChange = decodedData.dp
-//            let stock = DataModel(c: currentPrice, d: dayChange, dp: dayPercentChange)
             var stockModel = StockModel(datamodel: decodedData)
             stockModel?.stockName = stockName
             return stockModel
         } catch {
-            fatalError("FATAL ERROR WHILE DECODING")
+            print(error)
+            return nil
         }
     }
     

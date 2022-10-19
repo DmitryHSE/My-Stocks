@@ -18,6 +18,13 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        dismiss(animated: true) {
+            self.delegate?.getSearchResults(newArray: ["AAPL", "TSLA"])
+        }
+    }
+    
     @IBAction func buttonPressed(_ sender: UIButton) {
         dismiss(animated: true) {
             self.delegate?.getSearchResults(newArray: ["AAPL", "TSLA"])
