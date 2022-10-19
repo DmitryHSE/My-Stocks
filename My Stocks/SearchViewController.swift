@@ -9,6 +9,10 @@ import UIKit
 
 
 class SearchViewController: UIViewController {
+    
+    @IBOutlet weak var tableView: UITableView!
+    let searchController = UISearchController(searchResultsController: nil)
+    
     var delegate: PassSearchResultsProtocol?
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -19,10 +23,48 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupSearchBar()
+        setupTableView()
     }
     
+    private func setupTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        //tableView.separatorStyle = .none
+        
+    }
+}
+
+
+extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 68
+    }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath) as! SearchCell
+        cell.setupSearchCell(company: "Apple Inc.", ticker: "AAPL", stockType: "Common stocks")
+        return cell
+    }
+}
+
+
+extension SearchViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let text = searchBar.text else {return}
+        print(text)
+    }
+    
+    private func setupSearchBar() {
+        searchController.searchBar.delegate = self
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+        searchController.obscuresBackgroundDuringPresentation = false
+    }
     
 }

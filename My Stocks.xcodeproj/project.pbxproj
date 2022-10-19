@@ -26,6 +26,7 @@
 		9F055BE428FFCC230088D53B /* SearchStocksModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F055BE328FFCC230088D53B /* SearchStocksModel.swift */; };
 		9F055BE628FFD3B10088D53B /* SearchStocksManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F055BE528FFD3B10088D53B /* SearchStocksManager.swift */; };
 		9F055BE828FFD4750088D53B /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F055BE728FFD4750088D53B /* Protocols.swift */; };
+		9F055BEA28FFD83A0088D53B /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F055BE928FFD83A0088D53B /* SearchCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		9F055BE328FFCC230088D53B /* SearchStocksModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStocksModel.swift; sourceTree = "<group>"; };
 		9F055BE528FFD3B10088D53B /* SearchStocksManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStocksManager.swift; sourceTree = "<group>"; };
 		9F055BE728FFD4750088D53B /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		9F055BE928FFD83A0088D53B /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 				9F055BD228FEC0840088D53B /* FavoriteViewController.storyboard */,
 				9F055BD428FEC5B40088D53B /* StockCell.swift */,
 				9F055BD528FEC5B40088D53B /* StockCell.xib */,
+				9F055BE928FFD83A0088D53B /* SearchCell.swift */,
 				9F055BD828FED1BB0088D53B /* Services */,
 				9F055BC928FEBF030088D53B /* Extensions&Protocols */,
 				9F055BBC28FEBCB30088D53B /* Assets.xcassets */,
@@ -212,6 +215,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F055BB428FEBCB20088D53B /* AppDelegate.swift in Sources */,
+				9F055BEA28FFD83A0088D53B /* SearchCell.swift in Sources */,
 				9F055BE028FF00E50088D53B /* SearchViewController.swift in Sources */,
 				9F055BDE28FEE7D90088D53B /* DataArrayManager.swift in Sources */,
 				9F055BB628FEBCB20088D53B /* SceneDelegate.swift in Sources */,

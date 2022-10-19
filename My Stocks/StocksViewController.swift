@@ -27,7 +27,6 @@ class StocksViewController: UIViewController {
         setupSearchBar()
         setupTableView()
         getStocksData()
-        //updateTickers()
         setupSearchButton()
     
     }
@@ -111,25 +110,9 @@ extension StocksViewController {
         tableView.register(nib, forCellReuseIdentifier: "Cell")
     }
     
-    
-    private func updateTickers() {
-        timer = Timer.scheduledTimer(timeInterval: 5,
-                                     target: self,
-                                     selector: #selector(updateTableView),
-                                     userInfo: nil,
-                                     repeats: true)
-    }
-    
-    @objc func updateTableView() {
-        print("update")
-        stocksArray.removeAll()
-        if stocksArray.isEmpty {
-            stocksArray = Array(repeating: emptyStock, count: tikersArray.count)
-        }
-        getStocksData()
-    }
-    
 }
+
+//MARK: - PassSearchResultsProtocol
 
 extension StocksViewController: PassSearchResultsProtocol {
     
