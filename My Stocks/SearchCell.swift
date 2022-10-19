@@ -69,6 +69,7 @@ class SearchCell: UITableViewCell {
     }
 }
 
+extension UITableViewCell {
     
     func checkSymbol(symbol: String) -> Bool {
         var array = [""]
@@ -83,3 +84,4 @@ class SearchCell: UITableViewCell {
         
     }
 
+}

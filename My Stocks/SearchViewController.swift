@@ -86,8 +86,13 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.presentStockDetailsScreen(ticker: stocksForSearchCellArray[indexPath.row].ticker)
-        tableView.deselectRow(at: indexPath, animated: true)
+        if tableView.cellForRow(at: indexPath)!.checkSymbol(symbol: stocksForSearchCellArray[indexPath.row].ticker) {
+            self.wrongTickerAlert(name: "No details info available")
+        } else {
+            self.presentStockDetailsScreen(ticker: stocksForSearchCellArray[indexPath.row].ticker)
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+        
     }
 }
 
@@ -110,8 +115,6 @@ extension SearchViewController {
     
     private func performSearchRequest(text: String?) {
         guard let text = text else {return}
-        //        searchStockManager.performRequest(stockName: text) { stockArray in
-        //            self.stocks = stockArray.result
         getSearchedStocks(text: text) { SearchedStocksArray in
             self.stocksForSearchCellArray = SearchedStocksArray
             DispatchQueue.main.async {
@@ -126,7 +129,6 @@ extension SearchViewController: AddTickerToStockListProtocol, ShowAlertProtocol,
     
     func getSearchStocksArrayBack(array: [StockForSearchCell]) {
         stocksForSearchCellArray = array
-        print(stocksForSearchCellArray)
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
@@ -140,7 +142,7 @@ extension SearchViewController: AddTickerToStockListProtocol, ShowAlertProtocol,
     
     func getTickerFromSearchScreen(ticker: String) {
         arrayWithAddedStocks.append(ticker)
-        print(arrayWithAddedStocks)
+        
     }
 }
 
