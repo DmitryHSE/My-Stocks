@@ -10,11 +10,12 @@ import UIKit
 
 class SearchViewController: UIViewController {
     
-    let searchStockManager = SearchStocksManager()
-    var stocks = [Stocks]()
+    private var timer: Timer?
+    private let searchStockManager = SearchStocksManager()
+    private var stocks = [Stocks]()
     
     @IBOutlet weak var tableView: UITableView!
-    let searchController = UISearchController(searchResultsController: nil)
+    private let searchController = UISearchController(searchResultsController: nil)
     
     var delegate: PassSearchResultsProtocol?
     
@@ -25,23 +26,22 @@ class SearchViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        searchStockManager.performRequest(stockName: "Apple") { stockArray in
-            self.stocks = stockArray.result
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
         super.viewDidLoad()
         setupSearchBar()
         setupTableView()
     }
     
-    private func setupTableView() {
-        navigationItem.title = "Search"
-        tableView.delegate = self
-        tableView.dataSource = self
-        //tableView.separatorStyle = .none
+}
+
+extension SearchViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
+
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (_) in
+            self.performSearchRequest(text: searchText)
+        })
     }
 }
 
@@ -64,17 +64,38 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 
-extension SearchViewController: UISearchBarDelegate {
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let text = searchBar.text else {return}
-        print(text)
-    }
+//extension SearchViewController: UISearchBarDelegate {
+//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//        guard let text = searchBar.text else {return}
+//        print(text)
+//    }
+
+
+extension SearchViewController {
     
     private func setupSearchBar() {
         searchController.searchBar.delegate = self
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         searchController.obscuresBackgroundDuringPresentation = false
+    }
+    
+    private func setupTableView() {
+        navigationItem.title = "Search"
+        tableView.delegate = self
+        tableView.dataSource = self
+        //tableView.separatorStyle = .none
+        
+    }
+    
+    private func performSearchRequest(text: String?) {
+        guard let text = text else {return}
+        searchStockManager.performRequest(stockName: text) { stockArray in
+            self.stocks = stockArray.result
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
     
 }
