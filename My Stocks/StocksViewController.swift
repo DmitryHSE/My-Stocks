@@ -79,6 +79,7 @@ extension StocksViewController {
         if segue.identifier == "SearchVC" {
             print("performing segue")
             let destinationVC = segue.destination as! SearchViewController
+            destinationVC.arrayWithAddedStocks = tikersArray
             destinationVC.delegate = self
         }
     }
@@ -116,8 +117,8 @@ extension StocksViewController {
 
 extension StocksViewController: PassSearchResultsProtocol {
     
-    func getSearchResults(newArray: [String]) {
-        tikersArray = newArray
+    func getSearchResults(arrayWithSearchResults: [String])  {
+        tikersArray = arrayWithSearchResults
         stocksArray.removeAll()
         stocksArray = Array(repeating: emptyStock, count: tikersArray.count)
         getStocksData()

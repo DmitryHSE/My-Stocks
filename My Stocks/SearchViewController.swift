@@ -13,6 +13,7 @@ class SearchViewController: UIViewController {
     private var timer: Timer?
     private let searchStockManager = SearchStocksManager()
     private var stocks = [Stocks]()
+    var arrayWithAddedStocks = [String]()
     
     @IBOutlet weak var tableView: UITableView!
     private let searchController = UISearchController(searchResultsController: nil)
@@ -21,7 +22,7 @@ class SearchViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         dismiss(animated: true) {
-            //self.delegate?.getSearchResults(newArray: ["AAPL", "TSLA"])
+            //self.delegate?.getSearchResults(arrayWithSearchResults: ["AAPL", "TSLA"])
         }
     }
     
@@ -58,6 +59,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath) as! SearchCell
+        cell.delegate = self
         cell.setupSearchCell(stock: stocks[indexPath.row])
         return cell
     }
@@ -97,5 +99,15 @@ extension SearchViewController {
             }
         }
     }
+    
+}
+
+extension SearchViewController: AddTickerToStockListProtocol {
+    
+    func getTickerFromSearchScreen(ticker: String) {
+        arrayWithAddedStocks.append(ticker)
+        print(arrayWithAddedStocks)
+    }
+    
     
 }

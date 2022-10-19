@@ -9,9 +9,13 @@ import UIKit
 
 class SearchCell: UITableViewCell {
     
+    var delegate: AddTickerToStockListProtocol?
+    
     @IBOutlet weak var companyLabel: UILabel!
     @IBOutlet weak var tickerLabel: UILabel!
     @IBOutlet weak var stockTypeLabel: UILabel!
+    
+    private var symbol = ""
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,6 +25,7 @@ class SearchCell: UITableViewCell {
     func setupSearchCell(stock: Stocks) {
         companyLabel.text = stock.description
         tickerLabel.text = stock.symbol
+        symbol = stock.symbol
         if stock.type == "" {
             stockTypeLabel.text = "Type not available"
         } else {
@@ -30,6 +35,8 @@ class SearchCell: UITableViewCell {
 
 
     @IBAction func addButtonTapped(_ sender: UIButton) {
-        print("Add button tapped!")
+        delegate?.getTickerFromSearchScreen(ticker: symbol)
+        sender.isHidden = true
+        //print("Added symbol --> ", symbol)
     }
 }

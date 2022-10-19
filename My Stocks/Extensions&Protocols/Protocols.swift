@@ -8,5 +8,9 @@
 import Foundation
 
 protocol PassSearchResultsProtocol {
-    func getSearchResults(newArray: [String])
+    func getSearchResults(arrayWithSearchResults: [String])
+}
+
+protocol AddTickerToStockListProtocol {
+    func getTickerFromSearchScreen(ticker: String)
 }
