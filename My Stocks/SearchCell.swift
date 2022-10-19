@@ -10,6 +10,7 @@ import UIKit
 class SearchCell: UITableViewCell {
     
     var delegate: AddTickerToStockListProtocol?
+    var showAlertDelegate: ShowAlertProtocol?
     
     @IBOutlet weak var companyLabel: UILabel!
     @IBOutlet weak var tickerLabel: UILabel!
@@ -35,8 +36,29 @@ class SearchCell: UITableViewCell {
 
 
     @IBAction func addButtonTapped(_ sender: UIButton) {
-        delegate?.getTickerFromSearchScreen(ticker: symbol)
-        sender.isHidden = true
-        //print("Added symbol --> ", symbol)
+        
+        if checkSymbol(symbol: symbol) {
+            print("Contain dots ->> ", symbol)
+            showAlertDelegate?.showAlert()
+            
+        } else {
+            delegate?.getTickerFromSearchScreen(ticker: symbol)
+            sender.isHidden = true
+        }
     }
 }
+
+    
+    func checkSymbol(symbol: String) -> Bool {
+        var array = [""]
+        for i in symbol {
+            array.append(String(i))
+        }
+        if array.contains(where: {$0 == "."}) {
+            return true
+        } else {
+            return false
+        }
+        
+    }
+

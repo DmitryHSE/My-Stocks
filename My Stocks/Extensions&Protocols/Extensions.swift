@@ -38,3 +38,14 @@ extension UIColor {
         self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
     }
 }
+
+extension UIViewController {
+    
+    func wrongTickerAlert(name:String, placeholder: String, completion: @escaping(String) -> Void) {
+        let alertController = UIAlertController(title: name, message: nil, preferredStyle: .alert)
+        let alertOk = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(alertOk)
+        present(alertController, animated: true, completion: nil )
+        
+    }
+}

@@ -14,3 +14,7 @@ protocol PassSearchResultsProtocol {
 protocol AddTickerToStockListProtocol {
     func getTickerFromSearchScreen(ticker: String)
 }
+
+protocol ShowAlertProtocol {
+    func showAlert()
+}

@@ -22,7 +22,7 @@ class SearchViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         dismiss(animated: true) {
-            //self.delegate?.getSearchResults(arrayWithSearchResults: ["AAPL", "TSLA"])
+            self.delegate?.getSearchResults(arrayWithSearchResults: self.arrayWithAddedStocks)
         }
     }
     
@@ -60,6 +60,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath) as! SearchCell
         cell.delegate = self
+        cell.showAlertDelegate = self
         cell.setupSearchCell(stock: stocks[indexPath.row])
         return cell
     }
@@ -102,7 +103,14 @@ extension SearchViewController {
     
 }
 
-extension SearchViewController: AddTickerToStockListProtocol {
+extension SearchViewController: AddTickerToStockListProtocol, ShowAlertProtocol {
+    
+    func showAlert() {
+        wrongTickerAlert(name: "Invalid ticker", placeholder: "Choose another one") { text in
+            return
+        }
+    }
+    
     
     func getTickerFromSearchScreen(ticker: String) {
         arrayWithAddedStocks.append(ticker)
@@ -111,3 +119,5 @@ extension SearchViewController: AddTickerToStockListProtocol {
     
     
 }
+
+
