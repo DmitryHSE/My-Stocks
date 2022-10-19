@@ -11,18 +11,21 @@ class SearchCell: UITableViewCell {
     
     var delegate: AddTickerToStockListProtocol?
     var showAlertDelegate: ShowAlertProtocol?
+    var returnArrayDelegate: ReturnSearchResultsArrayProtocol?
     
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var companyLabel: UILabel!
     @IBOutlet weak var tickerLabel: UILabel!
     @IBOutlet weak var stockTypeLabel: UILabel!
     
+    var entireSearchedStocksArray = [StockForSearchCell]()
+    var indexPath = Int()
+    
     private var symbol = ""
     var arrayWithAddedStocks = [String]()
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
     
     override func prepareForReuse() {
@@ -30,6 +33,11 @@ class SearchCell: UITableViewCell {
     }
     
     func setupSearchCell(stock: StockForSearchCell) {
+        if stock.didAddToList {
+            addButton.isHidden = true
+        } else {
+            addButton.isHidden = false
+        }
         companyLabel.text = stock.name
         tickerLabel.text = stock.ticker
         symbol = stock.ticker
@@ -53,6 +61,8 @@ class SearchCell: UITableViewCell {
                 
             } else {
                 delegate?.getTickerFromSearchScreen(ticker: symbol)
+                entireSearchedStocksArray[indexPath].didAddToList = true
+                returnArrayDelegate?.getSearchStocksArrayBack(array: entireSearchedStocksArray)
                 addButton.isHidden = true
             }
         }

@@ -18,3 +18,7 @@ protocol AddTickerToStockListProtocol {
 protocol ShowAlertProtocol {
     func showAlert(message: String)
 }
+
+protocol ReturnSearchResultsArrayProtocol {
+    func getSearchStocksArrayBack(array: [StockForSearchCell])
+}

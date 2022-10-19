@@ -41,8 +41,6 @@ class SearchViewController: UIViewController {
 extension SearchViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (_) in
             self.performSearchRequest(text: searchText)
@@ -79,8 +77,11 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath) as! SearchCell
         cell.delegate = self
         cell.showAlertDelegate = self
+        cell.returnArrayDelegate = self
         cell.arrayWithAddedStocks = arrayWithAddedStocks
+        cell.entireSearchedStocksArray = stocksForSearchCellArray
         cell.setupSearchCell(stock: stocksForSearchCellArray[indexPath.row])
+        cell.indexPath = indexPath.row
         return cell
     }
     
@@ -88,14 +89,6 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
-
-
-//extension SearchViewController: UISearchBarDelegate {
-//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//        guard let text = searchBar.text else {return}
-//        print(text)
-//    }
-
 
 extension SearchViewController {
     
@@ -116,7 +109,6 @@ extension SearchViewController {
     
     private func performSearchRequest(text: String?) {
         guard let text = text else {return}
-        
         //        searchStockManager.performRequest(stockName: text) { stockArray in
         //            self.stocks = stockArray.result
         getSearchedStocks(text: text) { SearchedStocksArray in
@@ -129,7 +121,16 @@ extension SearchViewController {
     
 }
 
-extension SearchViewController: AddTickerToStockListProtocol, ShowAlertProtocol {
+extension SearchViewController: AddTickerToStockListProtocol, ShowAlertProtocol, ReturnSearchResultsArrayProtocol {
+    
+    func getSearchStocksArrayBack(array: [StockForSearchCell]) {
+        stocksForSearchCellArray = array
+        print(stocksForSearchCellArray)
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
     
     func showAlert(message: String) {
         wrongTickerAlert(name: message)
@@ -140,8 +141,12 @@ extension SearchViewController: AddTickerToStockListProtocol, ShowAlertProtocol 
         arrayWithAddedStocks.append(ticker)
         print(arrayWithAddedStocks)
     }
-    
-    
 }
 
 
+
+//extension SearchViewController: UISearchBarDelegate {
+//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//        guard let text = searchBar.text else {return}
+//        print(text)
+//    }
