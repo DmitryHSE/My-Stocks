@@ -46,17 +46,6 @@
                     <view key="view" contentMode="scaleToFill" id="UDf-4k-ojq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yOo-rB-oC8">
-                                <rect key="frame" x="174" y="379" width="67" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" title="Button"/>
-                                <connections>
-                                    <action selector="buttonPressed:" destination="mQk-Nl-y50" eventType="touchUpInside" id="aOD-ri-1r0"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="JoY-TT-Fwm"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
