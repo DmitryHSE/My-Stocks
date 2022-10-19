@@ -9,9 +9,9 @@ import Foundation
 
 struct SearchStocksManager {
     
-    func performRequest(stockName: String, completion: @escaping (_ stock: SearchStocksModel) -> ()) {
+    func performRequest(stockName: String, completion: @escaping (_ stocksArray: SearchStocksModel) -> ()) {
         
-        let urlString = "https://finnhub.io/api/v1/search?q\(stockName)&token=cclgp8qad3i79c6t85u0cclgp8qad3i79c6t85ug"
+        let urlString = "https://finnhub.io/api/v1/search?q=\(stockName)&token=cclgp8qad3i79c6t85u0cclgp8qad3i79c6t85ug"
         if let url = URL(string: urlString) {
             //2. Create a URLSession
             let session = URLSession(configuration: .default) //создаем дефолтную сессию

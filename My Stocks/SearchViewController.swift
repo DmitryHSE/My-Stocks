@@ -10,6 +10,9 @@ import UIKit
 
 class SearchViewController: UIViewController {
     
+    let searchStockManager = SearchStocksManager()
+    var stocks = [Stocks]()
+    
     @IBOutlet weak var tableView: UITableView!
     let searchController = UISearchController(searchResultsController: nil)
     
@@ -17,17 +20,24 @@ class SearchViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         dismiss(animated: true) {
-            self.delegate?.getSearchResults(newArray: ["AAPL", "TSLA"])
+            //self.delegate?.getSearchResults(newArray: ["AAPL", "TSLA"])
         }
     }
     
     override func viewDidLoad() {
+        searchStockManager.performRequest(stockName: "Apple") { stockArray in
+            self.stocks = stockArray.result
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
         super.viewDidLoad()
         setupSearchBar()
         setupTableView()
     }
     
     private func setupTableView() {
+        navigationItem.title = "Search"
         tableView.delegate = self
         tableView.dataSource = self
         //tableView.separatorStyle = .none
@@ -43,12 +53,12 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return stocks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath) as! SearchCell
-        cell.setupSearchCell(company: "Apple Inc.", ticker: "AAPL", stockType: "Common stocks")
+        cell.setupSearchCell(stock: stocks[indexPath.row])
         return cell
     }
 }

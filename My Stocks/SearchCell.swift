@@ -18,10 +18,14 @@ class SearchCell: UITableViewCell {
         // Initialization code
     }
     
-    func setupSearchCell(company: String, ticker: String, stockType: String) {
-        companyLabel.text = company
-        tickerLabel.text = ticker
-        stockTypeLabel.text = stockType
+    func setupSearchCell(stock: Stocks) {
+        companyLabel.text = stock.description
+        tickerLabel.text = stock.symbol
+        if stock.type == "" {
+            stockTypeLabel.text = "Type not available"
+        } else {
+        stockTypeLabel.text = stock.type
+        }
     }
 
 
