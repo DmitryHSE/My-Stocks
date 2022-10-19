@@ -29,10 +29,10 @@ class SearchCell: UITableViewCell {
         super.prepareForReuse()
     }
     
-    func setupSearchCell(stock: Stocks) {
-        companyLabel.text = stock.description
-        tickerLabel.text = stock.symbol
-        symbol = stock.symbol
+    func setupSearchCell(stock: StockForSearchCell) {
+        companyLabel.text = stock.name
+        tickerLabel.text = stock.ticker
+        symbol = stock.ticker
         if stock.type == "" {
             stockTypeLabel.text = "Type not available"
         } else {

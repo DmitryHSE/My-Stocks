@@ -12,8 +12,9 @@ class SearchViewController: UIViewController {
     
     private var timer: Timer?
     private let searchStockManager = SearchStocksManager()
-    private var stocks = [Stocks]()
+    //private var stocks = [Stocks]()
     var arrayWithAddedStocks = [String]()
+    private var stocksForSearchCellArray = [StockForSearchCell]()
     
     @IBOutlet weak var tableView: UITableView!
     private let searchController = UISearchController(searchResultsController: nil)
@@ -30,6 +31,9 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         setupSearchBar()
         setupTableView()
+//        getSearchedStocks(text: "A") { array in
+//
+//        }
     }
     
 }
@@ -60,7 +64,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
        // print("SearchViewController.swift - heightForHeaderInSection \n: координаты для расположения надписи Please enter search term above...")
         // если ячеек боль 0 то хедер прячется, если нет то распологается на экране
-        return stocks.count > 0 ? 0 : 250
+        return stocksForSearchCellArray.count > 0 ? 0 : 250
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -68,7 +72,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return stocks.count
+        return stocksForSearchCellArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -76,8 +80,12 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         cell.delegate = self
         cell.showAlertDelegate = self
         cell.arrayWithAddedStocks = arrayWithAddedStocks
-        cell.setupSearchCell(stock: stocks[indexPath.row])
+        cell.setupSearchCell(stock: stocksForSearchCellArray[indexPath.row])
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
@@ -108,8 +116,11 @@ extension SearchViewController {
     
     private func performSearchRequest(text: String?) {
         guard let text = text else {return}
-        searchStockManager.performRequest(stockName: text) { stockArray in
-            self.stocks = stockArray.result
+        
+        //        searchStockManager.performRequest(stockName: text) { stockArray in
+        //            self.stocks = stockArray.result
+        getSearchedStocks(text: text) { SearchedStocksArray in
+            self.stocksForSearchCellArray = SearchedStocksArray
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }

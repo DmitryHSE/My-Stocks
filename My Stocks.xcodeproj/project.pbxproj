@@ -27,6 +27,7 @@
 		9F055BE628FFD3B10088D53B /* SearchStocksManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F055BE528FFD3B10088D53B /* SearchStocksManager.swift */; };
 		9F055BE828FFD4750088D53B /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F055BE728FFD4750088D53B /* Protocols.swift */; };
 		9F055BEA28FFD83A0088D53B /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F055BE928FFD83A0088D53B /* SearchCell.swift */; };
+		9F055BEE290037BC0088D53B /* ArrayForCellsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F055BED290037BC0088D53B /* ArrayForCellsManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		9F055BE528FFD3B10088D53B /* SearchStocksManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStocksManager.swift; sourceTree = "<group>"; };
 		9F055BE728FFD4750088D53B /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		9F055BE928FFD83A0088D53B /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
+		9F055BED290037BC0088D53B /* ArrayForCellsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayForCellsManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 		9F055BE228FFCBF30088D53B /* Search window */ = {
 			isa = PBXGroup;
 			children = (
+				9F055BED290037BC0088D53B /* ArrayForCellsManager.swift */,
 				9F055BE528FFD3B10088D53B /* SearchStocksManager.swift */,
 				9F055BE328FFCC230088D53B /* SearchStocksModel.swift */,
 			);
@@ -223,6 +226,7 @@
 				9F055BE428FFCC230088D53B /* SearchStocksModel.swift in Sources */,
 				9F055BC828FEBDA80088D53B /* MainTabBarController.swift in Sources */,
 				9F055BCB28FEBF240088D53B /* Extensions.swift in Sources */,
+				9F055BEE290037BC0088D53B /* ArrayForCellsManager.swift in Sources */,
 				9F055BDA28FED1DA0088D53B /* DataModels.swift in Sources */,
 				9F055BE828FFD4750088D53B /* Protocols.swift in Sources */,
 				9F055BE628FFD3B10088D53B /* SearchStocksManager.swift in Sources */,
