@@ -63,6 +63,7 @@ extension StocksViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.presentStockDetailsScreen(ticker: stocksArray[indexPath.row].stockName)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }

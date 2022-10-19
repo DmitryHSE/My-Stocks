@@ -40,12 +40,17 @@ extension UIColor {
 }
 
 extension UIViewController {
-    
     func wrongTickerAlert(name: String) {
         let alertController = UIAlertController(title: name, message: nil, preferredStyle: .alert)
         let alertOk = UIAlertAction(title: "OK", style: .default)
         alertController.addAction(alertOk)
         present(alertController, animated: true, completion: nil )
+    }
+    
+    func presentStockDetailsScreen(ticker: String) {
+        let VC: StockDetailsVC = StockDetailsVC.loadFromStoryboard()
+        VC.ticker = ticker
+        self.present(VC, animated: true)
         
     }
 }

@@ -86,6 +86,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.presentStockDetailsScreen(ticker: stocksForSearchCellArray[indexPath.row].ticker)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
@@ -150,3 +151,6 @@ extension SearchViewController: AddTickerToStockListProtocol, ShowAlertProtocol,
 //        guard let text = searchBar.text else {return}
 //        print(text)
 //    }
+
+
+
