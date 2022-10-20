@@ -22,3 +22,7 @@ protocol ShowAlertProtocol {
 protocol ReturnSearchResultsArrayProtocol {
     func getSearchStocksArrayBack(array: [StockForSearchCell])
 }
+
+protocol ReloadTableViewProtocol {
+    func reloadTableView()
+}

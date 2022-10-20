@@ -58,6 +58,8 @@ extension StocksViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             cell.backgroundImage.backgroundColor = .white
         }
+        cell.ticker = stocksArray[indexPath.row].stockName
+        cell.delegate = self
         cell.setupCell(stockModel: stocksArray[indexPath.row])
         return cell
     }
@@ -120,7 +122,12 @@ extension StocksViewController {
 
 //MARK: - PassSearchResultsProtocol
 
-extension StocksViewController: PassSearchResultsProtocol {
+extension StocksViewController: PassSearchResultsProtocol, ReloadTableViewProtocol {
+    
+    func reloadTableView() {
+        
+    }
+    
     
     func getSearchResults(arrayWithSearchResults: [String])  {
         tikersArray = arrayWithSearchResults

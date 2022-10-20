@@ -14,12 +14,14 @@ class FavoriteViewController: UIViewController {
     var timer = Timer()
     let emptyStock = StockModel()
     var stocksArray = [StockModel]()
+   
     
-    var tikersArray = ["AAPL","TWTR","MSFT","TSLA", "AMZN","GOOG", "META", "JNJ","XOM","V"]
+    var tikersArray = [String]()
     let searchController = UISearchController(searchResultsController: nil)
     let dataManager = DataManager()
     
     override func viewDidLoad() {
+        loadFavoriteStocksFromStorage()
         super.viewDidLoad()
         if stocksArray.isEmpty {
             stocksArray = Array(repeating: emptyStock, count: tikersArray.count)
@@ -27,8 +29,6 @@ class FavoriteViewController: UIViewController {
         setupSearchBar()
         setupTableView()
         getStocksData()
-        //setupSearchButton()
-    
     }
 }
 
@@ -41,6 +41,17 @@ extension FavoriteViewController: UISearchBarDelegate {
 }
 
 extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label = UILabel()
+        label.text = "Here is no your favorite stocks. Add some!"
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        return label
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return stocksArray.count > 0 ? 0 : 250
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 68
@@ -72,17 +83,7 @@ extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
 extension FavoriteViewController {
     
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "SearchVC" {
-            print("performing segue")
-            let destinationVC = segue.destination as! SearchViewController
-            destinationVC.arrayWithAddedStocks = tikersArray
-            destinationVC.delegate = self
-        }
-    }
-    
     private func getStocksData() {
-        print("getStocksData")
         getStocksArray(tikersArray: tikersArray) { index, stock in
             self.stocksArray[index] = stock
             DispatchQueue.main.async {
@@ -108,16 +109,14 @@ extension FavoriteViewController {
         tableView.register(nib, forCellReuseIdentifier: "Cell")
     }
     
-}
-
-//MARK: - PassSearchResultsProtocol
-
-extension FavoriteViewController: PassSearchResultsProtocol {
-    
-    func getSearchResults(arrayWithSearchResults: [String])  {
-        tikersArray = arrayWithSearchResults
-        stocksArray.removeAll()
-        stocksArray = Array(repeating: emptyStock, count: tikersArray.count)
-        getStocksData()
+    private func loadFavoriteStocksFromStorage() {
+        let defaults = UserDefaults.standard
+        if let array = defaults.stringArray(forKey: "favorite") {
+            tikersArray = array
+        }
     }
+    
 }
+
+
+
