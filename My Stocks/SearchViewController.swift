@@ -31,9 +31,7 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         setupSearchBar()
         setupTableView()
-//        getSearchedStocks(text: "A") { array in
-//
-//        }
+        
     }
     
 }
@@ -122,7 +120,6 @@ extension SearchViewController {
             }
         }
     }
-    
 }
 
 extension SearchViewController: AddTickerToStockListProtocol, ShowAlertProtocol, ReturnSearchResultsArrayProtocol {
@@ -146,13 +143,6 @@ extension SearchViewController: AddTickerToStockListProtocol, ShowAlertProtocol,
     }
 }
 
-
-
-//extension SearchViewController: UISearchBarDelegate {
-//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//        guard let text = searchBar.text else {return}
-//        print(text)
-//    }
 
 
 
