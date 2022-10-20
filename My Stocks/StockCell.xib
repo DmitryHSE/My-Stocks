@@ -73,6 +73,7 @@
             <connections>
                 <outlet property="backgroundImage" destination="Rnh-eQ-eQK" id="aSm-qo-mCU"/>
                 <outlet property="currentPriceLabel" destination="pA3-dO-Pfv" id="qcw-nU-fYH"/>
+                <outlet property="favoriteButton" destination="eli-mF-IEp" id="V5e-NS-Jf2"/>
                 <outlet property="priceChangeLabel" destination="nim-zA-33V" id="ddQ-QT-ox2"/>
                 <outlet property="stockLabel" destination="ZDg-XE-z1K" id="cMx-vI-yWc"/>
             </connections>

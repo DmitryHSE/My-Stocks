@@ -8,6 +8,8 @@
 import UIKit
 
 class StockCell: UITableViewCell {
+    
+    @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var stockLabel: UILabel!
     @IBOutlet weak var priceChangeLabel: UILabel!
