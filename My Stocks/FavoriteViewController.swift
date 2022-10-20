@@ -11,11 +11,6 @@ class FavoriteViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     let refreshControll = UIRefreshControl()
-//    let refreshControll: UIRefreshControl = {
-//        let refreshControll = UIRefreshControl()
-//        refreshControll.addTarget(self, action: #selector(refreshTableView(sender:)), for: .valueChanged)
-//        return refreshControll
-//    }()
     var timer = Timer()
     let emptyStock = StockModel()
     var stocksArray = [StockModel]()
@@ -24,7 +19,6 @@ class FavoriteViewController: UIViewController {
     let dataManager = DataManager()
     
     override func viewDidLoad() {
-        //
         setupRefreshControll()
         loadFavoriteStocksFromStorage()
         super.viewDidLoad()
@@ -34,26 +28,6 @@ class FavoriteViewController: UIViewController {
         setupSearchBar()
         setupTableView()
         getStocksData()
-    }
-    
-    @objc private func refreshTableView(sender: UIRefreshControl) {
-        print("endRefreshing")
-        loadFavoriteStocksFromStorage()
-        stocksArray.removeAll()
-        if stocksArray.isEmpty {
-            stocksArray = Array(repeating: emptyStock, count: tikersArray.count)
-        }
-        DispatchQueue.main.async {
-            self.getStocksData()
-            self.tableView.reloadData()
-        }
-        refreshControll.endRefreshing()
-    }
-    
-    func setupRefreshControll() {
-        tableView.refreshControl = refreshControll
-        refreshControll.addTarget(self, action: #selector(refreshTableView(sender:)), for: .valueChanged)
-        
     }
 }
 
@@ -139,6 +113,25 @@ extension FavoriteViewController {
         if let array = defaults.stringArray(forKey: "favorite") {
             tikersArray = array
         }
+    }
+    
+    @objc private func refreshTableView(sender: UIRefreshControl) {
+        loadFavoriteStocksFromStorage()
+        stocksArray.removeAll()
+        if stocksArray.isEmpty {
+            stocksArray = Array(repeating: emptyStock, count: tikersArray.count)
+        }
+        DispatchQueue.main.async {
+            self.getStocksData()
+            self.tableView.reloadData()
+        }
+        refreshControll.endRefreshing()
+    }
+    
+    func setupRefreshControll() {
+        tableView.refreshControl = refreshControll
+        refreshControll.addTarget(self, action: #selector(refreshTableView(sender:)), for: .valueChanged)
+        
     }
     
 }

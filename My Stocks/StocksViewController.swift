@@ -10,10 +10,20 @@ import UIKit
 class StocksViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    
+    let refreshControll = UIRefreshControl()
     var timer = Timer()
     let emptyStock = StockModel()
+    
+    var filteredStocksArray = [StockModel]()
     var stocksArray = [StockModel]()
+    
+    var searchBarIsEmpty: Bool {
+        guard let text = searchController.searchBar.text else {return false}
+        return text.isEmpty
+    }
+    var isFiltering: Bool {
+        return searchController.isActive && !searchBarIsEmpty
+    }
     
     var tikersArray = ["AAPL","TWTR","MSFT","TSLA", "AMZN","GOOG", "META", "JNJ","XOM","V"]
     let searchController = UISearchController(searchResultsController: nil)
@@ -24,6 +34,7 @@ class StocksViewController: UIViewController {
         if stocksArray.isEmpty {
             stocksArray = Array(repeating: emptyStock, count: tikersArray.count)
         }
+        setupRefreshControll()
         setupSearchBar()
         setupTableView()
         getStocksData()
@@ -47,7 +58,12 @@ extension StocksViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return stocksArray.count
+        if isFiltering {
+            return filteredStocksArray.count
+        } else {
+            return stocksArray.count
+        }
+        
     }
     
     
@@ -58,9 +74,15 @@ extension StocksViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             cell.backgroundImage.backgroundColor = .white
         }
-        cell.ticker = stocksArray[indexPath.row].stockName
         cell.delegate = self
-        cell.setupCell(stockModel: stocksArray[indexPath.row])
+        
+        if isFiltering {
+            cell.ticker = filteredStocksArray[indexPath.row].stockName
+            cell.setupCell(stockModel: filteredStocksArray[indexPath.row])
+        } else {
+            cell.ticker = stocksArray[indexPath.row].stockName
+            cell.setupCell(stockModel: stocksArray[indexPath.row])
+        }
         return cell
     }
     
@@ -103,10 +125,16 @@ extension StocksViewController {
 
     
     private func setupSearchBar() {
-        searchController.searchBar.delegate = self
-        navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = false
+//        searchController.searchBar.delegate = self
+//        navigationItem.searchController = searchController
+//        navigationItem.hidesSearchBarWhenScrolling = false
+//        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+        navigationItem.hidesSearchBarWhenScrolling = true
     }
     
     private func setupTableView() {
@@ -135,6 +163,41 @@ extension StocksViewController: PassSearchResultsProtocol, ReloadTableViewProtoc
         stocksArray = Array(repeating: emptyStock, count: tikersArray.count)
         getStocksData()
     }
+}
+
+extension StocksViewController {
+    @objc private func refreshTableView(sender: UIRefreshControl) {
+        getStocksData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+            self.refreshControll.endRefreshing()
+        }
+        //refreshControll.endRefreshing()
+    }
+    
+    func setupRefreshControll() {
+        tableView.refreshControl = refreshControll
+        refreshControll.addTarget(self, action: #selector(refreshTableView(sender:)), for: .valueChanged)
+        
+    }
+}
+
+extension StocksViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
+    
+    private func filterContentForSearchText(_ searchText: String) {
+        let text = searchText.uppercased()
+        filteredStocksArray = stocksArray.filter({ $0.stockName.contains(text) })
+        print(filteredStocksArray)
+        tableView.reloadData()
+    }
+    
+    
+    
+    
 }
 
 //extension StocksViewController {
