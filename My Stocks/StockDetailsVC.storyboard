@@ -83,11 +83,21 @@
                                 <rect key="frame" x="147" y="118" width="120" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="YuR-iM-f1R">
+                                <rect key="frame" x="197" y="438" width="20" height="20"/>
+                                <color key="tintColor" white="0.1019079507" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="color" white="0.1019079507" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="YuR-iM-f1R" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="7ot-bN-4KF"/>
+                            <constraint firstItem="YuR-iM-f1R" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="Vcs-pG-Xb9"/>
+                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="YuR-iM-f1R" id="LNy-DW-dK0"/>
                         <outlet property="companyNameLabel" destination="F6A-cD-yDd" id="uFl-uV-l1M"/>
                         <outlet property="countryLabel" destination="tUX-pm-ccp" id="PEr-Oc-hK8"/>
                         <outlet property="countryStaticLabel" destination="2el-L4-ajl" id="ScD-jo-KE8"/>

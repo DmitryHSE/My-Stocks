@@ -9,6 +9,7 @@ import UIKit
 import SVGKit
 
 class StockDetailsVC: UIViewController {
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     
     @IBOutlet weak var marketCapStaticLabel: UILabel!
@@ -28,6 +29,8 @@ class StockDetailsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        activityIndicator.isHidden = true //скрыли индикатор
+        activityIndicator.hidesWhenStopped = true //скрываем индикатор если его стопят
         setupLogoImage()
         getStockDetails()
     }
@@ -48,9 +51,12 @@ class StockDetailsVC: UIViewController {
     }
     
     private func getStockDetails() {
+        activityIndicator.isHidden = false // вернули индикатор
+        activityIndicator.startAnimating() // стали крутить индикатор
         stockDetailManager.performRequest(stockName: ticker) { stockDetails in
             guard let stock = stockDetails else {return}
             DispatchQueue.main.async {
+                self.activityIndicator.stopAnimating()
                 self.setupVC(stockDetails: stock)
             }
         }
