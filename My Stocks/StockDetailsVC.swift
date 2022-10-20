@@ -6,8 +6,16 @@
 //
 
 import UIKit
+import SVGKit
 
 class StockDetailsVC: UIViewController {
+    
+    
+    @IBOutlet weak var marketCapStaticLabel: UILabel!
+    @IBOutlet weak var industryStaticLabel: UILabel!
+    @IBOutlet weak var countryStaticLabel: UILabel!
+    @IBOutlet weak var currencyStaticLabel: UILabel!
+    
     @IBOutlet weak var companyNameLabel: UILabel!
     @IBOutlet weak var logoImage: UIImageView!
     @IBOutlet weak var marketCapLabel: UILabel!
@@ -20,15 +28,22 @@ class StockDetailsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupLogoImage()
         getStockDetails()
     }
     
     private func setupVC(stockDetails: StockDetailsModel) {
+        currencyStaticLabel.text = "Currency:"
+        countryStaticLabel.text = "Country:"
+        industryStaticLabel.text = "Industry:"
+        marketCapStaticLabel.textColor = .black
+        
         industryLabel.text = stockDetails.finnhubIndustry
         companyNameLabel.text = stockDetails.name
         currencyLabel.text = stockDetails.currency
         countryLabel.text = stockDetails.country
         marketCapLabel.text = "$"+String(format: "%.0f", (stockDetails.marketCapitalization/1000))+" mln"
+        logoImage.image = downloadSVG(urlString: stockDetails.logo)
         
     }
     
@@ -39,5 +54,18 @@ class StockDetailsVC: UIViewController {
                 self.setupVC(stockDetails: stock)
             }
         }
+    }
+}
+
+
+extension StockDetailsVC {
+   private func downloadSVG(urlString: String) -> UIImage? {
+            let url = URL(string: urlString)
+            let svg = SVGKImage(contentsOf: url)
+            return svg?.uiImage
+        }
+    
+    private func setupLogoImage() {
+        logoImage.layer.cornerRadius = logoImage.bounds.height/3
     }
 }
