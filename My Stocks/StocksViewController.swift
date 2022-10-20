@@ -125,10 +125,6 @@ extension StocksViewController {
 
     
     private func setupSearchBar() {
-//        searchController.searchBar.delegate = self
-//        navigationItem.searchController = searchController
-//        navigationItem.hidesSearchBarWhenScrolling = false
-//        searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search"
