@@ -43,6 +43,8 @@ class StocksViewController: UIViewController {
     }
 }
 
+//MARK: - Search bar delegate
+
 extension StocksViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let text = searchBar.text else {return}
@@ -50,6 +52,8 @@ extension StocksViewController: UISearchBarDelegate {
     }
     
 }
+
+//MARK: - Table view delegates
 
 extension StocksViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -91,6 +95,36 @@ extension StocksViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+//MARK: - PassSearchResultsProtocol
+
+extension StocksViewController: PassSearchResultsProtocol {
+    
+    
+    func getSearchResults(arrayWithSearchResults: [String])  {
+        tikersArray = arrayWithSearchResults
+        stocksArray.removeAll()
+        stocksArray = Array(repeating: emptyStock, count: tikersArray.count)
+        getStocksData()
+    }
+}
+
+//MARK: - Search results delegate
+
+extension StocksViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
+    
+    private func filterContentForSearchText(_ searchText: String) {
+        let text = searchText.uppercased()
+        filteredStocksArray = stocksArray.filter({ $0.stockName.contains(text) })
+        print(filteredStocksArray)
+        tableView.reloadData()
+    }
+}
+
+//MARK: - Extensions for current controller
 extension StocksViewController {
     
     private func setupSearchButton() {
@@ -141,29 +175,13 @@ extension StocksViewController {
         tableView.register(nib, forCellReuseIdentifier: "Cell")
     }
     
-}
-
-//MARK: - PassSearchResultsProtocol
-
-extension StocksViewController: PassSearchResultsProtocol {
-    
-    
-    func getSearchResults(arrayWithSearchResults: [String])  {
-        tikersArray = arrayWithSearchResults
-        stocksArray.removeAll()
-        stocksArray = Array(repeating: emptyStock, count: tikersArray.count)
-        getStocksData()
-    }
-}
-
-extension StocksViewController {
     @objc private func refreshTableView(sender: UIRefreshControl) {
         getStocksData()
         DispatchQueue.main.async {
             self.tableView.reloadData()
             self.refreshControll.endRefreshing()
         }
-        //refreshControll.endRefreshing()
+        
     }
     
     func setupRefreshControll() {
@@ -171,44 +189,7 @@ extension StocksViewController {
         refreshControll.addTarget(self, action: #selector(refreshTableView(sender:)), for: .valueChanged)
         
     }
-}
-
-extension StocksViewController: UISearchResultsUpdating {
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        filterContentForSearchText(searchController.searchBar.text!)
-    }
-    
-    private func filterContentForSearchText(_ searchText: String) {
-        let text = searchText.uppercased()
-        filteredStocksArray = stocksArray.filter({ $0.stockName.contains(text) })
-        print(filteredStocksArray)
-        tableView.reloadData()
-    }
-    
-    
-    
     
 }
 
-//extension StocksViewController {
-//
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        print("2-viewWillAppear")
-//    }
-//
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//        print("3-viewDidAppear")
-//    }
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(animated)
-//        print("4-viewWillDisappear")
-//    }
-//    override func viewDidDisappear(_ animated: Bool) {
-//        super.viewDidDisappear(animated)
-//        print("5-viewDidDisappear")
-//    }
-//
-//}
+

@@ -35,6 +35,13 @@ class StockDetailsVC: UIViewController {
         getStockDetails()
     }
     
+    
+}
+
+//MARK: - Extensions for current controller
+
+extension StockDetailsVC {
+    
     private func setupVC(stockDetails: StockDetailsModel) {
         currencyStaticLabel.text = "Currency:"
         countryStaticLabel.text = "Country:"
@@ -61,15 +68,12 @@ class StockDetailsVC: UIViewController {
             }
         }
     }
-}
-
-
-extension StockDetailsVC {
-   private func downloadSVG(urlString: String) -> UIImage? {
-            let url = URL(string: urlString)
-            let svg = SVGKImage(contentsOf: url)
-            return svg?.uiImage
-        }
+    
+    private func downloadSVG(urlString: String) -> UIImage? {
+        let url = URL(string: urlString)
+        let svg = SVGKImage(contentsOf: url)
+        return svg?.uiImage
+    }
     
     private func setupLogoImage() {
         logoImage.layer.cornerRadius = logoImage.bounds.height/3

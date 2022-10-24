@@ -42,6 +42,8 @@ class FavoriteViewController: UIViewController {
     }
 }
 
+//MARK: - Search bar delegate
+
 extension FavoriteViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let text = searchBar.text else {return}
@@ -49,6 +51,8 @@ extension FavoriteViewController: UISearchBarDelegate {
     }
     
 }
+
+//MARK: - Table view delegate
 
 extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -99,9 +103,9 @@ extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+//MARK: - Extensions for current controller
+
 extension FavoriteViewController {
-    
-    
     private func getStocksData() {
         getStocksArray(tikersArray: tikersArray) { index, stock in
             self.stocksArray[index] = stock
@@ -157,6 +161,8 @@ extension FavoriteViewController {
     }
     
 }
+
+//MARK: - Search results delegate
 
 extension FavoriteViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {

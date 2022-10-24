@@ -9,7 +9,7 @@ import UIKit
 
 class MainTabBarController: UITabBarController {
     
-    // вьюконтроллеры
+    // set viewcontrollers
     
     private var StocksVC: StocksViewController = StocksViewController.loadFromStoryboard()
     private var FavoriteVC: FavoriteViewController = FavoriteViewController.loadFromStoryboard()
@@ -25,7 +25,7 @@ class MainTabBarController: UITabBarController {
 
 
 
-
+//MARK: - Extensions for current controller
 
 extension MainTabBarController {
     

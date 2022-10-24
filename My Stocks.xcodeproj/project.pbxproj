@@ -181,11 +181,11 @@
 		9FE8A9222906BA0A00AA3442 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				9F055BEF290049400088D53B /* StockDetailsVC.swift */,
 				9F055BC728FEBDA80088D53B /* MainTabBarController.swift */,
 				9F055BCC28FEBFF50088D53B /* StocksViewController.swift */,
 				9F055BDF28FF00E50088D53B /* SearchViewController.swift */,
 				9F055BD028FEC04A0088D53B /* FavoriteViewController.swift */,
+				9F055BEF290049400088D53B /* StockDetailsVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";

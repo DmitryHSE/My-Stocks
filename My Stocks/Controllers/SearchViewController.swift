@@ -36,6 +36,8 @@ class SearchViewController: UIViewController {
     
 }
 
+//MARK: - Search bar delegate
+
 extension SearchViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -46,6 +48,7 @@ extension SearchViewController: UISearchBarDelegate {
     }
 }
 
+//MARK: - Table view delegate
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -91,6 +94,8 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+//MARK: - Extensions for current controller
+
 extension SearchViewController {
     
     private func setupSearchBar() {
@@ -118,6 +123,8 @@ extension SearchViewController {
         }
     }
 }
+
+//MARK: - Protocols extensions
 
 extension SearchViewController: AddTickerToStockListProtocol, ShowAlertProtocol, ReturnSearchResultsArrayProtocol {
     
