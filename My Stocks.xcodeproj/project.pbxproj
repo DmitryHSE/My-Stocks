@@ -94,7 +94,6 @@
 				CA1A3504C6DFC8DC20EF84B4 /* Pods-My Stocks.debug.xcconfig */,
 				5F2698B03D1965DD700861EC /* Pods-My Stocks.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -121,19 +120,9 @@
 			children = (
 				9F055BB328FEBCB20088D53B /* AppDelegate.swift */,
 				9F055BB528FEBCB20088D53B /* SceneDelegate.swift */,
-				9F055BC728FEBDA80088D53B /* MainTabBarController.swift */,
-				9F055BCC28FEBFF50088D53B /* StocksViewController.swift */,
-				9F055BDF28FF00E50088D53B /* SearchViewController.swift */,
-				9F055BCE28FEC0020088D53B /* StocksViewController.storyboard */,
-				9F055BD028FEC04A0088D53B /* FavoriteViewController.swift */,
-				9F055BD228FEC0840088D53B /* FavoriteViewController.storyboard */,
-				9F055BEF290049400088D53B /* StockDetailsVC.swift */,
-				9F055BF1290049570088D53B /* StockDetailsVC.storyboard */,
-				9F055BD428FEC5B40088D53B /* StockCell.swift */,
-				9F055BD528FEC5B40088D53B /* StockCell.xib */,
-				9F055BE928FFD83A0088D53B /* SearchCell.swift */,
-				9F055BD828FED1BB0088D53B /* Services */,
-				9F055BC928FEBF030088D53B /* Extensions&Protocols */,
+				9FE8A9232906BA2400AA3442 /* Views */,
+				9FE8A9222906BA0A00AA3442 /* Controllers */,
+				9FE8A9252906BA6400AA3442 /* Models */,
 				9F055BBC28FEBCB30088D53B /* Assets.xcassets */,
 				9F055BBE28FEBCB30088D53B /* LaunchScreen.storyboard */,
 				9F055BC128FEBCB30088D53B /* Info.plist */,
@@ -187,6 +176,48 @@
 				9F055BF42900542F0088D53B /* StockDetailsModel.swift */,
 			);
 			path = "Stock details window";
+			sourceTree = "<group>";
+		};
+		9FE8A9222906BA0A00AA3442 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9F055BEF290049400088D53B /* StockDetailsVC.swift */,
+				9F055BC728FEBDA80088D53B /* MainTabBarController.swift */,
+				9F055BCC28FEBFF50088D53B /* StocksViewController.swift */,
+				9F055BDF28FF00E50088D53B /* SearchViewController.swift */,
+				9F055BD028FEC04A0088D53B /* FavoriteViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		9FE8A9232906BA2400AA3442 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9F055BCE28FEC0020088D53B /* StocksViewController.storyboard */,
+				9F055BD228FEC0840088D53B /* FavoriteViewController.storyboard */,
+				9F055BF1290049570088D53B /* StockDetailsVC.storyboard */,
+				9FE8A9242906BA4400AA3442 /* Cells */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9FE8A9242906BA4400AA3442 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				9F055BD428FEC5B40088D53B /* StockCell.swift */,
+				9F055BD528FEC5B40088D53B /* StockCell.xib */,
+				9F055BE928FFD83A0088D53B /* SearchCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		9FE8A9252906BA6400AA3442 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9F055BD828FED1BB0088D53B /* Services */,
+				9F055BC928FEBF030088D53B /* Extensions&Protocols */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
