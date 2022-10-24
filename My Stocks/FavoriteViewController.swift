@@ -159,7 +159,6 @@ extension FavoriteViewController {
 }
 
 extension FavoriteViewController: UISearchResultsUpdating {
-    
     func updateSearchResults(for searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text!)
     }
@@ -170,10 +169,6 @@ extension FavoriteViewController: UISearchResultsUpdating {
         //print(filteredStocksArray)
         tableView.reloadData()
     }
-    
-    
-    
-    
 }
 
 

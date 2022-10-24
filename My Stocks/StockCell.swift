@@ -10,7 +10,6 @@ import UIKit
 class StockCell: UITableViewCell {
     
     var ticker = String()
-    var delegate: ReloadTableViewProtocol?
     var favoriteStocksArray = [String]()
     let defaults = UserDefaults.standard
     

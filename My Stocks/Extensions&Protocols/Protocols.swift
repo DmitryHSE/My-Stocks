@@ -23,6 +23,4 @@ protocol ReturnSearchResultsArrayProtocol {
     func getSearchStocksArrayBack(array: [StockForSearchCell])
 }
 
-protocol ReloadTableViewProtocol {
-    func reloadTableView()
-}
+

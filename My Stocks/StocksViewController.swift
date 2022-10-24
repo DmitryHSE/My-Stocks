@@ -74,7 +74,6 @@ extension StocksViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             cell.backgroundImage.backgroundColor = .white
         }
-        cell.delegate = self
         
         if isFiltering {
             cell.ticker = filteredStocksArray[indexPath.row].stockName
@@ -95,7 +94,7 @@ extension StocksViewController: UITableViewDelegate, UITableViewDataSource {
 extension StocksViewController {
     
     private func setupSearchButton() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search,
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
                                                             target: self,
                                                             action: #selector(performAdd(sender:)))
     }
@@ -146,11 +145,7 @@ extension StocksViewController {
 
 //MARK: - PassSearchResultsProtocol
 
-extension StocksViewController: PassSearchResultsProtocol, ReloadTableViewProtocol {
-    
-    func reloadTableView() {
-        
-    }
+extension StocksViewController: PassSearchResultsProtocol {
     
     
     func getSearchResults(arrayWithSearchResults: [String])  {
