@@ -142,40 +142,40 @@
 		9F055BD828FED1BB0088D53B /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				9F055BE128FFCBE10088D53B /* Stocks window */,
-				9F055BE228FFCBF30088D53B /* Search window */,
-				9F055BF3290054060088D53B /* Stock details window */,
+				9F055BE128FFCBE10088D53B /* Stocks view */,
+				9F055BE228FFCBF30088D53B /* Search view */,
+				9F055BF3290054060088D53B /* Stock details view */,
 			);
 			path = Services;
 			sourceTree = "<group>";
 		};
-		9F055BE128FFCBE10088D53B /* Stocks window */ = {
+		9F055BE128FFCBE10088D53B /* Stocks view */ = {
 			isa = PBXGroup;
 			children = (
 				9F055BDD28FEE7D90088D53B /* DataArrayManager.swift */,
 				9F055BDB28FED2DA0088D53B /* DataManager.swift */,
 				9F055BD928FED1DA0088D53B /* DataModels.swift */,
 			);
-			path = "Stocks window";
+			path = "Stocks view";
 			sourceTree = "<group>";
 		};
-		9F055BE228FFCBF30088D53B /* Search window */ = {
+		9F055BE228FFCBF30088D53B /* Search view */ = {
 			isa = PBXGroup;
 			children = (
 				9F055BED290037BC0088D53B /* ArrayForCellsManager.swift */,
 				9F055BE528FFD3B10088D53B /* SearchStocksManager.swift */,
 				9F055BE328FFCC230088D53B /* SearchStocksModel.swift */,
 			);
-			path = "Search window";
+			path = "Search view";
 			sourceTree = "<group>";
 		};
-		9F055BF3290054060088D53B /* Stock details window */ = {
+		9F055BF3290054060088D53B /* Stock details view */ = {
 			isa = PBXGroup;
 			children = (
 				9F055BF6290054D90088D53B /* StockDetailManager.swift */,
 				9F055BF42900542F0088D53B /* StockDetailsModel.swift */,
 			);
-			path = "Stock details window";
+			path = "Stock details view";
 			sourceTree = "<group>";
 		};
 		9FE8A9222906BA0A00AA3442 /* Controllers */ = {

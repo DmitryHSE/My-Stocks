@@ -57,6 +57,33 @@ extension StocksViewController: UISearchBarDelegate {
 
 extension StocksViewController: UITableViewDelegate, UITableViewDataSource {
     
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "Remove") { _, _, completion in
+            var editingRow = ""
+            if self.isFiltering {
+                editingRow = self.filteredStocksArray[indexPath.row].stockName
+            } else {
+                editingRow = self.tikersArray[indexPath.row]
+            }
+           
+            if let index = self.tikersArray.firstIndex(of: editingRow) {
+                
+                if self.isFiltering {
+    
+                    self.filteredStocksArray.remove(at: indexPath.row)
+                    self.tikersArray.remove(at: index)
+                    self.stocksArray.remove(at: index)
+                } else {
+                    
+                    self.stocksArray.remove(at: index)
+                    self.tikersArray.remove(at: index)
+                }
+            }
+            tableView.reloadData()
+        }
+        return UISwipeActionsConfiguration(actions: [deleteAction])
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 68
     }
@@ -95,7 +122,7 @@ extension StocksViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-//MARK: - PassSearchResultsProtocol
+//MARK: - Get Search Results from Search VC (Protocol)
 
 extension StocksViewController: PassSearchResultsProtocol {
     
@@ -108,7 +135,7 @@ extension StocksViewController: PassSearchResultsProtocol {
     }
 }
 
-//MARK: - Search results delegate
+//MARK: - Search ticker at table results delegate
 
 extension StocksViewController: UISearchResultsUpdating {
     
@@ -119,7 +146,6 @@ extension StocksViewController: UISearchResultsUpdating {
     private func filterContentForSearchText(_ searchText: String) {
         let text = searchText.uppercased()
         filteredStocksArray = stocksArray.filter({ $0.stockName.contains(text) })
-        print(filteredStocksArray)
         tableView.reloadData()
     }
 }
@@ -134,6 +160,7 @@ extension StocksViewController {
     }
     
     @objc func performAdd(sender: UIBarButtonItem) {
+        print(filteredStocksArray)
         performSegue(withIdentifier: "SearchVC", sender: nil)
     }
     
