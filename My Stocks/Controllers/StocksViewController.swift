@@ -31,6 +31,7 @@ class StocksViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupStorageForMainStockList()
         if stocksArray.isEmpty {
             stocksArray = Array(repeating: emptyStock, count: tikersArray.count)
         }
@@ -39,7 +40,17 @@ class StocksViewController: UIViewController {
         setupTableView()
         getStocksData()
         setupSearchButton()
+    }
     
+    private func setupStorageForMainStockList() {
+        let userDefaults = UserDefaults.standard
+        if let array = userDefaults.stringArray(forKey: "mainList") {
+            if array.count > 0 {
+                tikersArray = array
+            }
+        } else {
+            userDefaults.set(tikersArray, forKey: "mainList")
+        }
     }
 }
 
@@ -73,10 +84,15 @@ extension StocksViewController: UITableViewDelegate, UITableViewDataSource {
                     self.filteredStocksArray.remove(at: indexPath.row)
                     self.tikersArray.remove(at: index)
                     self.stocksArray.remove(at: index)
+                    for i in ["mainList", "favorite"] {
+                        removeStockFromStorage(ticker: editingRow, key: i)
+                    }
                 } else {
-                    
                     self.stocksArray.remove(at: index)
                     self.tikersArray.remove(at: index)
+                    for i in ["mainList", "favorite"] {
+                        removeStockFromStorage(ticker: editingRow, key: i)
+                    }
                 }
             }
             tableView.reloadData()
@@ -175,12 +191,14 @@ extension StocksViewController {
     
     private func getStocksData() {
         print("getStocksData")
+        
         getStocksArray(tikersArray: tikersArray) { index, stock in
             self.stocksArray[index] = stock
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
         }
+        
     }
 
     

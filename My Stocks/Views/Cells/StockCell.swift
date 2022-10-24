@@ -30,9 +30,9 @@ class StockCell: UITableViewCell {
         
         if sender.tintColor == .systemYellow {
             favoriteButton.tintColor = .systemGray
-            removeStockFromFavorites()
+            removeStockFromStorage(ticker: ticker, key: "favorite")
         } else {
-            addStockToFavorites()
+            addStockToStorage(ticker: ticker, key: "favorite")
             favoriteButton.tintColor = .systemYellow
         }
         
@@ -51,29 +51,29 @@ class StockCell: UITableViewCell {
         }
     }
     
-    func addStockToFavorites() {
-        let userDefaults = UserDefaults.standard
-        if var array = userDefaults.stringArray(forKey: "favorite") {
-            array.append(ticker)
-            userDefaults.set(array, forKey: "favorite")
-            print(userDefaults.stringArray(forKey: "favorite")!)
-        } else {
-            var array = [String]()
-            array.append(ticker)
-            userDefaults.set(array, forKey: "favorite")
-            print(userDefaults.stringArray(forKey: "favorite")!)
-        }
-        
-    }
-    func removeStockFromFavorites() {
-        let userDefaults = UserDefaults.standard
-        var array = userDefaults.stringArray(forKey: "favorite")!
-        if let index = array.firstIndex(of: ticker) {
-            array.remove(at: index)
-        }
-        userDefaults.set(array, forKey: "favorite")
-        print(userDefaults.stringArray(forKey: "favorite")!)
-    }
+//    func addStockToFavorites() {
+//        let userDefaults = UserDefaults.standard
+//        if var array = userDefaults.stringArray(forKey: "favorite") {
+//            array.append(ticker)
+//            userDefaults.set(array, forKey: "favorite")
+//            print(userDefaults.stringArray(forKey: "favorite")!)
+//        } else {
+//            var array = [String]()
+//            array.append(ticker)
+//            userDefaults.set(array, forKey: "favorite")
+//            print(userDefaults.stringArray(forKey: "favorite")!)
+//        }
+//        
+//    }
+//    func removeStockFromFavorites() {
+//        let userDefaults = UserDefaults.standard
+//        var array = userDefaults.stringArray(forKey: "favorite")!
+//        if let index = array.firstIndex(of: ticker) {
+//            array.remove(at: index)
+//        }
+//        userDefaults.set(array, forKey: "favorite")
+//        print(userDefaults.stringArray(forKey: "favorite")!)
+//    }
     
     func setupAddToFavoriteButton() {
         let userDefaults = UserDefaults.standard

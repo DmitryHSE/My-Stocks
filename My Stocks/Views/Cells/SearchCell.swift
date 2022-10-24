@@ -61,6 +61,7 @@ class SearchCell: UITableViewCell {
                 
             } else {
                 delegate?.getTickerFromSearchScreen(ticker: symbol)
+                addStockToStorage(ticker: symbol, key: "mainList")
                 entireSearchedStocksArray[indexPath].didAddToList = true
                 returnArrayDelegate?.getSearchStocksArrayBack(array: entireSearchedStocksArray)
                 addButton.isHidden = true

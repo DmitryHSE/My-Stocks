@@ -51,4 +51,11 @@ extension UIViewController {
         self.present(VC, animated: true)
         
     }
+    
+    func loadFavoriteStocksFromStorage(key: String, completion: @escaping([String]) -> Void) {
+        let defaults = UserDefaults.standard
+        if let array = defaults.stringArray(forKey: key) {
+         completion(array)
+        }
+    }
 }

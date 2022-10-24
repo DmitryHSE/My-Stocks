@@ -32,6 +32,7 @@
 		9F055BF2290049570088D53B /* StockDetailsVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F055BF1290049570088D53B /* StockDetailsVC.storyboard */; };
 		9F055BF52900542F0088D53B /* StockDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F055BF42900542F0088D53B /* StockDetailsModel.swift */; };
 		9F055BF7290054D90088D53B /* StockDetailManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F055BF6290054D90088D53B /* StockDetailManager.swift */; };
+		9FE8A9272906D6F900AA3442 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8A9262906D6F900AA3442 /* UserDefaultsManager.swift */; };
 		A4538E1327E70E97336A504F /* Pods_My_Stocks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 845DE6BD2ED9903DAE0289DD /* Pods_My_Stocks.framework */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +66,7 @@
 		9F055BF1290049570088D53B /* StockDetailsVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StockDetailsVC.storyboard; sourceTree = "<group>"; };
 		9F055BF42900542F0088D53B /* StockDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailsModel.swift; sourceTree = "<group>"; };
 		9F055BF6290054D90088D53B /* StockDetailManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailManager.swift; sourceTree = "<group>"; };
+		9FE8A9262906D6F900AA3442 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		CA1A3504C6DFC8DC20EF84B4 /* Pods-My Stocks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My Stocks.debug.xcconfig"; path = "Target Support Files/Pods-My Stocks/Pods-My Stocks.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -135,6 +137,7 @@
 			children = (
 				9F055BCA28FEBF240088D53B /* Extensions.swift */,
 				9F055BE728FFD4750088D53B /* Protocols.swift */,
+				9FE8A9262906D6F900AA3442 /* UserDefaultsManager.swift */,
 			);
 			path = "Extensions&Protocols";
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 				9F055BDE28FEE7D90088D53B /* DataArrayManager.swift in Sources */,
 				9F055BB628FEBCB20088D53B /* SceneDelegate.swift in Sources */,
 				9F055BF0290049400088D53B /* StockDetailsVC.swift in Sources */,
+				9FE8A9272906D6F900AA3442 /* UserDefaultsManager.swift in Sources */,
 				9F055BD628FEC5B40088D53B /* StockCell.swift in Sources */,
 				9F055BE428FFCC230088D53B /* SearchStocksModel.swift in Sources */,
 				9F055BC828FEBDA80088D53B /* MainTabBarController.swift in Sources */,

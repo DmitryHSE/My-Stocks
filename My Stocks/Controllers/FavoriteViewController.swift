@@ -31,7 +31,9 @@ class FavoriteViewController: UIViewController {
     
     override func viewDidLoad() {
         setupRefreshControll()
-        loadFavoriteStocksFromStorage()
+        self.loadFavoriteStocksFromStorage(key: "favorite") { array in
+            self.tikersArray = array
+        }
         super.viewDidLoad()
         if stocksArray.isEmpty {
             stocksArray = Array(repeating: emptyStock, count: tikersArray.count)
@@ -134,15 +136,17 @@ extension FavoriteViewController {
         tableView.register(nib, forCellReuseIdentifier: "Cell")
     }
     
-    private func loadFavoriteStocksFromStorage() {
-        let defaults = UserDefaults.standard
-        if let array = defaults.stringArray(forKey: "favorite") {
-            tikersArray = array
-        }
-    }
+//    private func loadFavoriteStocksFromStorage() {
+//        let defaults = UserDefaults.standard
+//        if let array = defaults.stringArray(forKey: "favorite") {
+//            tikersArray = array
+//        }
+//    }
     
     @objc private func refreshTableView(sender: UIRefreshControl) {
-        loadFavoriteStocksFromStorage()
+        self.loadFavoriteStocksFromStorage(key: "favorite") { array in
+            self.tikersArray = array
+        }
         stocksArray.removeAll()
         if stocksArray.isEmpty {
             stocksArray = Array(repeating: emptyStock, count: tikersArray.count)
