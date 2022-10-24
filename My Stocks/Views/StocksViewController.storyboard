@@ -72,9 +72,12 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yHk-n5-Rk6">
-                                                    <rect key="frame" x="328" y="12" width="66" height="43"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yHk-n5-Rk6">
+                                                    <rect key="frame" x="338" y="12.5" width="66" height="43"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="66" id="V1e-u4-2BB"/>
+                                                        <constraint firstAttribute="height" constant="43" id="jpG-8W-2Wc"/>
+                                                    </constraints>
                                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="plus" catalog="system"/>
@@ -90,6 +93,10 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="yHk-n5-Rk6" firstAttribute="trailing" secondItem="7K4-1w-BaF" secondAttribute="trailingMargin" constant="10" id="Gms-RO-f4Z"/>
+                                                <constraint firstItem="yHk-n5-Rk6" firstAttribute="centerY" secondItem="7K4-1w-BaF" secondAttribute="centerY" id="KdE-Jv-XY8"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="addButton" destination="yHk-n5-Rk6" id="r9Z-Qh-8fi"/>

@@ -76,6 +76,6 @@ extension StockDetailsVC {
     }
     
     private func setupLogoImage() {
-        logoImage.layer.cornerRadius = logoImage.bounds.height/3
+        //logoImage.layer.cornerRadius = logoImage.bounds.height/3
     }
 }
