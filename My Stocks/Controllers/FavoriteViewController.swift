@@ -84,6 +84,7 @@ extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! StockCell
+        cell.selectionStyle = .none
         if indexPath.row % 2 == 0 {
             cell.backgroundImage.backgroundColor = UIColor(hexString: "f9f4ff")
         } else {

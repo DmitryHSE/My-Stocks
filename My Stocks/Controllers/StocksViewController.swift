@@ -116,6 +116,7 @@ extension StocksViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! StockCell
+        cell.selectionStyle = .none
         if indexPath.row % 2 == 0 {
             cell.backgroundImage.backgroundColor = UIColor(hexString: "f0f0f0")
         } else {
@@ -129,6 +130,7 @@ extension StocksViewController: UITableViewDelegate, UITableViewDataSource {
             cell.ticker = stocksArray[indexPath.row].stockName
             cell.setupCell(stockModel: stocksArray[indexPath.row])
         }
+        
         return cell
     }
     
@@ -141,8 +143,6 @@ extension StocksViewController: UITableViewDelegate, UITableViewDataSource {
 //MARK: - Get Search Results from Search VC (Protocol)
 
 extension StocksViewController: PassSearchResultsProtocol {
-    
-    
     func getSearchResults(arrayWithSearchResults: [String])  {
         tikersArray = arrayWithSearchResults
         stocksArray.removeAll()
@@ -190,18 +190,14 @@ extension StocksViewController {
     }
     
     private func getStocksData() {
-        print("getStocksData")
-        
         getStocksArray(tikersArray: tikersArray) { index, stock in
             self.stocksArray[index] = stock
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
         }
-        
     }
 
-    
     private func setupSearchBar() {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -212,6 +208,7 @@ extension StocksViewController {
     }
     
     private func setupTableView() {
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none

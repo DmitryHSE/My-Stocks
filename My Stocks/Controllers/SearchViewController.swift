@@ -73,6 +73,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath) as! SearchCell
+        cell.selectionStyle = .none
         cell.delegate = self
         cell.showAlertDelegate = self
         cell.returnArrayDelegate = self
