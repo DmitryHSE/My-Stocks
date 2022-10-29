@@ -95,13 +95,22 @@
                                 <color key="tintColor" white="0.1019079507" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="color" white="0.1019079507" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Drag Down" translatesAutoresizingMaskIntoConstraints="NO" id="EgE-hn-gXN">
+                                <rect key="frame" x="184" y="54" width="46" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="27" id="W4A-iM-qBH"/>
+                                    <constraint firstAttribute="width" constant="46" id="pDb-YU-Y1J"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="F6A-cD-yDd" secondAttribute="trailing" constant="58" id="6Pj-Cu-F7Y"/>
                             <constraint firstItem="YuR-iM-f1R" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="7ot-bN-4KF"/>
+                            <constraint firstItem="EgE-hn-gXN" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="10" id="CqH-0s-uWt"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="naj-h3-jeV" secondAttribute="trailing" constant="47" id="Cqj-4A-hIT"/>
+                            <constraint firstItem="EgE-hn-gXN" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="DeL-Lu-06H"/>
                             <constraint firstItem="F6A-cD-yDd" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="59" id="GHC-j1-yah"/>
                             <constraint firstItem="naj-h3-jeV" firstAttribute="top" secondItem="F6A-cD-yDd" secondAttribute="bottom" constant="68" id="GPC-cU-1Sp"/>
                             <constraint firstItem="CkC-BI-sBX" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="47" id="Iuf-PJ-2jN"/>
@@ -133,6 +142,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Drag Down" width="37" height="12"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
