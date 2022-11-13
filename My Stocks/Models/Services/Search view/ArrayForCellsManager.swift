@@ -15,6 +15,7 @@ func getSearchedStocks(text: String, completion: @escaping ([StockForSearchCell]
         for i in stocksArray.result {
             array.append(StockForSearchCell(stock: i)!)
         }
+        
         completion(array)
     }
 }
