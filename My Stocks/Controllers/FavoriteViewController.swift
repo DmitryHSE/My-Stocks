@@ -9,6 +9,8 @@ import UIKit
 
 class FavoriteViewController: UIViewController {
     
+    private var stockListPresenter = MainStocksListPresenter()
+    
     @IBOutlet weak var tableView: UITableView!
     let refreshControll = UIRefreshControl()
     var timer = Timer()
@@ -27,7 +29,7 @@ class FavoriteViewController: UIViewController {
     
     var tikersArray = [String]()
     let searchController = UISearchController(searchResultsController: nil)
-    let dataManager = DataManager()
+    
     
     override func viewDidLoad() {
         setupRefreshControll()
@@ -44,9 +46,19 @@ class FavoriteViewController: UIViewController {
     }
 }
 
-//MARK: - Search bar delegate
+//MARK: - Search bar
 
 extension FavoriteViewController: UISearchBarDelegate {
+    
+    private func setupSearchBar() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+        navigationItem.hidesSearchBarWhenScrolling = true
+    }
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let text = searchBar.text else {return}
         print(text)
@@ -54,9 +66,19 @@ extension FavoriteViewController: UISearchBarDelegate {
     
 }
 
-//MARK: - Table view delegate
+//MARK: - Table view
 
 extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    private func setupTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.separatorStyle = .none
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        let nib = UINib(nibName: "StockCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "Cell")
+    }
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = UILabel()
         label.text = "Here is no your favorite stocks. Add some!"
@@ -106,43 +128,23 @@ extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-//MARK: - Extensions for current controller
+//MARK: - Networking service
 
 extension FavoriteViewController {
     private func getStocksData() {
-        getStocksArray(tikersArray: tikersArray) { index, stock in
+        stockListPresenter.loadStocksList(tikersArray: tikersArray) { index, stock in
+            guard let stock = stock else {return}
             self.stocksArray[index] = stock
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
         }
     }
+}
 
+//MARK: - Refresh controll
     
-    private func setupSearchBar() {
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search"
-        navigationItem.searchController = searchController
-        definesPresentationContext = true
-        navigationItem.hidesSearchBarWhenScrolling = true
-    }
-    
-    private func setupTableView() {
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.separatorStyle = .none
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-        let nib = UINib(nibName: "StockCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: "Cell")
-    }
-    
-//    private func loadFavoriteStocksFromStorage() {
-//        let defaults = UserDefaults.standard
-//        if let array = defaults.stringArray(forKey: "favorite") {
-//            tikersArray = array
-//        }
-//    }
+extension FavoriteViewController {
     
     @objc private func refreshTableView(sender: UIRefreshControl) {
         self.loadFavoriteStocksFromStorage(key: "favorite") { array in
@@ -167,7 +169,7 @@ extension FavoriteViewController {
     
 }
 
-//MARK: - Search results delegate
+//MARK: - Search bar results delegate
 
 extension FavoriteViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {

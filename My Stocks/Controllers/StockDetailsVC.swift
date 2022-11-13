@@ -10,8 +10,6 @@ import SVGKit
 
 class StockDetailsVC: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
-    
     @IBOutlet weak var marketCapStaticLabel: UILabel!
     @IBOutlet weak var industryStaticLabel: UILabel!
     @IBOutlet weak var countryStaticLabel: UILabel!
@@ -24,7 +22,8 @@ class StockDetailsVC: UIViewController {
     @IBOutlet weak var countryLabel: UILabel!
     @IBOutlet weak var currencyLabel: UILabel!
     
-    private let stockDetailManager = StockDetailManager()
+    
+    private let dataFetcherService = DataFetcherService()
     var ticker = String()
     
     override func viewDidLoad() {
@@ -34,15 +33,13 @@ class StockDetailsVC: UIViewController {
         setupLogoImage()
         getStockDetails()
     }
-    
-    
 }
 
-//MARK: - Extensions for current controller
+//MARK: - Set up view controller
 
 extension StockDetailsVC {
     
-    private func setupVC(stockDetails: StockDetailsModel) {
+    private func setupUIElements(stockDetails: StockDetailsModel) {
         currencyStaticLabel.text = "Currency:"
         countryStaticLabel.text = "Country:"
         industryStaticLabel.text = "Industry:"
@@ -60,11 +57,11 @@ extension StockDetailsVC {
     private func getStockDetails() {
         activityIndicator.isHidden = false // вернули индикатор
         activityIndicator.startAnimating() // стали крутить индикатор
-        stockDetailManager.performRequest(stockName: ticker) { stockDetails in
+        dataFetcherService.fetchStockDetailsData(stockName: ticker) { stockDetails in
             guard let stock = stockDetails else {return}
             DispatchQueue.main.async {
                 self.activityIndicator.stopAnimating()
-                self.setupVC(stockDetails: stock)
+                self.setupUIElements(stockDetails: stock)
             }
         }
     }

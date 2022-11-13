@@ -9,6 +9,9 @@ import UIKit
 
 class StocksViewController: UIViewController {
     
+    private var stockListPresenter = MainStocksListPresenter()
+    private var dataStorageManager = DataStorageManager()
+    
     @IBOutlet weak var tableView: UITableView!
     let refreshControll = UIRefreshControl()
     var timer = Timer()
@@ -27,7 +30,6 @@ class StocksViewController: UIViewController {
     
     var tikersArray = ["AAPL","TWTR","MSFT","TSLA", "AMZN","GOOG", "META", "JNJ","XOM","V"]
     let searchController = UISearchController(searchResultsController: nil)
-    let dataManager = DataManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,9 +56,19 @@ class StocksViewController: UIViewController {
     }
 }
 
-//MARK: - Search bar delegate
+//MARK: - Search bar and button
 
 extension StocksViewController: UISearchBarDelegate {
+    
+    private func setupSearchBar() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+        navigationItem.hidesSearchBarWhenScrolling = true
+    }
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let text = searchBar.text else {return}
         print(text)
@@ -64,9 +76,19 @@ extension StocksViewController: UISearchBarDelegate {
     
 }
 
-//MARK: - Table view delegates
+//MARK: - Table view
 
 extension StocksViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    private func setupTableView() {
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.separatorStyle = .none
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        let nib = UINib(nibName: "StockCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "Cell")
+    }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: "Remove") { _, _, completion in
@@ -85,13 +107,13 @@ extension StocksViewController: UITableViewDelegate, UITableViewDataSource {
                     self.tikersArray.remove(at: index)
                     self.stocksArray.remove(at: index)
                     for i in ["mainList", "favorite"] {
-                        removeStockFromStorage(ticker: editingRow, key: i)
+                        self.dataStorageManager.removeStockFromStorage(ticker: editingRow, key: i)
                     }
                 } else {
                     self.stocksArray.remove(at: index)
                     self.tikersArray.remove(at: index)
                     for i in ["mainList", "favorite"] {
-                        removeStockFromStorage(ticker: editingRow, key: i)
+                        self.dataStorageManager.removeStockFromStorage(ticker: editingRow, key: i)
                     }
                 }
             }
@@ -166,7 +188,7 @@ extension StocksViewController: UISearchResultsUpdating {
     }
 }
 
-//MARK: - Extensions for current controller
+//MARK: - Bar button item (add new stocks)
 extension StocksViewController {
     
     private func setupSearchButton() {
@@ -188,34 +210,11 @@ extension StocksViewController {
             destinationVC.delegate = self
         }
     }
-    
-    private func getStocksData() {
-        getStocksArray(tikersArray: tikersArray) { index, stock in
-            self.stocksArray[index] = stock
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
-    }
+}
 
-    private func setupSearchBar() {
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search"
-        navigationItem.searchController = searchController
-        definesPresentationContext = true
-        navigationItem.hidesSearchBarWhenScrolling = true
-    }
-    
-    private func setupTableView() {
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.separatorStyle = .none
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-        let nib = UINib(nibName: "StockCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: "Cell")
-    }
+//MARK: - Refresh controll (drag table view down)
+
+extension StocksViewController {
     
     @objc private func refreshTableView(sender: UIRefreshControl) {
         getStocksData()
@@ -223,7 +222,6 @@ extension StocksViewController {
             self.tableView.reloadData()
             self.refreshControll.endRefreshing()
         }
-        
     }
     
     func setupRefreshControll() {
@@ -231,7 +229,20 @@ extension StocksViewController {
         refreshControll.addTarget(self, action: #selector(refreshTableView(sender:)), for: .valueChanged)
         
     }
-    
+}
+
+//MARK: - Networking service
+
+extension StocksViewController {
+    private func getStocksData() {
+        stockListPresenter.loadStocksList(tikersArray: tikersArray) { index, stock in
+            guard let stock = stock else {return}
+            self.stocksArray[index] = stock
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
 }
 
 

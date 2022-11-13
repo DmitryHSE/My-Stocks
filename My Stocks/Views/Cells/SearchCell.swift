@@ -12,6 +12,7 @@ class SearchCell: UITableViewCell {
     var delegate: AddTickerToStockListProtocol?
     var showAlertDelegate: ShowAlertProtocol?
     var returnArrayDelegate: ReturnSearchResultsArrayProtocol?
+    private var dataStorageManager = DataStorageManager()
     
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var companyLabel: UILabel!
@@ -61,7 +62,7 @@ class SearchCell: UITableViewCell {
                 
             } else {
                 delegate?.getTickerFromSearchScreen(ticker: symbol)
-                addStockToStorage(ticker: symbol, key: "mainList")
+                dataStorageManager.addStockToStorage(ticker: symbol, key: "mainList")
                 entireSearchedStocksArray[indexPath].didAddToList = true
                 returnArrayDelegate?.getSearchStocksArrayBack(array: entireSearchedStocksArray)
                 addButton.isHidden = true

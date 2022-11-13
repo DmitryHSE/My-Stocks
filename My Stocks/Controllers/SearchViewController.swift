@@ -10,9 +10,9 @@ import UIKit
 
 class SearchViewController: UIViewController {
     
+    private let searchedStocksPresenter = SearchedStocksPresenter()
     private var timer: Timer?
-    private let searchStockManager = SearchStocksManager()
-    //private var stocks = [Stocks]()
+    
     var arrayWithAddedStocks = [String]()
     private var stocksForSearchCellArray = [StockForSearchCell]()
     
@@ -36,9 +36,16 @@ class SearchViewController: UIViewController {
     
 }
 
-//MARK: - Search bar delegate
+//MARK: - Search bar
 
 extension SearchViewController: UISearchBarDelegate {
+    
+    private func setupSearchBar() {
+        searchController.searchBar.delegate = self
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+        searchController.obscuresBackgroundDuringPresentation = false
+    }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         timer?.invalidate()
@@ -48,9 +55,18 @@ extension SearchViewController: UISearchBarDelegate {
     }
 }
 
-//MARK: - Table view delegate
+//MARK: - Table view
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    private func setupTableView() {
+        navigationItem.title = "Search"
+        tableView.delegate = self
+        tableView.dataSource = self
+        //tableView.separatorStyle = .none
+        
+    }
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = UILabel()
         label.text = "Please enter search term above..."
@@ -95,28 +111,14 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-//MARK: - Extensions for current controller
+//MARK: - Networking service
 
 extension SearchViewController {
     
-    private func setupSearchBar() {
-        searchController.searchBar.delegate = self
-        navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = false
-        searchController.obscuresBackgroundDuringPresentation = false
-    }
-    
-    private func setupTableView() {
-        navigationItem.title = "Search"
-        tableView.delegate = self
-        tableView.dataSource = self
-        //tableView.separatorStyle = .none
-        
-    }
-    
     private func performSearchRequest(text: String?) {
         guard let text = text else {return}
-        getSearchedStocks(text: text) { SearchedStocksArray in
+
+        searchedStocksPresenter.getStockSearchingResults(text: text) { SearchedStocksArray in
             self.stocksForSearchCellArray = SearchedStocksArray
             DispatchQueue.main.async {
                 self.tableView.reloadData()
