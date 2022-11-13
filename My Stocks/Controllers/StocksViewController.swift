@@ -9,7 +9,7 @@ import UIKit
 
 class StocksViewController: UIViewController {
     
-    private var stockListPresenter = MainStocksListPresenter()
+    private var stockListPresenter = MainStocksListDataHandler()
     private var dataStorageManager = DataStorageManager()
     
     @IBOutlet weak var tableView: UITableView!

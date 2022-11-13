@@ -9,7 +9,7 @@ import UIKit
 
 class FavoriteViewController: UIViewController {
     
-    private var stockListPresenter = MainStocksListPresenter()
+    private var stockListPresenter = MainStocksListDataHandler()
     
     @IBOutlet weak var tableView: UITableView!
     let refreshControll = UIRefreshControl()

@@ -1,5 +1,5 @@
 //
-//  ArrayForCellsManager.swift
+//  SearchedStocksDataHandler.swift
 //  My Stocks
 //
 //  Created by Dmitry on 19.10.2022.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class SearchedStocksPresenter {
+class SearchedStocksDataHandler {
     private let dataFetcherService = DataFetcherService()
 
     func getStockSearchingResults(text: String, completion: @escaping ([StockForSearchCell]) -> Void ) {
