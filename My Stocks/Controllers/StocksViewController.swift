@@ -11,31 +11,37 @@ class StocksViewController: UIViewController {
     
     private var stockListPresenter = MainStocksListDataHandler()
     private var dataStorageManager = DataStorageManager()
+    private var stockImageHandler = StockImageHandler()
     
     @IBOutlet weak var tableView: UITableView!
-    let refreshControll = UIRefreshControl()
-    var timer = Timer()
-    let emptyStock = StockModel()
+    private let refreshControll = UIRefreshControl()
+    private var timer = Timer()
+    private let emptyStock = StockModel()
+    private let emptyDetail = StockDetailsModel()
     
-    var filteredStocksArray = [StockModel]()
-    var stocksArray = [StockModel]()
+    private var filteredStocksArray = [StockModel]()
+    private var stocksArray = [StockModel]()
+    private var stocksDetailArray = [StockDetailsModel]()
+    private var logoArray = [UIImage]()
     
-    var searchBarIsEmpty: Bool {
+    private var searchBarIsEmpty: Bool {
         guard let text = searchController.searchBar.text else {return false}
         return text.isEmpty
     }
-    var isFiltering: Bool {
+    private var isFiltering: Bool {
         return searchController.isActive && !searchBarIsEmpty
     }
     
-    var tikersArray = ["AAPL","TWTR","MSFT","TSLA", "AMZN","GOOG", "META", "JNJ","XOM","V"]
-    let searchController = UISearchController(searchResultsController: nil)
+    private var tikersArray = ["AAPL","TWTR","MSFT","TSLA", "AMZN","GOOG", "META", "JNJ","XOM","V"]
+    private let searchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupStorageForMainStockList()
         if stocksArray.isEmpty {
             stocksArray = Array(repeating: emptyStock, count: tikersArray.count)
+            logoArray = Array(repeating: UIImage(), count: tikersArray.count)
+            stocksDetailArray = Array(repeating: emptyDetail, count: tikersArray.count)
         }
         setupRefreshControll()
         setupSearchBar()
@@ -84,7 +90,7 @@ extension StocksViewController: UITableViewDelegate, UITableViewDataSource {
         
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.separatorStyle = .none
+        //tableView.separatorStyle = .none
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         let nib = UINib(nibName: "StockCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "Cell")
@@ -139,18 +145,18 @@ extension StocksViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! StockCell
         cell.selectionStyle = .none
-        if indexPath.row % 2 == 0 {
-            cell.backgroundImage.backgroundColor = UIColor(hexString: "f0f0f0")
-        } else {
-            cell.backgroundImage.backgroundColor = .white
-        }
+//        if indexPath.row % 2 == 0 {
+//            cell.backgroundImage.backgroundColor = UIColor(hexString: "f0f0f0")
+//        } else {
+//            cell.backgroundImage.backgroundColor = .white
+//        }
         
         if isFiltering {
             cell.ticker = filteredStocksArray[indexPath.row].stockName
-            cell.setupCell(stockModel: filteredStocksArray[indexPath.row])
+            cell.setupCell(stockModel: filteredStocksArray[indexPath.row],logo: logoArray[indexPath.row],stockDetails: stocksDetailArray[indexPath.row])
         } else {
             cell.ticker = stocksArray[indexPath.row].stockName
-            cell.setupCell(stockModel: stocksArray[indexPath.row])
+            cell.setupCell(stockModel: stocksArray[indexPath.row],logo: logoArray[indexPath.row],stockDetails: stocksDetailArray[indexPath.row])
         }
         
         return cell
@@ -169,6 +175,8 @@ extension StocksViewController: PassSearchResultsProtocol {
         tikersArray = arrayWithSearchResults
         stocksArray.removeAll()
         stocksArray = Array(repeating: emptyStock, count: tikersArray.count)
+        logoArray.removeAll()
+        logoArray = Array(repeating: UIImage(), count: tikersArray.count)
         getStocksData()
     }
 }
@@ -238,6 +246,16 @@ extension StocksViewController {
         stockListPresenter.loadStocksList(tikersArray: tikersArray) { index, stock in
             guard let stock = stock else {return}
             self.stocksArray[index] = stock
+//            DispatchQueue.main.async {
+//                self.tableView.reloadData()
+//            }
+        }
+        stockImageHandler.fethStockImage(tikersArray: tikersArray) { index, stock in
+            guard let stock = stock else {return}
+            self.stocksDetailArray[index] = stock
+            if let image = self.stockImageHandler.fetchSVGImage(urlString: stock.logo) {
+                self.logoArray[index] = image
+            }
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }

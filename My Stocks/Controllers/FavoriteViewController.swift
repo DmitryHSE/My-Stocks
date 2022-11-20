@@ -114,9 +114,9 @@ extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         if isFiltering {
-            cell.setupCell(stockModel: filteredStocksArray[indexPath.row])
+            cell.setupCell(stockModel: filteredStocksArray[indexPath.row], logo: UIImage(),stockDetails: nil)
         } else {
-            cell.setupCell(stockModel: stocksArray[indexPath.row])
+            cell.setupCell(stockModel: stocksArray[indexPath.row],logo: UIImage(),stockDetails: nil)
         }
         cell.favoriteButton.isHidden = true
         return cell

@@ -8,10 +8,11 @@
 import Foundation
 
 struct StockDetailsModel: Codable {
-    let name: String
-    let country: String
-    let currency: String
-    let finnhubIndustry: String
-    let logo : String
-    let marketCapitalization: Double
+    var name: String = ""
+    var country: String = ""
+    var currency: String = ""
+    var finnhubIndustry: String = ""
+    var logo : String = ""
+    var marketCapitalization: Double = 0.0
+    
 }

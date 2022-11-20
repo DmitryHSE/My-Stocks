@@ -14,6 +14,8 @@ class StockCell: UITableViewCell {
     let defaults = UserDefaults.standard
     private var dataStorageManager = DataStorageManager()
     
+    @IBOutlet weak var companyName: UILabel!
+    @IBOutlet weak var logoImage: UIImageView!
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var stockLabel: UILabel!
@@ -39,8 +41,11 @@ class StockCell: UITableViewCell {
         
     }
     
-    func setupCell(stockModel: StockModel) {
+    func setupCell(stockModel: StockModel,logo: UIImage, stockDetails: StockDetailsModel?) {
         setupAddToFavoriteButton()
+        logoImage.image = logo
+        companyName.text = stockDetails?.name
+        //logoImage.layer.cornerRadius = 20
         stockLabel.text = stockModel.stockName
         currentPriceLabel.text = "$" + String(format: "%.1f", stockModel.currentPrice)
         if stockModel.percentChange > 0 {
