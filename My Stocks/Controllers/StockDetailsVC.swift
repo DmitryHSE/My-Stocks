@@ -22,7 +22,7 @@ class StockDetailsVC: UIViewController {
     @IBOutlet weak var countryLabel: UILabel!
     @IBOutlet weak var currencyLabel: UILabel!
     
-    
+    private let imageLoaderService = ImageLoaderService()
     private let dataFetcherService = DataFetcherService()
     var ticker = String()
     
@@ -49,7 +49,10 @@ extension StockDetailsVC {
         currencyLabel.text = stockDetails.currency
         countryLabel.text = stockDetails.country
         marketCapLabel.text = "$"+String(format: "%.0f", (stockDetails.marketCapitalization/1000))+" mln"
-        logoImage.image = downloadSVG(urlString: stockDetails.logo)
+        //logoImage.image = downloadSVG(urlString: stockDetails.logo)
+        imageLoaderService.loadImage(from: URL(string: stockDetails.logo)!) { image in
+            self.logoImage.image = image
+        }
         
     }
     

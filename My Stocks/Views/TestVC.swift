@@ -14,14 +14,24 @@ class TestViewController: UIViewController {
     private var newsArray = [NewsModel]()
     private let stocks = ["AAPL", "TSLA"]
     private let tableView = UITableView()
+    private var imageView = UIImageView()
+    
+    private let imageLoaderService = ImageLoaderService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        view.addSubview(tableView)
-        tableView.frame = view.bounds
-        
+        //view.addSubview(tableView)
+        //tableView.frame = view.bounds
+        let url = URL(string: "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/AAPL.svg")!
+        imageLoaderService.loadImage(from: url) { image in
+            self.imageView.image = image
+        }
+        //imageView.loadImage(from: "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/AAPL.svg")
+        imageView.frame = CGRect(x: 0, y: 0, width: 300, height: 300)
+        imageView.center = view.center
+        view.addSubview(imageView)
 //        dataFetcherService.fetchNews(stockName: "AAPL") { array in
 //            guard let model = array else {return}
 //            for i in model {
@@ -54,6 +64,6 @@ extension TestViewController: UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.font = UIFont(name: "Arial Bold", size: 14)
         return cell
     }
-    
-    
 }
+
+

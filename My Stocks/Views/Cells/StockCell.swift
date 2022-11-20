@@ -9,6 +9,7 @@ import UIKit
 
 class StockCell: UITableViewCell {
     
+    private var stockImageHandler = StockImageHandler()
     var ticker = String()
     var favoriteStocksArray = [String]()
     let defaults = UserDefaults.standard
@@ -45,7 +46,6 @@ class StockCell: UITableViewCell {
         setupAddToFavoriteButton()
         logoImage.image = logo
         companyName.text = stockDetails?.name
-        //logoImage.layer.cornerRadius = 20
         stockLabel.text = stockModel.stockName
         currentPriceLabel.text = "$" + String(format: "%.1f", stockModel.currentPrice)
         if stockModel.percentChange > 0 {

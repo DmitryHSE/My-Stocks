@@ -12,6 +12,8 @@ class StocksViewController: UIViewController {
     private var stockListPresenter = MainStocksListDataHandler()
     private var dataStorageManager = DataStorageManager()
     private var stockImageHandler = StockImageHandler()
+    private let imageLoaderService = ImageLoaderService()
+    
     
     @IBOutlet weak var tableView: UITableView!
     private let refreshControll = UIRefreshControl()
@@ -246,19 +248,26 @@ extension StocksViewController {
         stockListPresenter.loadStocksList(tikersArray: tikersArray) { index, stock in
             guard let stock = stock else {return}
             self.stocksArray[index] = stock
-//            DispatchQueue.main.async {
-//                self.tableView.reloadData()
-//            }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
         stockImageHandler.fethStockImage(tikersArray: tikersArray) { index, stock in
             guard let stock = stock else {return}
             self.stocksDetailArray[index] = stock
-            if let image = self.stockImageHandler.fetchSVGImage(urlString: stock.logo) {
+            
+           
+            let url = URL(string: stock.logo)!
+            self.imageLoaderService.loadImage(from: url) { image in
                 self.logoArray[index] = image
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             }
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
+            
+            
+            
+            
         }
     }
 }
