@@ -30,7 +30,6 @@ class StockDetailsVC: UIViewController {
         super.viewDidLoad()
         activityIndicator.isHidden = true //скрыли индикатор
         activityIndicator.hidesWhenStopped = true //скрываем индикатор если его стопят
-        setupLogoImage()
         getStockDetails()
     }
 }
@@ -72,7 +71,7 @@ extension StockDetailsVC {
         return svg?.uiImage
     }
     
-    private func setupLogoImage() {
-        //logoImage.layer.cornerRadius = logoImage.bounds.height/3
-    }
+//    private func setupLogoImage() {
+//        logoImage.layer.cornerRadius = logoImage.bounds.height/3
+//    }
 }

@@ -32,6 +32,8 @@
 		9F2FCEEE2920EFDF003C8351 /* DataFetcherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2FCEED2920EFDF003C8351 /* DataFetcherService.swift */; };
 		9F2FCEF02920EFEA003C8351 /* NetworkDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2FCEEF2920EFEA003C8351 /* NetworkDataFetcher.swift */; };
 		9F2FCEF22920EFF4003C8351 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2FCEF12920EFF4003C8351 /* NetworkService.swift */; };
+		9F4E69BF292A5AE500F55AA0 /* TestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4E69BE292A5AE500F55AA0 /* TestVC.swift */; };
+		9F4E69C1292A5BE500F55AA0 /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4E69C0292A5BE500F55AA0 /* NewsModel.swift */; };
 		9FE8A9272906D6F900AA3442 /* DataStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8A9262906D6F900AA3442 /* DataStorageManager.swift */; };
 		A4538E1327E70E97336A504F /* Pods_My_Stocks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 845DE6BD2ED9903DAE0289DD /* Pods_My_Stocks.framework */; };
 /* End PBXBuildFile section */
@@ -66,6 +68,8 @@
 		9F2FCEED2920EFDF003C8351 /* DataFetcherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetcherService.swift; sourceTree = "<group>"; };
 		9F2FCEEF2920EFEA003C8351 /* NetworkDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataFetcher.swift; sourceTree = "<group>"; };
 		9F2FCEF12920EFF4003C8351 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		9F4E69BE292A5AE500F55AA0 /* TestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestVC.swift; sourceTree = "<group>"; };
+		9F4E69C0292A5BE500F55AA0 /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
 		9FE8A9262906D6F900AA3442 /* DataStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStorageManager.swift; sourceTree = "<group>"; };
 		CA1A3504C6DFC8DC20EF84B4 /* Pods-My Stocks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My Stocks.debug.xcconfig"; path = "Target Support Files/Pods-My Stocks/Pods-My Stocks.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -167,6 +171,7 @@
 				9F055BD928FED1DA0088D53B /* DataModels.swift */,
 				9F055BE328FFCC230088D53B /* SearchStocksModel.swift */,
 				9F055BF42900542F0088D53B /* StockDetailsModel.swift */,
+				9F4E69C0292A5BE500F55AA0 /* NewsModel.swift */,
 			);
 			path = "Data models";
 			sourceTree = "<group>";
@@ -200,6 +205,7 @@
 				9F055BCE28FEC0020088D53B /* StocksViewController.storyboard */,
 				9F055BD228FEC0840088D53B /* FavoriteViewController.storyboard */,
 				9F055BF1290049570088D53B /* StockDetailsVC.storyboard */,
+				9F4E69BE292A5AE500F55AA0 /* TestVC.swift */,
 				9FE8A9242906BA4400AA3442 /* Cells */,
 			);
 			path = Views;
@@ -339,6 +345,7 @@
 				9F055BE028FF00E50088D53B /* SearchViewController.swift in Sources */,
 				9F055BDE28FEE7D90088D53B /* MainStocksListDataHandler.swift in Sources */,
 				9F055BB628FEBCB20088D53B /* SceneDelegate.swift in Sources */,
+				9F4E69C1292A5BE500F55AA0 /* NewsModel.swift in Sources */,
 				9F055BF0290049400088D53B /* StockDetailsVC.swift in Sources */,
 				9FE8A9272906D6F900AA3442 /* DataStorageManager.swift in Sources */,
 				9F055BD628FEC5B40088D53B /* StockCell.swift in Sources */,
@@ -346,6 +353,7 @@
 				9F055BE428FFCC230088D53B /* SearchStocksModel.swift in Sources */,
 				9F055BC828FEBDA80088D53B /* MainTabBarController.swift in Sources */,
 				9F055BCB28FEBF240088D53B /* Extensions.swift in Sources */,
+				9F4E69BF292A5AE500F55AA0 /* TestVC.swift in Sources */,
 				9F055BEE290037BC0088D53B /* SearchedStocksDataHandler.swift in Sources */,
 				9F055BF52900542F0088D53B /* StockDetailsModel.swift in Sources */,
 				9F2FCEF02920EFEA003C8351 /* NetworkDataFetcher.swift in Sources */,

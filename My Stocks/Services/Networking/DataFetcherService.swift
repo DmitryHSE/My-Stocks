@@ -7,12 +7,18 @@
 
 import Foundation
 
+
 class DataFetcherService {
     var networkDataFetcher: DataFetcher
    
     init(dataFetcher: DataFetcher = NetworkDataFetcher()) {
         self.networkDataFetcher = dataFetcher
         
+    }
+    
+    func fetchNews(stockName: String, completion: @escaping([NewsModel]?) -> Void) {
+        let url = "https://finnhub.io/api/v1/company-news?symbol=\(stockName)&from=2022-11-18&to=2022-11-20&token=cclgp8qad3i79c6t85u0cclgp8qad3i79c6t85ug"
+        networkDataFetcher.dataFetcher(urlString: url, response: completion)
     }
     
     func fetchStockQuotesData(stockName: String, completion: @escaping(DataModel?) -> Void) {
