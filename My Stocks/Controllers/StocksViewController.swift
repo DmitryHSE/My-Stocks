@@ -179,6 +179,8 @@ extension StocksViewController: PassSearchResultsProtocol {
         stocksArray = Array(repeating: emptyStock, count: tikersArray.count)
         logoArray.removeAll()
         logoArray = Array(repeating: UIImage(), count: tikersArray.count)
+        stocksDetailArray.removeAll()
+        stocksDetailArray = Array(repeating: emptyDetail, count: tikersArray.count)
         getStocksData()
     }
 }
@@ -264,10 +266,6 @@ extension StocksViewController {
                     self.tableView.reloadData()
                 }
             }
-            
-            
-            
-            
         }
     }
 }

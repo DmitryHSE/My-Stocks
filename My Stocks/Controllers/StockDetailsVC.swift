@@ -32,9 +32,9 @@ class StockDetailsVC: UIViewController {
         activityIndicator.hidesWhenStopped = true //скрываем индикатор если его стопят
         getStockDetails()
     }
-    @IBAction func returnButtonTapped(_ sender: UIButton) {
-        self.dismiss(animated: true)
-    }
+//    @IBAction func returnButtonTapped(_ sender: UIButton) {
+//        self.dismiss(animated: true)
+//    }
 }
 
 //MARK: - Set up view controller
@@ -52,10 +52,10 @@ extension StockDetailsVC {
         currencyLabel.text = stockDetails.currency
         countryLabel.text = stockDetails.country
         marketCapLabel.text = "$"+String(format: "%.0f", (stockDetails.marketCapitalization/1000))+" mln"
-        //logoImage.image = downloadSVG(urlString: stockDetails.logo)
-        imageLoaderService.loadImage(from: URL(string: stockDetails.logo)!) { image in
-            self.logoImage.image = image
-        }
+        logoImage.image = downloadSVG(urlString: stockDetails.logo)
+//        imageLoaderService.loadImage(from: URL(string: stockDetails.logo)!) { image in
+//            self.logoImage.image = image
+//        }
         
     }
     
