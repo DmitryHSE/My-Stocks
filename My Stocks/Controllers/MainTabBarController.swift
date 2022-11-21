@@ -13,13 +13,15 @@ class MainTabBarController: UITabBarController {
     
     private var StocksVC: StocksViewController = StocksViewController.loadFromStoryboard()
     private var FavoriteVC: FavoriteViewController = FavoriteViewController.loadFromStoryboard()
+    private var NewsVC = NewsViewController()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTabBarAndNavBar()
         viewControllers = [configureViewController(VC: StocksVC, image: "dollarsign.circle", name: "Stocks"),
-        configureViewController(VC: FavoriteVC, image: "star", name: "Favorite")]
+        configureViewController(VC: FavoriteVC, image: "star", name: "Favorite"),
+        configureViewController(VC: NewsVC, image: "newspaper", name: "News")]
     }
 }
 

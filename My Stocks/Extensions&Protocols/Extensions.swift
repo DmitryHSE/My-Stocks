@@ -49,6 +49,7 @@ extension UIViewController {
     func presentStockDetailsScreen(ticker: String) {
         let VC: StockDetailsVC = StockDetailsVC.loadFromStoryboard()
         VC.ticker = ticker
+        VC.modalPresentationStyle = .fullScreen
         self.present(VC, animated: true)
         
     }
