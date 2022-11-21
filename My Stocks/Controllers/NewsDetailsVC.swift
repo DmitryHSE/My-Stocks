@@ -28,12 +28,6 @@ class NewsDetailsVC: UIViewController {
     }
     
     private func setConstraints() {
-//        NSLayoutConstraint.activate([
-//            newsView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
-//            newsView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0),
-//            newsView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-//            newsView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0)
-//        ])
         newsView.center = view.center
     }
 }

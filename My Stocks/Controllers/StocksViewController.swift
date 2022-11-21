@@ -13,11 +13,8 @@ class StocksViewController: UIViewController {
     private var dataStorageManager = DataStorageManager()
     private var stockImageHandler = StockImageHandler()
     private let imageLoaderService = ImageLoaderService()
-    
-    
     @IBOutlet weak var tableView: UITableView!
     private let refreshControll = UIRefreshControl()
-    private var timer = Timer()
     private let emptyStock = StockModel()
     private let emptyDetail = StockDetailsModel()
     
@@ -25,6 +22,8 @@ class StocksViewController: UIViewController {
     private var stocksArray = [StockModel]()
     private var stocksDetailArray = [StockDetailsModel]()
     private var logoArray = [UIImage]()
+    private var tikersArray = ["AAPL","TWTR","MSFT","TSLA", "AMZN","GOOG", "META", "JNJ","XOM","V"]
+    private let searchController = UISearchController(searchResultsController: nil)
     
     private var searchBarIsEmpty: Bool {
         guard let text = searchController.searchBar.text else {return false}
@@ -33,9 +32,6 @@ class StocksViewController: UIViewController {
     private var isFiltering: Bool {
         return searchController.isActive && !searchBarIsEmpty
     }
-    
-    private var tikersArray = ["AAPL","TWTR","MSFT","TSLA", "AMZN","GOOG", "META", "JNJ","XOM","V"]
-    private let searchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,10 +73,10 @@ extension StocksViewController: UISearchBarDelegate {
         navigationItem.hidesSearchBarWhenScrolling = true
     }
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let text = searchBar.text else {return}
-        print(text)
-    }
+//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//        guard let text = searchBar.text else {return}
+//        print(text)
+//    }
     
 }
 

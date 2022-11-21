@@ -9,8 +9,6 @@ import UIKit
 
 class MainTabBarController: UITabBarController {
     
-    // set viewcontrollers
-    
     private var StocksVC: StocksViewController = StocksViewController.loadFromStoryboard()
     private var NewsVC = NewsViewController()
     
