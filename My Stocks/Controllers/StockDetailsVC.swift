@@ -51,6 +51,7 @@ extension StockDetailsVC {
         companyNameLabel.text = stockDetails.name
         currencyLabel.text = stockDetails.currency
         countryLabel.text = stockDetails.country
+        logoImage.layer.cornerRadius = logoImage.frame.height/2
         marketCapLabel.text = "$"+String(format: "%.0f", (stockDetails.marketCapitalization/1000))+" mln"
         logoImage.image = downloadSVG(urlString: stockDetails.logo)
 //        imageLoaderService.loadImage(from: URL(string: stockDetails.logo)!) { image in
