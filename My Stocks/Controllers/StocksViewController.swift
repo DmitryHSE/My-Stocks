@@ -116,7 +116,7 @@ extension StocksViewController: UITableViewDelegate, UITableViewDataSource {
                     self.stocksArray.remove(at: index)
                     self.logoArray.remove(at: index)
                     self.stocksDetailArray.remove(at: index)
-                    for i in ["mainList"] { // , "favorite"
+                    for i in ["mainList"] {
                         self.dataStorageManager.removeStockFromStorage(ticker: editingRow, key: i)
                     }
                 } else {
@@ -124,7 +124,7 @@ extension StocksViewController: UITableViewDelegate, UITableViewDataSource {
                     self.tikersArray.remove(at: index)
                     self.logoArray.remove(at: index)
                     self.stocksDetailArray.remove(at: index)
-                    for i in ["mainList"] { //, "favorite"
+                    for i in ["mainList"] {
                         self.dataStorageManager.removeStockFromStorage(ticker: editingRow, key: i)
                     }
                 }
@@ -151,12 +151,6 @@ extension StocksViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! StockCell
         cell.selectionStyle = .none
-//        if indexPath.row % 2 == 0 {
-//            cell.backgroundImage.backgroundColor = UIColor(hexString: "f0f0f0")
-//        } else {
-//            cell.backgroundImage.backgroundColor = .white
-//        }
-        
         if isFiltering {
             cell.ticker = filteredStocksArray[indexPath.row].stockName
             cell.setupCell(stockModel: filteredStocksArray[indexPath.row],logo: logoArray[indexPath.row],stockDetails: stocksDetailArray[indexPath.row])
@@ -261,8 +255,6 @@ extension StocksViewController {
         stockImageHandler.fethStockImage(tikersArray: tikersArray) { index, stock in
             guard let stock = stock else {return}
             self.stocksDetailArray[index] = stock
-            
-           
             guard let url = URL(string: stock.logo) else {return}
             self.imageLoaderService.loadImage(from: url) { image in
                 guard let safeImage = image else {return}

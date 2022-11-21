@@ -17,7 +17,7 @@ class StockCell: UITableViewCell {
     
     @IBOutlet weak var companyName: UILabel!
     @IBOutlet weak var logoImage: UIImageView!
-    @IBOutlet weak var favoriteButton: UIButton!
+    
     @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var stockLabel: UILabel!
     @IBOutlet weak var priceChangeLabel: UILabel!
@@ -29,21 +29,8 @@ class StockCell: UITableViewCell {
         backgroundImage.clipsToBounds = true
         
     }
-
-    @IBAction func addToFavoriteButtonTapped(_ sender: UIButton) {
-        
-        if sender.tintColor == .systemYellow {
-            favoriteButton.tintColor = .systemGray
-            dataStorageManager.removeStockFromStorage(ticker: ticker, key: "favorite")
-        } else {
-            dataStorageManager.addStockToStorage(ticker: ticker, key: "favorite")
-            favoriteButton.tintColor = .systemYellow
-        }
-        
-    }
     
     func setupCell(stockModel: StockModel,logo: UIImage, stockDetails: StockDetailsModel?) {
-        //setupAddToFavoriteButton()
         logoImage.image = logo
         companyName.text = stockDetails?.name
         stockLabel.text = stockModel.stockName
@@ -56,18 +43,6 @@ class StockCell: UITableViewCell {
             priceChangeLabel.textColor = UIColor(hexString: "FB2916")
         }
     }
-    
-    func setupAddToFavoriteButton() {
-        let userDefaults = UserDefaults.standard
-        if let favoriteStocksArray = userDefaults.stringArray(forKey: "favorite") {
-            if favoriteStocksArray.contains(where: {$0 == ticker}) {
-                favoriteButton.tintColor = .systemYellow
-            } else {
-                favoriteButton.tintColor = .systemGray
-            }
-        }
-    }
-    
 }
 
 
