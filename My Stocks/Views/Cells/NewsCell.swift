@@ -9,12 +9,15 @@ import UIKit
 
 class NewsCell: UITableViewCell {
     
+    @IBOutlet weak var newsHeadlineLabel: UILabel!
     private let timeConverter = TimeConverter()
 
-    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var tickerLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    
     @IBOutlet weak var sourcelabel: UILabel!
-    @IBOutlet weak var newsHeadlineLabel: UILabel!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,6 +35,7 @@ class NewsCell: UITableViewCell {
         timeLabel.text = timeConverter.convertTimeStampToTimeString(stamp: data.datetime)["time"]
         dateLabel.text = timeConverter.convertTimeStampToTimeString(stamp: data.datetime)["date"]
         sourcelabel.text = data.source
+        tickerLabel.text = "#\(data.related)"
         
     }
 }

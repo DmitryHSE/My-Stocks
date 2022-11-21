@@ -16,16 +16,23 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="165"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="12:55" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l99-9y-cwg">
-                        <rect key="frame" x="16" y="8" width="36" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="12:55" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l99-9y-cwg">
+                        <rect key="frame" x="66" y="8" width="36" height="21"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="21 Нояб." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BLC-8f-6jb">
-                        <rect key="frame" x="60" y="10" width="57" height="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="#AAPL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6e7-up-g33">
+                        <rect key="frame" x="16" y="8" width="42" height="21"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="21 Нояб." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BLC-8f-6jb">
+                        <rect key="frame" x="105" y="8" width="57" height="21"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -38,7 +45,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Yahoo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BaG-bm-oEY">
-                        <rect key="frame" x="119" y="8" width="177" height="21"/>
+                        <rect key="frame" x="166" y="8" width="138" height="21"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="14"/>
                         <nil key="textColor"/>
@@ -49,11 +56,12 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="dateLabel" destination="BLC-8f-6jb" id="y9G-1f-oVX"/>
-                <outlet property="newsHeadlineLabel" destination="WPM-e0-8hx" id="1To-1v-FJQ"/>
+                <outlet property="newsHeadlineLabel" destination="WPM-e0-8hx" id="44p-u5-0RO"/>
                 <outlet property="sourcelabel" destination="BaG-bm-oEY" id="d06-WO-OkG"/>
-                <outlet property="timeLabel" destination="l99-9y-cwg" id="gcf-Cd-E0e"/>
+                <outlet property="tickerLabel" destination="6e7-up-g33" id="oDC-Rt-5Jh"/>
+                <outlet property="timeLabel" destination="l99-9y-cwg" id="TH4-dI-4Xe"/>
             </connections>
-            <point key="canvasLocation" x="-78.260869565217391" y="80.691964285714278"/>
+            <point key="canvasLocation" x="-26.086956521739133" y="78.683035714285708"/>
         </tableViewCell>
     </objects>
 </document>

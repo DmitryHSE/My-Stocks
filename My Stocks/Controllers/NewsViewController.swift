@@ -33,7 +33,7 @@ class NewsViewController: UIViewController {
             self.newsArray += array
             self.newsArray = self.newsArray.sorted(by: {$1.datetime < $0.datetime})
             self.tableView.reloadData()
-            print(self.newsArray[0].datetime)
+            
         }
         
         
