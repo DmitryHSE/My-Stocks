@@ -17,6 +17,7 @@ class NewsViewController: UIViewController {
     private let tableView = UITableView()
     private var imageView = UIImageView()
     private let refreshControll = UIRefreshControl()
+    private var activityIndicator = UIActivityIndicatorView()
     private let searchController = UISearchController(searchResultsController: nil)
     private var searchBarIsEmpty: Bool {
         guard let text = searchController.searchBar.text else {return false}
@@ -33,6 +34,7 @@ class NewsViewController: UIViewController {
         configureTableView()
         setupSearchBar()
         loadStockListFromStorage()
+        setupActivityIndicator()
         setupRefreshControll()
         loadNewsFeed()
     }
@@ -96,6 +98,7 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
         let newsDetailsView = NewsDetailsVC()
         newsDetailsView.newsModel = newsArray[indexPath.row]
         self.present(newsDetailsView, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
@@ -103,11 +106,15 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension NewsViewController {
     private func loadNewsFeed(){
+        startActivitiIndicator()
         mainStocksListDataHandler.loadNews(tikersArray: stocks) { [weak self] array in
             guard let self = self else {return}
             self.newsArray += array
             self.newsArray = self.newsArray.sorted(by: {$1.datetime < $0.datetime})
-            self.tableView.reloadData()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.stopActivityIndicator()
+            }
         }
     }
 }
@@ -178,5 +185,31 @@ extension NewsViewController: UISearchResultsUpdating {
         let text = searchText //.uppercased()
         filteredNewsArray = newsArray.filter({ $0.headline.contains(text) })
         tableView.reloadData()
+    }
+}
+
+//MARK: - Activity Indicator
+
+extension NewsViewController {
+    
+    private func setupActivityIndicator() {
+        activityIndicator.style = .medium
+        activityIndicator.color = .systemGray
+        activityIndicator.center = self.view.center
+        view.addSubview(activityIndicator)
+        // vie did load
+        activityIndicator.isHidden = true
+        activityIndicator.hidesWhenStopped = true
+    }
+    
+    private func startActivitiIndicator() {
+        tableView.isHidden = true
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+    }
+    
+    private func stopActivityIndicator() {
+        tableView.isHidden = false
+        self.activityIndicator.stopAnimating()
     }
 }

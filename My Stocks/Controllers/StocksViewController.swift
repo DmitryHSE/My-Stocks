@@ -17,6 +17,7 @@ class StocksViewController: UIViewController {
     private let refreshControll = UIRefreshControl()
     private let emptyStock = StockModel()
     private let emptyDetail = StockDetailsModel()
+    private var activityIndicator = UIActivityIndicatorView()
     
     private var filteredStocksArray = [StockModel]()
     private var stocksArray = [StockModel]()
@@ -42,6 +43,7 @@ class StocksViewController: UIViewController {
             stocksDetailArray = Array(repeating: emptyDetail, count: tikersArray.count)
         }
         setupRefreshControll()
+        setupActivityIndicator()
         setupSearchBar()
         setupTableView()
         getStocksData()
@@ -57,6 +59,32 @@ class StocksViewController: UIViewController {
         } else {
             userDefaults.set(tikersArray, forKey: "mainList")
         }
+    }
+}
+
+//MARK: - Activity indicator
+
+extension StocksViewController {
+    
+    private func setupActivityIndicator() {
+        activityIndicator.style = .medium
+        activityIndicator.color = .systemGray
+        activityIndicator.center = self.view.center
+        view.addSubview(activityIndicator)
+        // vie did load
+        activityIndicator.isHidden = true
+        activityIndicator.hidesWhenStopped = true
+    }
+    
+    private func startActivitiIndicator() {
+        tableView.isHidden = true
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+    }
+    
+    private func stopActivityIndicator() {
+        tableView.isHidden = false
+        self.activityIndicator.stopAnimating()
     }
 }
 
@@ -88,8 +116,6 @@ extension StocksViewController: UITableViewDelegate, UITableViewDataSource {
         
         tableView.delegate = self
         tableView.dataSource = self
-        //tableView.separatorStyle = .none
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         let nib = UINib(nibName: "StockCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "Cell")
     }
@@ -167,6 +193,7 @@ extension StocksViewController: UITableViewDelegate, UITableViewDataSource {
 //MARK: - Get Search Results from Search VC (Protocol)
 
 extension StocksViewController: PassSearchResultsProtocol {
+    
     func getSearchResults(arrayWithSearchResults: [String])  {
         tikersArray = arrayWithSearchResults
         stocksArray.removeAll()
@@ -218,12 +245,13 @@ extension StocksViewController {
     }
 }
 
-//MARK: - Refresh controll (drag table view down)
+//MARK: - Refresh controll (drag tableview down)
 
 extension StocksViewController {
     
     @objc private func refreshTableView(sender: UIRefreshControl) {
         getStocksData()
+        stopActivityIndicator()
         DispatchQueue.main.async {
             self.tableView.reloadData()
             self.refreshControll.endRefreshing()
@@ -240,7 +268,9 @@ extension StocksViewController {
 //MARK: - Networking service
 
 extension StocksViewController {
+    
     private func getStocksData() {
+        startActivitiIndicator()
         stockListPresenter.loadStocksList(tikersArray: tikersArray) { index, stock in
             guard let stock = stock else {return}
             self.stocksArray[index] = stock
@@ -257,10 +287,9 @@ extension StocksViewController {
                 self.logoArray[index] = safeImage
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
+                    self.stopActivityIndicator()
                 }
             }
         }
     }
 }
-
-
