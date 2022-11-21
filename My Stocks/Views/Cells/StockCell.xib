@@ -30,29 +30,19 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$72.16" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pA3-dO-Pfv">
-                                <rect key="frame" x="165" y="12" width="85" height="24"/>
+                                <rect key="frame" x="206" y="12" width="85" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="+ $0.12 (1,15%)" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nim-zA-33V">
-                                <rect key="frame" x="165" y="38" width="90" height="16"/>
+                                <rect key="frame" x="201" y="38" width="90" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" red="0.98431372549019602" green="0.16078431372549018" blue="0.086274509803921567" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eli-mF-IEp">
-                                <rect key="frame" x="274" y="21" width="26" height="26"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES"/>
-                                <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="star.fill" catalog="system"/>
-                                <connections>
-                                    <action selector="addToFavoriteButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Ubf-GK-s1I"/>
-                                </connections>
-                            </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="arrowtriangle.down.square" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="cgq-du-eZo">
                                 <rect key="frame" x="15" y="14" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
@@ -87,7 +77,6 @@
                 <outlet property="backgroundImage" destination="Rnh-eQ-eQK" id="aSm-qo-mCU"/>
                 <outlet property="companyName" destination="7g3-rg-kSB" id="UpW-Ru-xLa"/>
                 <outlet property="currentPriceLabel" destination="pA3-dO-Pfv" id="qcw-nU-fYH"/>
-                <outlet property="favoriteButton" destination="eli-mF-IEp" id="V5e-NS-Jf2"/>
                 <outlet property="logoImage" destination="cgq-du-eZo" id="pjA-JG-ykW"/>
                 <outlet property="priceChangeLabel" destination="nim-zA-33V" id="ddQ-QT-ox2"/>
                 <outlet property="stockLabel" destination="ZDg-XE-z1K" id="cMx-vI-yWc"/>
@@ -97,6 +86,5 @@
     </objects>
     <resources>
         <image name="arrowtriangle.down.square" catalog="system" width="128" height="114"/>
-        <image name="star.fill" catalog="system" width="128" height="116"/>
     </resources>
 </document>

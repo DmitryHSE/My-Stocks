@@ -114,13 +114,17 @@ extension StocksViewController: UITableViewDelegate, UITableViewDataSource {
                     self.filteredStocksArray.remove(at: indexPath.row)
                     self.tikersArray.remove(at: index)
                     self.stocksArray.remove(at: index)
-                    for i in ["mainList", "favorite"] {
+                    self.logoArray.remove(at: index)
+                    self.stocksDetailArray.remove(at: index)
+                    for i in ["mainList"] { // , "favorite"
                         self.dataStorageManager.removeStockFromStorage(ticker: editingRow, key: i)
                     }
                 } else {
                     self.stocksArray.remove(at: index)
                     self.tikersArray.remove(at: index)
-                    for i in ["mainList", "favorite"] {
+                    self.logoArray.remove(at: index)
+                    self.stocksDetailArray.remove(at: index)
+                    for i in ["mainList"] { //, "favorite"
                         self.dataStorageManager.removeStockFromStorage(ticker: editingRow, key: i)
                     }
                 }
@@ -259,9 +263,10 @@ extension StocksViewController {
             self.stocksDetailArray[index] = stock
             
            
-            let url = URL(string: stock.logo)!
+            guard let url = URL(string: stock.logo) else {return}
             self.imageLoaderService.loadImage(from: url) { image in
-                self.logoArray[index] = image
+                guard let safeImage = image else {return}
+                self.logoArray[index] = safeImage
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }

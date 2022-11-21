@@ -10,7 +10,7 @@ import SVGKit
 
 struct ImageLoaderService {
     
-    func loadImage(from url: URL, _ onLoadWasCompleted: @escaping (UIImage) -> Void) {
+    func loadImage(from url: URL, _ onLoadWasCompleted: @escaping (UIImage?) -> Void) {
         if let imageFromCache = getCacheImage(url: url) {
             onLoadWasCompleted(imageFromCache)
             return
@@ -22,10 +22,11 @@ struct ImageLoaderService {
                 print(error)
             }
             // if let data = data, let response = response, let image = UIImage(data: data) {
-            if let data = data, let response = response, let image = SVGKImage(data: data).uiImage {
+            let svg = SVGKImage(data: data)
+            if let data = data, let response = response, let safeImage = svg?.uiImage {
                 saveDataToCach(with: data, response: response)
-                onLoadWasCompleted(image)
-            }
+                onLoadWasCompleted(safeImage)
+            } 
         }
         
         dataTask.resume()
@@ -40,7 +41,13 @@ private extension ImageLoaderService {
         let urlRequest = URLRequest(url: url)
         guard let chacheedResponse = URLCache.shared.cachedResponse(for: urlRequest) else { return nil }
         //return UIImage(data: chacheedResponse.data)
-        return SVGKImage(data: chacheedResponse.data).uiImage
+        let svg = SVGKImage(data: chacheedResponse.data)
+        if let image = svg?.uiImage {
+            return image
+        } else {
+            return UIImage(named: "arrowtriangle.down.square")
+        }
+        
     }
     
     func saveDataToCach(with data: Data, response: URLResponse) {

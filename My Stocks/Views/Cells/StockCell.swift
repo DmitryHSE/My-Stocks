@@ -43,7 +43,7 @@ class StockCell: UITableViewCell {
     }
     
     func setupCell(stockModel: StockModel,logo: UIImage, stockDetails: StockDetailsModel?) {
-        setupAddToFavoriteButton()
+        //setupAddToFavoriteButton()
         logoImage.image = logo
         companyName.text = stockDetails?.name
         stockLabel.text = stockModel.stockName

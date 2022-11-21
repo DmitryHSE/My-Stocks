@@ -20,7 +20,7 @@ class MainTabBarController: UITabBarController {
         super.viewDidLoad()
         setupTabBarAndNavBar()
         viewControllers = [configureViewController(VC: StocksVC, image: "dollarsign.circle", name: "Stocks"),
-        configureViewController(VC: FavoriteVC, image: "star", name: "Favorite"),
+        //configureViewController(VC: FavoriteVC, image: "star", name: "Favorite"),
         configureViewController(VC: NewsVC, image: "newspaper", name: "News")]
     }
 }

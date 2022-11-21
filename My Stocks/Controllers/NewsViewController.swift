@@ -81,6 +81,12 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
         //cell.newsBodyLabel.text = newsArray[indexPath.row].headline
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let newsDetailsView = NewsDetailsVC()
+        newsDetailsView.newsModel = newsArray[indexPath.row]
+        self.present(newsDetailsView, animated: true)
+    }
 }
 
 
