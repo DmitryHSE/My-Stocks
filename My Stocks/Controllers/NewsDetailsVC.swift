@@ -21,6 +21,7 @@ class NewsDetailsVC: UIViewController {
     }
     
     func configureNewsView() {
+        newsView.delegate = self
         newsView.headerLabel.text = newsModel?.headline ?? ""
         newsView.timeLable.text = timeConverter.convertTimeStampToTimeString(stamp: newsModel.datetime)["time"]
         newsView.dateLabel.text = timeConverter.convertTimeStampToTimeString(stamp: newsModel.datetime)["date"]
@@ -38,4 +39,14 @@ extension NewsDetailsVC {
         newsView = Bundle.main.loadNibNamed("DetailedNewsView", owner: self, options: nil)?.first as! DetailedNewsView
         view.addSubview(newsView)
     }
+}
+
+//MARK: - Protocols extensions
+
+extension NewsDetailsVC: DismissProtocol {
+    func performDismiss() {
+        self.dismiss(animated: true)
+    }
+    
+    
 }

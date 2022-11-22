@@ -8,7 +8,6 @@
 import UIKit
 
 class NewsViewController: UIViewController {
-    
     private let dataFetcherService = DataFetcherService()
     private let mainStocksListDataHandler = MainStocksListDataHandler()
     private var newsArray = [NewsModel]()
@@ -45,6 +44,7 @@ class NewsViewController: UIViewController {
 extension NewsViewController {
     
     private func setupViews() {
+        
         view.backgroundColor = .white
         view.addSubview(tableView)
     }
@@ -97,6 +97,7 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let newsDetailsView = NewsDetailsVC()
         newsDetailsView.newsModel = newsArray[indexPath.row]
+        newsDetailsView.modalPresentationStyle = .fullScreen
         self.present(newsDetailsView, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -213,3 +214,5 @@ extension NewsViewController {
         self.activityIndicator.stopAnimating()
     }
 }
+
+

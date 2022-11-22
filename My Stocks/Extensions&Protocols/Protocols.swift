@@ -23,4 +23,8 @@ protocol ReturnSearchResultsArrayProtocol {
     func getSearchStocksArrayBack(array: [StockForSearchCell])
 }
 
+protocol DismissProtocol {
+    func performDismiss()
+}
+
 
