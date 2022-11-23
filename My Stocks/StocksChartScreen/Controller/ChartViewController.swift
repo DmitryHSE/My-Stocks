@@ -272,7 +272,7 @@ class ChartViewController: UIViewController {
         stockName = model.stockName
         stockNameLabel.text = details.name
         logoImage.image = logo
-        lastPriceLabelValue.text = String(model.currentPrice) + "$"
+        lastPriceLabelValue.text = String(format: "%0.1f", model.currentPrice) + "$"
         
         marketCapLabelValue.text = "$"+String(Int(details.marketCapitalization/1000)) + " mln"
         industryLabelValue.text = details.finnhubIndustry
@@ -302,8 +302,8 @@ extension ChartViewController: ChartViewDelegate {
         newSet.highlightEnabled = false
         
         //set high and low prices
-        oneYearHighLabelValue.text = String(newSet.yMax) + "$"
-        oneYearLowLabelValue.text = String(newSet.yMin) + "$"
+        oneYearHighLabelValue.text = String(format: "%0.1f",newSet.yMax) + "$"
+        oneYearLowLabelValue.text = String(format: "%0.1f",newSet.yMin) + "$"
     }
 }
 
@@ -341,9 +341,7 @@ extension ChartViewController {
         let lastIndex = chartData.c.count - 1
         let lastDayPrice = chartData.c[lastIndex]
         let change = Double(lastDayPrice/firstDayPrice-1)*100
-        oneYearChangeLabelValue.text = String(format: "%0.2f", change) + "%"
-        //oneYearChangeLabelValue.text = oneYearPriceChange
-        
+        oneYearChangeLabelValue.text = String(format: "%0.1f", change) + "%"
     }
 }
 
