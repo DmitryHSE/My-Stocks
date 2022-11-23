@@ -10,10 +10,16 @@ import Foundation
 
 class DataFetcherService {
     var networkDataFetcher: DataFetcher
+    private var timeConverter = TimeConverter()
    
     init(dataFetcher: DataFetcher = NetworkDataFetcher()) {
         self.networkDataFetcher = dataFetcher
         
+    }
+    
+    func fetchChart(stockName: String, completion: @escaping(ChartModel?) -> Void) {
+        let url = "https://finnhub.io/api/v1/stock/candle?symbol=\(stockName)&resolution=D&from=\(timeConverter.yearBeforeDateToTimeStamp())&to=\(timeConverter.currentDateToTimeStamp())&token=cclgp8qad3i79c6t85u0cclgp8qad3i79c6t85ug"
+        networkDataFetcher.dataFetcher(urlString: url, response: completion)
     }
     
     func fetchNews(stockName: String, completion: @escaping([NewsModel]?) -> Void) {

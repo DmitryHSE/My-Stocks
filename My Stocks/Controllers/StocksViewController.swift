@@ -185,7 +185,13 @@ extension StocksViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.presentStockDetailsScreen(ticker: stocksArray[indexPath.row].stockName)
+        //self.presentStockDetailsScreen(ticker: stocksArray[indexPath.row].stockName)
+        let chartVC = ChartViewController()
+        //chartVC.stockName = stocksArray[indexPath.row].stockName
+        //chartVC.configureView(stock: stocksArray[indexPath.row].stockName)
+        chartVC.configureView(model: stocksArray[indexPath.row], details: stocksDetailArray[indexPath.row],logo: logoArray[indexPath.row])
+        chartVC.modalPresentationStyle = .fullScreen
+        self.present(chartVC, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
