@@ -32,10 +32,6 @@ class StockDetailsVC: UIViewController {
         activityIndicator.hidesWhenStopped = true //скрываем индикатор если его стопят
         getStockDetails()
     }
-
-    @IBAction func returnButton(_ sender: UIButton) {
-        self.dismiss(animated: true)
-    }
 }
 
 //MARK: - Set up view controller

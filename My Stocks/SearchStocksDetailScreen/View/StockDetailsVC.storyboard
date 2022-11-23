@@ -95,32 +95,30 @@
                                 <color key="tintColor" white="0.1019079507" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="color" white="0.1019079507" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="inT-6A-n1m">
-                                <rect key="frame" x="369" y="44" width="45" height="31"/>
-                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="clear" catalog="system"/>
-                                <connections>
-                                    <action selector="returnButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="huN-0q-2io"/>
-                                </connections>
-                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Drag Down" translatesAutoresizingMaskIntoConstraints="NO" id="Vy1-Iv-dir">
+                                <rect key="frame" x="182" y="54" width="50" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="4Db-sB-NeN"/>
+                                    <constraint firstAttribute="height" constant="30" id="PF7-XN-OKM"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="F6A-cD-yDd" secondAttribute="trailing" constant="58" id="6Pj-Cu-F7Y"/>
                             <constraint firstItem="YuR-iM-f1R" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="7ot-bN-4KF"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="inT-6A-n1m" secondAttribute="trailing" id="BmS-g9-dkK"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="naj-h3-jeV" secondAttribute="trailing" constant="47" id="Cqj-4A-hIT"/>
+                            <constraint firstItem="Vy1-Iv-dir" firstAttribute="centerX" secondItem="Vd1-vp-ZYk" secondAttribute="centerX" id="EM3-Vp-JoZ"/>
                             <constraint firstItem="F6A-cD-yDd" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="59" id="GHC-j1-yah"/>
                             <constraint firstItem="naj-h3-jeV" firstAttribute="top" secondItem="F6A-cD-yDd" secondAttribute="bottom" constant="68" id="GPC-cU-1Sp"/>
                             <constraint firstItem="CkC-BI-sBX" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="47" id="Iuf-PJ-2jN"/>
-                            <constraint firstItem="inT-6A-n1m" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="MHt-zZ-Vas"/>
                             <constraint firstItem="YuR-iM-f1R" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="Vcs-pG-Xb9"/>
                             <constraint firstItem="F6A-cD-yDd" firstAttribute="top" secondItem="Vd1-vp-ZYk" secondAttribute="bottom" constant="44" id="hP9-YB-rNx"/>
                             <constraint firstItem="Vd1-vp-ZYk" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="147" id="mMo-g0-pZD"/>
                             <constraint firstItem="Vd1-vp-ZYk" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="112" id="qbQ-zZ-6Yd"/>
                             <constraint firstItem="CkC-BI-sBX" firstAttribute="top" secondItem="F6A-cD-yDd" secondAttribute="bottom" constant="68" id="qie-no-pUL"/>
+                            <constraint firstItem="Vy1-Iv-dir" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="10" id="wJd-8G-bxj"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Vd1-vp-ZYk" secondAttribute="trailing" constant="147" id="zce-0Q-Ivk"/>
                         </constraints>
                     </view>
@@ -144,7 +142,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="clear" catalog="system" width="128" height="114"/>
+        <image name="Drag Down" width="37" height="12"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

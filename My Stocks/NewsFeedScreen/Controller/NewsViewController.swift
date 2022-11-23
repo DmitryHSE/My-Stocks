@@ -183,8 +183,8 @@ extension NewsViewController: UISearchResultsUpdating {
     }
     
     private func filterContentForSearchText(_ searchText: String) {
-        let text = searchText //.uppercased()
-        filteredNewsArray = newsArray.filter({ $0.headline.contains(text) })
+        let text = searchText.uppercased()
+        filteredNewsArray = newsArray.filter({ $0.related.contains(text) })
         tableView.reloadData()
     }
 }
