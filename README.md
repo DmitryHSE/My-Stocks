@@ -39,7 +39,7 @@
                 <img width="250" src="Resources/News.gif">
             </td>
                         <td>
-                <img width="250" src="Resources/Searching.gif">
+                <img width="250" src="Resources/Search.gif">
             </td>
         </tr>
     </tbody>
