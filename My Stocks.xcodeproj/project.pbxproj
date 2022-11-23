@@ -151,8 +151,6 @@
 				9F4E6A03292E23B900F55AA0 /* NewsFeedScreen */,
 				9F4E6A07292E23FC00F55AA0 /* DetailedNewsScreen */,
 				9F4E6A0B292E244300F55AA0 /* StocksChartScreen */,
-				9FE8A9232906BA2400AA3442 /* Views */,
-				9FE8A9222906BA0A00AA3442 /* Controllers */,
 				9F055BD828FED1BB0088D53B /* Services */,
 				9F055BC928FEBF030088D53B /* Extensions&Protocols */,
 				9F055BBC28FEBCB30088D53B /* Assets.xcassets */,
@@ -193,13 +191,6 @@
 			path = Handlers;
 			sourceTree = "<group>";
 		};
-		9F2FCEEB2920EF34003C8351 /* Data models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Data models";
-			sourceTree = "<group>";
-		};
 		9F2FCEEC2920EFA1003C8351 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
@@ -207,7 +198,6 @@
 				9F4E69C4292A850100F55AA0 /* ImageLoaderService.swift */,
 				9F2FCEEF2920EFEA003C8351 /* NetworkDataFetcher.swift */,
 				9F2FCEF12920EFF4003C8351 /* NetworkService.swift */,
-				9F2FCEEB2920EF34003C8351 /* Data models */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -423,20 +413,6 @@
 				9F4E69F3292E0D4F00F55AA0 /* ChartModel.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		9FE8A9222906BA0A00AA3442 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		9FE8A9232906BA2400AA3442 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		9FE8A9242906BA4400AA3442 /* Cells */ = {
