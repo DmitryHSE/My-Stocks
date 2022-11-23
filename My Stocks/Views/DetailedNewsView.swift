@@ -11,7 +11,6 @@ class DetailedNewsView: UIView {
    
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var headerLabel: UILabel!
-    
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var timeLable: UILabel!
     

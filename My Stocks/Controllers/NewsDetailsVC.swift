@@ -47,6 +47,5 @@ extension NewsDetailsVC: DismissProtocol {
     func performDismiss() {
         self.dismiss(animated: true)
     }
-    
-    
 }
+
