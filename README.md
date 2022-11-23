@@ -20,7 +20,7 @@
 * Пакеты: SVGKit and Charts
 * API: https://finnhub.io
 
-## Обзор
+## Обзор экранов приложения
 
 <table>
     <thead>
