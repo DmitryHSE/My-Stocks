@@ -23,7 +23,7 @@ class DataFetcherService {
     }
     
     func fetchNews(stockName: String, completion: @escaping([NewsModel]?) -> Void) {
-        let url = "https://finnhub.io/api/v1/company-news?symbol=\(stockName)&from=2022-11-18&to=2022-11-20&token=cclgp8qad3i79c6t85u0cclgp8qad3i79c6t85ug"
+        let url = "https://finnhub.io/api/v1/company-news?symbol=\(stockName)&from=\(timeConverter.dateInDashForman(offsetDays: 7))&to=\(timeConverter.dateInDashForman(offsetDays: 0))&token=cclgp8qad3i79c6t85u0cclgp8qad3i79c6t85ug"
         networkDataFetcher.dataFetcher(urlString: url, response: completion)
     }
     

@@ -66,8 +66,7 @@ class TimeConverter {
     func currentDateToTimeStamp() -> Int {
         // current date and time
         let someDate = Date()
-
-        // time interval since 1970
+       // time interval since 1970
         return Int(someDate.timeIntervalSince1970)
     }
     func yearBeforeDateToTimeStamp() -> Int {
@@ -84,6 +83,14 @@ class TimeConverter {
         let month = handleOneSignNumber(number: Calendar.current.component(.month, from: date as Date))
         let dateString = "\(String(month)).\(day)"
         return Double(dateString)!
+    }
+    
+    func dateInDashForman(offsetDays: Int) -> String {
+        let date = Calendar.current.date(byAdding: .day, value: -offsetDays, to: Date())!
+        let day = handleOneSignNumber(number:Calendar.current.component(.day, from: date as Date))
+        let month = handleOneSignNumber(number:Calendar.current.component(.month, from: date as Date))
+        let year = Calendar.current.component(.year, from: date as Date)
+        return ("\(year)-\(month)-\(day)")
     }
     
 }
