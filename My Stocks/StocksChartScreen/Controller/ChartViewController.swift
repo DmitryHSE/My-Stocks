@@ -10,12 +10,18 @@ import Charts
 
 class ChartViewController: UIViewController {
     
+    //MARK: - Constants
+    enum Constants: CGFloat {
+        case fontSizeOfStockName = 26
+        case fontSizeOfAnyLabel = 21
+        case labelHeight = 32
+    }
+    
     //MARK: - Logo image
     
     private var logoImage: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        //imageView.backgroundColor = .systemGray
         return imageView
     }()
     
@@ -25,11 +31,9 @@ class ChartViewController: UIViewController {
     private var stockNameLabel: UILabel = {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Apple Inc."
+        label.text = "-"
         label.textAlignment = .left
-        label.font = UIFont(name: "Avenir Next", size: 26)
-        //label.backgroundColor = .systemPink
-        
+        label.font = UIFont(name: "Avenir Next", size: Constants.fontSizeOfStockName.rawValue)
         return label
     }()
     
@@ -40,8 +44,11 @@ class ChartViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.tintColor = .darkGray
         button.addTarget(self, action: #selector(returnToStockList), for: .touchUpInside)
-        button.setImage(UIImage(systemName: "clear"), for: .normal)
-        button.contentMode = .scaleToFill
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "clear")
+        imageView.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+        imageView.contentMode = .scaleAspectFill
+        button.addSubview(imageView)
         return button
     }()
     
@@ -50,7 +57,6 @@ class ChartViewController: UIViewController {
     private var backView: UIView = {
        let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        //view.backgroundColor = .systemGreen
         view.layer.cornerRadius = 30
         return view
     }()
@@ -60,9 +66,7 @@ class ChartViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Last price:"
         label.textAlignment = .left
-        label.font = UIFont(name: "Avenir Next", size: 20)
-        //label.backgroundColor = .systemPink
-        
+        label.font = UIFont(name: "Avenir Next", size: Constants.fontSizeOfAnyLabel.rawValue)
         return label
     }()
     
@@ -71,9 +75,7 @@ class ChartViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "1y high:"
         label.textAlignment = .left
-        label.font = UIFont(name: "Avenir Next", size: 20)
-        //label.backgroundColor = .systemPink
-        
+        label.font = UIFont(name: "Avenir Next", size: Constants.fontSizeOfAnyLabel.rawValue)
         return label
     }()
     
@@ -82,9 +84,7 @@ class ChartViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "1y low:"
         label.textAlignment = .left
-        label.font = UIFont(name: "Avenir Next", size: 20)
-        //label.backgroundColor = .systemPink
-        
+        label.font = UIFont(name: "Avenir Next", size: Constants.fontSizeOfAnyLabel.rawValue)
         return label
     }()
     
@@ -93,9 +93,7 @@ class ChartViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "1y change:"
         label.textAlignment = .left
-        label.font = UIFont(name: "Avenir Next", size: 20)
-        //label.backgroundColor = .systemPink
-        
+        label.font = UIFont(name: "Avenir Next", size: Constants.fontSizeOfAnyLabel.rawValue)
         return label
     }()
     
@@ -104,8 +102,7 @@ class ChartViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "MarketCap:"
         label.textAlignment = .left
-        label.font = UIFont(name: "Avenir Next", size: 20)
-       // label.backgroundColor = .systemPink
+        label.font = UIFont(name: "Avenir Next", size: Constants.fontSizeOfAnyLabel.rawValue)
         return label
     }()
     
@@ -114,8 +111,7 @@ class ChartViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Industry:"
         label.textAlignment = .left
-        label.font = UIFont(name: "Avenir Next", size: 20)
-       // label.backgroundColor = .systemPink
+        label.font = UIFont(name: "Avenir Next", size: Constants.fontSizeOfAnyLabel.rawValue)
         return label
     }()
     
@@ -124,8 +120,7 @@ class ChartViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Country:"
         label.textAlignment = .left
-        label.font = UIFont(name: "Avenir Next", size: 20)
-        //label.backgroundColor = .systemPink
+        label.font = UIFont(name: "Avenir Next", size: Constants.fontSizeOfAnyLabel.rawValue)
         return label
     }()
     
@@ -134,8 +129,7 @@ class ChartViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Courency:"
         label.textAlignment = .left
-        label.font = UIFont(name: "Avenir Next", size: 20)
-        //label.backgroundColor = .systemPink
+        label.font = UIFont(name: "Avenir Next", size: Constants.fontSizeOfAnyLabel.rawValue)
         return label
     }()
     
@@ -146,9 +140,7 @@ class ChartViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "-"
         label.textAlignment = .left
-        label.font = UIFont(name: "Avenir Next", size: 20)
-        //label.backgroundColor = .systemPink
-        
+        label.font = UIFont(name: "Avenir Next", size: Constants.fontSizeOfAnyLabel.rawValue)
         return label
     }()
     
@@ -157,9 +149,7 @@ class ChartViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "-"
         label.textAlignment = .left
-        label.font = UIFont(name: "Avenir Next", size: 20)
-        //label.backgroundColor = .systemPink
-        
+        label.font = UIFont(name: "Avenir Next", size: Constants.fontSizeOfAnyLabel.rawValue)
         return label
     }()
     
@@ -168,9 +158,7 @@ class ChartViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "-"
         label.textAlignment = .left
-        label.font = UIFont(name: "Avenir Next", size: 20)
-       // label.backgroundColor = .systemPink
-        
+        label.font = UIFont(name: "Avenir Next", size: Constants.fontSizeOfAnyLabel.rawValue)
         return label
     }()
     
@@ -179,9 +167,7 @@ class ChartViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "-"
         label.textAlignment = .left
-        label.font = UIFont(name: "Avenir Next", size: 20)
-       // label.backgroundColor = .systemPink
-        
+        label.font = UIFont(name: "Avenir Next", size: Constants.fontSizeOfAnyLabel.rawValue)
         return label
     }()
     
@@ -190,8 +176,7 @@ class ChartViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "-"
         label.textAlignment = .left
-        label.font = UIFont(name: "Avenir Next", size: 20)
-        //label.backgroundColor = .systemPink
+        label.font = UIFont(name: "Avenir Next", size: Constants.fontSizeOfAnyLabel.rawValue)
         return label
     }()
     
@@ -200,8 +185,7 @@ class ChartViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "-"
         label.textAlignment = .left
-        label.font = UIFont(name: "Avenir Next", size: 20)
-        //label.backgroundColor = .systemPink
+        label.font = UIFont(name: "Avenir Next", size: Constants.fontSizeOfAnyLabel.rawValue)
         return label
     }()
     
@@ -210,8 +194,7 @@ class ChartViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "-"
         label.textAlignment = .left
-        label.font = UIFont(name: "Avenir Next", size: 20)
-       // label.backgroundColor = .systemPink
+        label.font = UIFont(name: "Avenir Next", size: Constants.fontSizeOfAnyLabel.rawValue)
         return label
     }()
     
@@ -220,8 +203,7 @@ class ChartViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "-"
         label.textAlignment = .left
-        label.font = UIFont(name: "Avenir Next", size: 20)
-       // label.backgroundColor = .systemPink
+        label.font = UIFont(name: "Avenir Next", size: Constants.fontSizeOfAnyLabel.rawValue)
         return label
     }()
     
@@ -247,7 +229,7 @@ class ChartViewController: UIViewController {
     //MARK: - properties
     
     private var newSet = CandleChartDataSet()
-    var stockName = String()
+    private var stockName = String()
     private var stockModel = StockModel()
     private var stocksDetailModel = StockDetailsModel()
     private var logoArray = [UIImage]()
@@ -266,7 +248,20 @@ class ChartViewController: UIViewController {
         setConstraints()
         fetchQuotes()
     }
+}
+
+//MARK: - Return to main stock list screen
+
+extension ChartViewController {
     
+    @objc func returnToStockList() {
+        self.dismiss(animated: true)
+    }
+}
+
+//MARK: - Configure stocks financial data view
+
+extension ChartViewController {
     func configureView(model: StockModel, details:StockDetailsModel, logo: UIImage) {
         stockName = model.stockName
         stockNameLabel.text = details.name
@@ -278,11 +273,9 @@ class ChartViewController: UIViewController {
         countryLabelValue.text = details.country
         currencyLabelValue.text = details.currency
     }
-    
-    @objc func returnToStockList() {
-        self.dismiss(animated: true)
-    }
 }
+
+//MARK: - Chart view delegate
 
 extension ChartViewController: ChartViewDelegate {
     
@@ -392,12 +385,12 @@ extension ChartViewController {
              stockNameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
              stockNameLabel.leadingAnchor.constraint(equalTo: logoImage.trailingAnchor, constant: 10),
              stockNameLabel.trailingAnchor.constraint(equalTo: exitButton.leadingAnchor, constant: -5),
-             stockNameLabel.heightAnchor.constraint(equalToConstant: 30),
+             stockNameLabel.heightAnchor.constraint(equalToConstant: Constants.labelHeight.rawValue),
              // exit button
-             exitButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-             exitButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-             exitButton.heightAnchor.constraint(equalToConstant: 30),
-             exitButton.widthAnchor.constraint(equalToConstant: 30),
+             exitButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
+             exitButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
+             exitButton.heightAnchor.constraint(equalToConstant: 20),
+             exitButton.widthAnchor.constraint(equalToConstant: 20),
              // chart
              candleChartView.topAnchor.constraint(equalTo: stockNameLabel.bottomAnchor, constant: 5),
              candleChartView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
@@ -411,68 +404,68 @@ extension ChartViewController {
              
              lastPriceLabel.topAnchor.constraint(equalTo: backView.topAnchor, constant: 10),
              lastPriceLabel.leadingAnchor.constraint(equalTo: backView.leadingAnchor, constant: 10),
-             lastPriceLabel.heightAnchor.constraint(equalToConstant: 30),
+             lastPriceLabel.heightAnchor.constraint(equalToConstant: Constants.labelHeight.rawValue),
              
              oneYearHighLabel.topAnchor.constraint(equalTo: lastPriceLabel.bottomAnchor, constant: 10),
              oneYearHighLabel.leadingAnchor.constraint(equalTo: backView.leadingAnchor, constant: 10),
-             oneYearHighLabel.heightAnchor.constraint(equalToConstant: 30),
+             oneYearHighLabel.heightAnchor.constraint(equalToConstant: Constants.labelHeight.rawValue),
              
              oneYearLowLabel.topAnchor.constraint(equalTo: oneYearHighLabel.bottomAnchor, constant: 10),
              oneYearLowLabel.leadingAnchor.constraint(equalTo: backView.leadingAnchor, constant: 10),
-             oneYearLowLabel.heightAnchor.constraint(equalToConstant: 30),
+             oneYearLowLabel.heightAnchor.constraint(equalToConstant: Constants.labelHeight.rawValue),
              
              oneYearChangeLabel.topAnchor.constraint(equalTo: oneYearLowLabel.bottomAnchor, constant: 10),
              oneYearChangeLabel.leadingAnchor.constraint(equalTo: backView.leadingAnchor, constant: 10),
-             oneYearChangeLabel.heightAnchor.constraint(equalToConstant: 30),
+             oneYearChangeLabel.heightAnchor.constraint(equalToConstant: Constants.labelHeight.rawValue),
              
              marketCapLabel.topAnchor.constraint(equalTo: oneYearChangeLabel.bottomAnchor, constant: 30),
              marketCapLabel.leadingAnchor.constraint(equalTo: backView.leadingAnchor, constant: 10),
-             marketCapLabel.heightAnchor.constraint(equalToConstant: 30),
+             marketCapLabel.heightAnchor.constraint(equalToConstant: Constants.labelHeight.rawValue),
              
              industryLabel.topAnchor.constraint(equalTo: marketCapLabel.bottomAnchor, constant: 10),
              industryLabel.leadingAnchor.constraint(equalTo: backView.leadingAnchor, constant: 10),
-             industryLabel.heightAnchor.constraint(equalToConstant: 30),
+             industryLabel.heightAnchor.constraint(equalToConstant: Constants.labelHeight.rawValue),
              
              countryLabel.topAnchor.constraint(equalTo: industryLabel.bottomAnchor, constant: 10),
              countryLabel.leadingAnchor.constraint(equalTo: backView.leadingAnchor, constant: 10),
-             countryLabel.heightAnchor.constraint(equalToConstant: 30),
+             countryLabel.heightAnchor.constraint(equalToConstant: Constants.labelHeight.rawValue),
              
              currencyLabel.topAnchor.constraint(equalTo: countryLabel.bottomAnchor, constant: 10),
              currencyLabel.leadingAnchor.constraint(equalTo: backView.leadingAnchor, constant: 10),
-             currencyLabel.heightAnchor.constraint(equalToConstant: 30),
+             currencyLabel.heightAnchor.constraint(equalToConstant: Constants.labelHeight.rawValue),
              
              // labels value
              lastPriceLabelValue.topAnchor.constraint(equalTo: backView.topAnchor, constant: 10),
              lastPriceLabelValue.trailingAnchor.constraint(equalTo: backView.trailingAnchor, constant: -10),
-             lastPriceLabelValue.heightAnchor.constraint(equalToConstant: 30),
+             lastPriceLabelValue.heightAnchor.constraint(equalToConstant: Constants.labelHeight.rawValue),
              
              oneYearHighLabelValue.topAnchor.constraint(equalTo: lastPriceLabelValue.bottomAnchor, constant: 10),
              oneYearHighLabelValue.trailingAnchor.constraint(equalTo: backView.trailingAnchor, constant: -10),
-             oneYearHighLabelValue.heightAnchor.constraint(equalToConstant: 30),
+             oneYearHighLabelValue.heightAnchor.constraint(equalToConstant: Constants.labelHeight.rawValue),
              
              oneYearLowLabelValue.topAnchor.constraint(equalTo: oneYearHighLabelValue.bottomAnchor, constant: 10),
              oneYearLowLabelValue.trailingAnchor.constraint(equalTo: backView.trailingAnchor, constant: -10),
-             oneYearLowLabelValue.heightAnchor.constraint(equalToConstant: 30),
+             oneYearLowLabelValue.heightAnchor.constraint(equalToConstant: Constants.labelHeight.rawValue),
              
              oneYearChangeLabelValue.topAnchor.constraint(equalTo: oneYearLowLabelValue.bottomAnchor, constant: 10),
              oneYearChangeLabelValue.trailingAnchor.constraint(equalTo: backView.trailingAnchor, constant: -10),
-             oneYearChangeLabelValue.heightAnchor.constraint(equalToConstant: 30),
+             oneYearChangeLabelValue.heightAnchor.constraint(equalToConstant: Constants.labelHeight.rawValue),
              
              marketCapLabelValue.topAnchor.constraint(equalTo: oneYearChangeLabelValue.bottomAnchor, constant: 30),
              marketCapLabelValue.trailingAnchor.constraint(equalTo: backView.trailingAnchor, constant: -10),
-             marketCapLabelValue.heightAnchor.constraint(equalToConstant: 30),
+             marketCapLabelValue.heightAnchor.constraint(equalToConstant: Constants.labelHeight.rawValue),
              
              industryLabelValue.topAnchor.constraint(equalTo: marketCapLabelValue.bottomAnchor, constant: 10),
              industryLabelValue.trailingAnchor.constraint(equalTo: backView.trailingAnchor, constant: -10),
-             industryLabelValue.heightAnchor.constraint(equalToConstant: 30),
+             industryLabelValue.heightAnchor.constraint(equalToConstant: Constants.labelHeight.rawValue),
              
              countryLabelValue.topAnchor.constraint(equalTo: industryLabelValue.bottomAnchor, constant: 10),
              countryLabelValue.trailingAnchor.constraint(equalTo: backView.trailingAnchor, constant: -10),
-             countryLabelValue.heightAnchor.constraint(equalToConstant: 30),
+             countryLabelValue.heightAnchor.constraint(equalToConstant: Constants.labelHeight.rawValue),
              
              currencyLabelValue.topAnchor.constraint(equalTo: countryLabelValue.bottomAnchor, constant: 10),
              currencyLabelValue.trailingAnchor.constraint(equalTo: backView.trailingAnchor, constant: -10),
-             currencyLabelValue.heightAnchor.constraint(equalToConstant: 30)
+             currencyLabelValue.heightAnchor.constraint(equalToConstant: Constants.labelHeight.rawValue)
              
          ])
      }

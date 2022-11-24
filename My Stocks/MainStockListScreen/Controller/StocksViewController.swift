@@ -23,7 +23,7 @@ class StocksViewController: UIViewController {
     private var stocksArray = [StockModel]()
     private var stocksDetailArray = [StockDetailsModel]()
     private var logoArray = [UIImage]()
-    private var tikersArray = ["AAPL","TWTR","MSFT","TSLA", "AMZN","GOOG", "META", "JNJ","XOM","V"]
+    private var tikersArray = ["AAPL","TWTR","MSFT","TSLA", "AMZN"]
     private let searchController = UISearchController(searchResultsController: nil)
     
     private var searchBarIsEmpty: Bool {
