@@ -7,7 +7,7 @@
 
 import Foundation
 
-class NewsFeedHandler {
+final class NewsFeedHandler {
     
     private let dataFetcherService = DataFetcherService()
     

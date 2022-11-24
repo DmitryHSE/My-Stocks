@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TimeConverter {
+final class TimeConverter {
     
     func convertTimeStampToTimeString(stamp: Int) -> [String:String] {
         var dict = [String:String]()

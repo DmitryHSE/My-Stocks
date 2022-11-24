@@ -8,7 +8,7 @@
 import UIKit
 import SVGKit
 
-struct ImageLoaderService {
+final class ImageLoaderService {
     
     func loadImage(from url: URL, _ onLoadWasCompleted: @escaping (UIImage?) -> Void) {
         if let imageFromCache = getCacheImage(url: url) {
@@ -21,10 +21,9 @@ struct ImageLoaderService {
             if let error = error {
                 print(error)
             }
-            // if let data = data, let response = response, let image = UIImage(data: data) {
             let svg = SVGKImage(data: data)
             if let data = data, let response = response, let safeImage = svg?.uiImage {
-                saveDataToCach(with: data, response: response)
+                self.saveDataToCach(with: data, response: response)
                 onLoadWasCompleted(safeImage)
             } 
         }
@@ -40,7 +39,6 @@ private extension ImageLoaderService {
     func getCacheImage(url: URL) -> UIImage? {
         let urlRequest = URLRequest(url: url)
         guard let chacheedResponse = URLCache.shared.cachedResponse(for: urlRequest) else { return nil }
-        //return UIImage(data: chacheedResponse.data)
         let svg = SVGKImage(data: chacheedResponse.data)
         if let image = svg?.uiImage {
             return image
@@ -58,30 +56,4 @@ private extension ImageLoaderService {
     }
 }
 
-// MARK: - UIImageView
 
-//extension UIImageView {
-//
-//    func loadImage(from url: URL) {
-//        image = nil
-//
-//        ImageLoaderService().loadImage(from: url) { [weak self] result in
-//            switch result {
-//            case .success(let image):
-//                DispatchQueue.main.async { self?.image = image }
-//            case .failure(let error):
-//                print(error)
-//                DispatchQueue.main.async { self?.image = nil }
-//            }
-//        }
-//    }
-//
-//    func loadImage(from urlString: String) {
-//        guard let url = URL(string: urlString) else {
-//            image = nil
-//            return
-//        }
-//
-//        loadImage(from: url)
-//    }
-//}

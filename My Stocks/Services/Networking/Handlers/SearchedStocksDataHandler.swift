@@ -7,7 +7,7 @@
 
 import Foundation
 
-class SearchedStocksDataHandler {
+final class SearchedStocksDataHandler {
     private let dataFetcherService = DataFetcherService()
 
     func getStockSearchingResults(text: String, completion: @escaping ([StockForSearchCell]) -> Void ) {

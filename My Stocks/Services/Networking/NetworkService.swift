@@ -12,7 +12,7 @@ protocol Networking {
     func request(urlString: String, completion: @escaping(Data?, Error?) -> Void)
 }
 
-class NetworkService: Networking {
+final class NetworkService: Networking {
     
     // постороение запроса
     func request(urlString: String, completion: @escaping(Data?, Error?) -> Void) {

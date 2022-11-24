@@ -7,7 +7,7 @@
 
 import Foundation
 
-class DataStorageManager {
+final class DataStorageManager {
     
     let userDefaults = UserDefaults.standard
     

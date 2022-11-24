@@ -11,7 +11,7 @@ protocol DataFetcher {
     func dataFetcher<T: Decodable>(urlString: String, response: @escaping(T?) -> Void)
 }
 
-class NetworkDataFetcher: DataFetcher {
+final class NetworkDataFetcher: DataFetcher {
     
     var networking: Networking
     
