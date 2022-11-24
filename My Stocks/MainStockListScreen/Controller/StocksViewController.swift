@@ -43,6 +43,7 @@ class StocksViewController: UIViewController {
         setupSearchBar()
         setupTableView()
         getStocksData()
+        removeEmptyImageFromLogo()
         setupSearchButton()
     }
     
@@ -81,7 +82,7 @@ extension StocksViewController {
         activityIndicator.color = .systemGray
         activityIndicator.center = self.view.center
         view.addSubview(activityIndicator)
-        // vie did load
+        // view did load
         activityIndicator.isHidden = true
         activityIndicator.hidesWhenStopped = true
     }
@@ -208,6 +209,7 @@ extension StocksViewController: PassSearchResultsProtocol {
         stocksDetailArray.removeAll()
         stocksDetailArray = Array(repeating: emptyDetail, count: tikersArray.count)
         getStocksData()
+        removeEmptyImageFromLogo()
     }
 }
 
@@ -236,13 +238,11 @@ extension StocksViewController {
     }
     
     @objc func performAdd(sender: UIBarButtonItem) {
-        print(filteredStocksArray)
         performSegue(withIdentifier: "SearchVC", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SearchVC" {
-            print("performing segue")
             let destinationVC = segue.destination as! SearchViewController
             destinationVC.arrayWithAddedStocks = tikersArray
             destinationVC.delegate = self
@@ -256,6 +256,7 @@ extension StocksViewController {
     
     @objc private func refreshTableView(sender: UIRefreshControl) {
         getStocksData()
+        removeEmptyImageFromLogo()
         stopActivityIndicator()
         DispatchQueue.main.async {
             self.tableView.reloadData()
@@ -290,15 +291,22 @@ extension StocksViewController {
             strongSelf.stocksDetailArray[index] = stock
             guard let url = URL(string: stock.logo) else {return}
             strongSelf.imageLoaderService.loadImage(from: url) { image in
-                guard let safeImage = image else {return}
+                guard let safeImage = image else { return }
                 strongSelf.logoArray[index] = safeImage
                 DispatchQueue.main.async {
+                    
                     strongSelf.tableView.reloadData()
                     strongSelf.stopActivityIndicator()
                 }
             }
         }
     }
+    private func removeEmptyImageFromLogo() {
+        for (i,j) in logoArray.enumerated() {
+            if j.scale == 1 {
+                logoArray[i] = UIImage(named: "sqr")!
+            }
+        }
+    }
 }
-
 

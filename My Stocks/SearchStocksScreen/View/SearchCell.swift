@@ -51,22 +51,25 @@ class SearchCell: UITableViewCell {
 
 
     @IBAction func addButtonTapped(_ sender: UIButton) {
-        
-        if arrayWithAddedStocks.contains(where: {$0 == symbol}) {
-            print("Array alreade contains ", symbol)
-            showAlertDelegate?.showAlert(message: "Tiker already in the list")
-        } else {
-            if checkSymbol(symbol: symbol) {
-                print("Contain dots ->> ", symbol)
-                showAlertDelegate?.showAlert(message: "Invalid ticker")
-                
+        if arrayWithAddedStocks.count < 15 {
+            if arrayWithAddedStocks.contains(where: {$0 == symbol}) {
+                print("Array already contains ", symbol)
+                showAlertDelegate?.showAlert(message: "Tiker already in the list")
             } else {
-                delegate?.getTickerFromSearchScreen(ticker: symbol)
-                dataStorageManager.addStockToStorage(ticker: symbol, key: "mainList")
-                entireSearchedStocksArray[indexPath].didAddToList = true
-                returnArrayDelegate?.getSearchStocksArrayBack(array: entireSearchedStocksArray)
-                addButton.isHidden = true
+                if checkSymbol(symbol: symbol) {
+                    print("Contain dots ->> ", symbol)
+                    showAlertDelegate?.showAlert(message: "Invalid ticker")
+                    
+                } else {
+                    delegate?.getTickerFromSearchScreen(ticker: symbol)
+                    dataStorageManager.addStockToStorage(ticker: symbol, key: "mainList")
+                    entireSearchedStocksArray[indexPath].didAddToList = true
+                    returnArrayDelegate?.getSearchStocksArrayBack(array: entireSearchedStocksArray)
+                    addButton.isHidden = true
+                }
             }
+        } else {
+            showAlertDelegate?.showAlert(message: "The API Limit is 15 stocks in the list!")
         }
     }
 }

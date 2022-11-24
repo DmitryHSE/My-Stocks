@@ -27,4 +27,8 @@ protocol DismissProtocol {
     func performDismiss()
 }
 
+protocol InternetErrorAlertProtocol {
+    func showErrorAlert()
+}
+
 

@@ -15,7 +15,7 @@ class ChartViewController: UIViewController {
     private var logoImage: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.backgroundColor = .systemGray
+        //imageView.backgroundColor = .systemGray
         return imageView
     }()
     
@@ -313,7 +313,8 @@ extension ChartViewController {
     private func fetchQuotes() {
         dataFetcherService.fetchChart(stockName: stockName) { [weak self] dataArray in
             guard let strongSelf = self else {return}
-            strongSelf.chartData = dataArray
+            guard let safeDataArray = dataArray else {return}
+            strongSelf.chartData = safeDataArray
             strongSelf.createDataSet()
         }
     }

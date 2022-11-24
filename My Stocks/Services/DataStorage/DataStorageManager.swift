@@ -15,12 +15,12 @@ final class DataStorageManager {
         if var array = userDefaults.stringArray(forKey: key) {
             array.append(ticker)
             userDefaults.set(array, forKey: key)
-            print(userDefaults.stringArray(forKey: key)!)
+            //print(userDefaults.stringArray(forKey: key)!)
         } else {
             var array = [String]()
             array.append(ticker)
             userDefaults.set(array, forKey: key)
-            print(userDefaults.stringArray(forKey: key)!)
+            //print(userDefaults.stringArray(forKey: key)!)
         }
         
     }
@@ -30,7 +30,7 @@ final class DataStorageManager {
             array.remove(at: index)
         }
         userDefaults.set(array, forKey: key)
-        print(userDefaults.stringArray(forKey: key)!)
+        //print(userDefaults.stringArray(forKey: key)!)
     }
 }
 

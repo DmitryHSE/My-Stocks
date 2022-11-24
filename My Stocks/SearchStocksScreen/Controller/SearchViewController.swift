@@ -12,6 +12,7 @@ class SearchViewController: UIViewController {
     
     private let searchedStocksPresenter = SearchedStocksDataHandler()
     private var timer: Timer?
+    var counterStocksInMailList: Int?
     
     var arrayWithAddedStocks = [String]()
     private var stocksForSearchCellArray = [StockForSearchCell]()
@@ -31,9 +32,7 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         setupSearchBar()
         setupTableView()
-        
     }
-    
 }
 
 //MARK: - Search bar
@@ -146,7 +145,13 @@ extension SearchViewController: AddTickerToStockListProtocol, ShowAlertProtocol,
     
     
     func getTickerFromSearchScreen(ticker: String) {
-        arrayWithAddedStocks.append(ticker)
+        if arrayWithAddedStocks.count < 15 {
+            arrayWithAddedStocks.append(ticker)
+        } else {
+            print(arrayWithAddedStocks.count)
+            self.showAlert(message: "The API Limit is 15 stock in the list!")
+        }
+        
         
     }
 }
