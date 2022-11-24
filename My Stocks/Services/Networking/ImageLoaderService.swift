@@ -19,7 +19,7 @@ final class ImageLoaderService {
         let dataTask = URLSession.shared.dataTask(with: url) { data, response, error in
             
             if let error = error {
-                print(error)
+                print("Failed to load image: ", error)
             }
             let svg = SVGKImage(data: data)
             if let data = data, let response = response, let safeImage = svg?.uiImage {
@@ -48,7 +48,7 @@ private extension ImageLoaderService {
         
     }
     
-    func saveDataToCach(with data: Data, response: URLResponse) {
+    private func saveDataToCach(with data: Data, response: URLResponse) {
         guard let urlResponse = response.url else { return }
         let chacheedResponse = CachedURLResponse(response: response, data: data)
         let urlRequest = URLRequest(url: urlResponse)

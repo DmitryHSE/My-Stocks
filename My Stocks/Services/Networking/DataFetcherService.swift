@@ -7,14 +7,12 @@
 
 import Foundation
 
-
 final class DataFetcherService {
-    var networkDataFetcher: DataFetcher
+    private var networkDataFetcher: DataFetcher
     private var timeConverter = TimeConverter()
    
     init(dataFetcher: DataFetcher = NetworkDataFetcher()) {
         self.networkDataFetcher = dataFetcher
-        
     }
     
     func fetchChart(stockName: String, completion: @escaping(ChartModel?) -> Void) {

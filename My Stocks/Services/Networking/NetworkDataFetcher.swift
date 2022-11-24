@@ -23,7 +23,7 @@ final class NetworkDataFetcher: DataFetcher {
     func dataFetcher<T: Decodable>(urlString: String, response: @escaping(T?) -> Void) {
         networking.request(urlString: urlString) { data, error in
             if let error = error {
-                print(error)
+                print("Failed to fetch data: ",error)
                 response(nil)
             }
             let decoded = self.decodeJson(type: T.self, data: data)
