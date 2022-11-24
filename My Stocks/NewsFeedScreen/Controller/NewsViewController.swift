@@ -8,11 +8,15 @@
 import UIKit
 
 class NewsViewController: UIViewController {
+    
     private let dataFetcherService = DataFetcherService()
     private let mainStocksListDataHandler = MainStocksListDataHandler()
+    private let newsFeedHandler = NewsFeedHandler()
+    
     private var newsArray = [NewsModel]()
     private var filteredNewsArray = [NewsModel]()
     private var stocks = [String]()
+    
     private let tableView = UITableView()
     private var imageView = UIImageView()
     private let refreshControll = UIRefreshControl()
@@ -108,7 +112,7 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
 extension NewsViewController {
     private func loadNewsFeed(){
         startActivitiIndicator()
-        mainStocksListDataHandler.loadNews(tikersArray: stocks) { [weak self] array in
+        newsFeedHandler.loadNews(tikersArray: stocks) { [weak self] array in
             guard let self = self else {return}
             self.newsArray += array
             self.newsArray = self.newsArray.sorted(by: {$1.datetime < $0.datetime})

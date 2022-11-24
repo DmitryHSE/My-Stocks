@@ -12,8 +12,8 @@ class TimeConverter {
     func convertTimeStampToTimeString(stamp: Int) -> [String:String] {
         var dict = [String:String]()
         let date = NSDate(timeIntervalSince1970: TimeInterval(stamp))
-        let hourString = handleOneSignNumber(number: Calendar.current.component(.hour, from: date as Date)) // Calendar.current.component(.hour, from: date as Date)
-        let minuteString = handleOneSignNumber(number: Calendar.current.component(.minute, from: date as Date)) //Calendar.current.component(.minute, from: date as Date)
+        let hourString = handleOneSignNumber(number: Calendar.current.component(.hour, from: date as Date))
+        let minuteString = handleOneSignNumber(number: Calendar.current.component(.minute, from: date as Date))
         let timeString = "\(hourString):\(minuteString)"
         dict["time"] = timeString
         let day = Calendar.current.component(.day, from: date as Date)
@@ -64,16 +64,11 @@ class TimeConverter {
     }
     
     func currentDateToTimeStamp() -> Int {
-        // current date and time
         let someDate = Date()
-       // time interval since 1970
         return Int(someDate.timeIntervalSince1970)
     }
     func yearBeforeDateToTimeStamp() -> Int {
-        // current date and time
         let someDate = Calendar.current.date(byAdding: .month, value: -12, to: Date())
-
-        // time interval since 1970
         return Int(someDate!.timeIntervalSince1970)
     }
     

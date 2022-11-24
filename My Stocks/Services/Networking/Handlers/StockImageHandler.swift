@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SVGKit
 
 class StockImageHandler {
     
@@ -22,11 +21,4 @@ class StockImageHandler {
             }
         }
     }
-    
-    func fetchSVGImage(urlString: String) -> UIImage? {
-        let url = URL(string: urlString)
-        let svg = SVGKImage(contentsOf: url)
-        return svg?.uiImage
-    }
-    
 }

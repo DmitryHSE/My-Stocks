@@ -28,8 +28,8 @@ class StockDetailsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        activityIndicator.isHidden = true //скрыли индикатор
-        activityIndicator.hidesWhenStopped = true //скрываем индикатор если его стопят
+        activityIndicator.isHidden = true
+        activityIndicator.hidesWhenStopped = true
         getStockDetails()
     }
 }
@@ -51,6 +51,7 @@ extension StockDetailsVC {
         logoImage.layer.cornerRadius = logoImage.frame.height/2
         marketCapLabel.text = "$"+String(format: "%.0f", (stockDetails.marketCapitalization/1000))+" mln"
         logoImage.image = downloadSVG(urlString: stockDetails.logo)
+        
 //        imageLoaderService.loadImage(from: URL(string: stockDetails.logo)!) { image in
 //            self.logoImage.image = image
 //        }
@@ -69,13 +70,10 @@ extension StockDetailsVC {
         }
     }
     
+    // это костыль, через imageLoaderService крашится
     private func downloadSVG(urlString: String) -> UIImage? {
         let url = URL(string: urlString)
         let svg = SVGKImage(contentsOf: url)
         return svg?.uiImage
     }
-    
-//    private func setupLogoImage() {
-//        logoImage.layer.cornerRadius = logoImage.bounds.height/3
-//    }
 }

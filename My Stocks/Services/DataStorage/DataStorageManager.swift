@@ -12,7 +12,6 @@ class DataStorageManager {
     let userDefaults = UserDefaults.standard
     
     func addStockToStorage(ticker: String, key: String) {
-        //let userDefaults = UserDefaults.standard
         if var array = userDefaults.stringArray(forKey: key) {
             array.append(ticker)
             userDefaults.set(array, forKey: key)
@@ -26,7 +25,6 @@ class DataStorageManager {
         
     }
     func removeStockFromStorage(ticker: String, key: String) {
-        //let userDefaults = UserDefaults.standard
         var array = userDefaults.stringArray(forKey: key)!
         if let index = array.firstIndex(of: ticker) {
             array.remove(at: index)

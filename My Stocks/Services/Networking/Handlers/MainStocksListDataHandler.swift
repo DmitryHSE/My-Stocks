@@ -24,14 +24,14 @@ class MainStocksListDataHandler {
         }
     }
     
-    func loadNews(tikersArray: [String], completion: @escaping ([NewsModel]) -> Void ) {
-        for i in tikersArray {
-            dataFetcherService.fetchNews(stockName: i) { array in
-                guard let model = array else {return}
-                completion(model)
-            }
-        }
-    }
+//    func loadNews(tikersArray: [String], completion: @escaping ([NewsModel]) -> Void ) {
+//        for i in tikersArray {
+//            dataFetcherService.fetchNews(stockName: i) { array in
+//                guard let model = array else {return}
+//                completion(model)
+//            }
+//        }
+//    }
 }
 
 
