@@ -7,12 +7,12 @@
 
 import UIKit
 
+enum PeriodUnit: String {
+    case time
+    case date
+}
+
 final class TimeConverter {
-    
-    enum PeriodUnit: String {
-        case time
-        case date
-    }
     
     func convertTimeStampToTimeDict(stamp: Int) -> [String:String] {
         var dict = [String:String]()
@@ -20,12 +20,12 @@ final class TimeConverter {
         let hourString = handleOneSignNumber(number: Calendar.current.component(.hour, from: date as Date))
         let minuteString = handleOneSignNumber(number: Calendar.current.component(.minute, from: date as Date))
         let timeString = "\(hourString):\(minuteString)"
-        dict["time"] = timeString
+        dict[PeriodUnit.time.rawValue] = timeString
         let day = Calendar.current.component(.day, from: date as Date)
         let monthInt = Calendar.current.component(.month, from: date as Date)
         let monthString = monthToString(month: monthInt)
         let dateString = "\(String(day)) \(monthString)"
-        dict["date"] = dateString
+        dict[PeriodUnit.date.rawValue] = dateString
         return dict
     }
 

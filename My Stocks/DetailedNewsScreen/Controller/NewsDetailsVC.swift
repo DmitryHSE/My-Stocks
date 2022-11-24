@@ -34,8 +34,8 @@ extension NewsDetailsVC {
     private func configureNewsView() {
         newsView.delegate = self
         newsView.headerLabel.text = newsModel?.headline ?? ""
-        newsView.timeLable.text = timeConverter.convertTimeStampToTimeDict(stamp: newsModel.datetime)["time"]
-        newsView.dateLabel.text = timeConverter.convertTimeStampToTimeDict(stamp: newsModel.datetime)["date"]
+        newsView.timeLable.text = timeConverter.convertTimeStampToTimeDict(stamp: newsModel.datetime)[PeriodUnit.time.rawValue]
+        newsView.dateLabel.text = timeConverter.convertTimeStampToTimeDict(stamp: newsModel.datetime)[PeriodUnit.date.rawValue]
         newsView.textView.text = newsModel.summary
     }
     
@@ -44,7 +44,7 @@ extension NewsDetailsVC {
     }
 }
 
-//MARK: - Go orevious screen protocols extensions
+//MARK: - Go previous screen protocols extensions
 
 extension NewsDetailsVC: DismissProtocol {
     func performDismiss() {
