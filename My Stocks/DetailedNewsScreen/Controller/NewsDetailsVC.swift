@@ -34,8 +34,8 @@ extension NewsDetailsVC {
     private func configureNewsView() {
         newsView.delegate = self
         newsView.headerLabel.text = newsModel?.headline ?? ""
-        newsView.timeLable.text = timeConverter.convertTimeStampToTimeString(stamp: newsModel.datetime)["time"]
-        newsView.dateLabel.text = timeConverter.convertTimeStampToTimeString(stamp: newsModel.datetime)["date"]
+        newsView.timeLable.text = timeConverter.convertTimeStampToTimeDict(stamp: newsModel.datetime)["time"]
+        newsView.dateLabel.text = timeConverter.convertTimeStampToTimeDict(stamp: newsModel.datetime)["date"]
         newsView.textView.text = newsModel.summary
     }
     

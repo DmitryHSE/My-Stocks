@@ -32,8 +32,8 @@ class NewsCell: UITableViewCell {
     }
     func configureCell(data: NewsModel) {
         newsHeadlineLabel.text = data.headline
-        timeLabel.text = timeConverter.convertTimeStampToTimeString(stamp: data.datetime)["time"]
-        dateLabel.text = timeConverter.convertTimeStampToTimeString(stamp: data.datetime)["date"]
+        timeLabel.text = timeConverter.convertTimeStampToTimeDict(stamp: data.datetime)["time"]
+        dateLabel.text = timeConverter.convertTimeStampToTimeDict(stamp: data.datetime)["date"]
         sourcelabel.text = data.source
         tickerLabel.text = "#\(data.related)"
         

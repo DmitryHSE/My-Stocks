@@ -9,7 +9,12 @@ import UIKit
 
 final class TimeConverter {
     
-    func convertTimeStampToTimeString(stamp: Int) -> [String:String] {
+    enum PeriodUnit: String {
+        case time
+        case date
+    }
+    
+    func convertTimeStampToTimeDict(stamp: Int) -> [String:String] {
         var dict = [String:String]()
         let date = NSDate(timeIntervalSince1970: TimeInterval(stamp))
         let hourString = handleOneSignNumber(number: Calendar.current.component(.hour, from: date as Date))
@@ -71,14 +76,14 @@ final class TimeConverter {
         let someDate = Calendar.current.date(byAdding: .month, value: -12, to: Date())
         return Int(someDate!.timeIntervalSince1970)
     }
-    
-    func convertTimeStampToTimeString(stamp: Int) -> Double {
-        let date = NSDate(timeIntervalSince1970: TimeInterval(stamp))
-        let day = handleOneSignNumber(number: Calendar.current.component(.day, from: date as Date))
-        let month = handleOneSignNumber(number: Calendar.current.component(.month, from: date as Date))
-        let dateString = "\(String(month)).\(day)"
-        return Double(dateString)!
-    }
+    // удалить
+//    func convertTimeStampToTimeString(stamp: Int) -> Double {
+//        let date = NSDate(timeIntervalSince1970: TimeInterval(stamp))
+//        let day = handleOneSignNumber(number: Calendar.current.component(.day, from: date as Date))
+//        let month = handleOneSignNumber(number: Calendar.current.component(.month, from: date as Date))
+//        let dateString = "\(String(month)).\(day)"
+//        return Double(dateString)!
+//    }
     
     func dateInDashForman(offsetDays: Int) -> String {
         let date = Calendar.current.date(byAdding: .day, value: -offsetDays, to: Date())!
