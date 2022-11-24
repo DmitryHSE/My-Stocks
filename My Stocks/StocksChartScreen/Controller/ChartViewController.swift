@@ -239,7 +239,7 @@ class ChartViewController: UIViewController {
         chartView.highlightPerDragEnabled = true
         chartView.xAxis.labelRotationAngle = 315
         chartView.xAxis.setLabelCount(12, force: false)
-        let currentMonth = getCurrentMonth()
+        let currentMonth = timeConverter.getCurrentMonth()
         chartView.xAxis.valueFormatter = MonthNumberFormatter(startMonthIndex: currentMonth!)
         return chartView
     }()
@@ -306,12 +306,15 @@ extension ChartViewController: ChartViewDelegate {
     }
 }
 
+//MARK: - Fetch data
+
 extension ChartViewController {
     
     private func fetchQuotes() {
-        dataFetcherService.fetchChart(stockName: stockName) { dataArray in
-            self.chartData = dataArray
-            self.createDataSet()
+        dataFetcherService.fetchChart(stockName: stockName) { [weak self] dataArray in
+            guard let strongSelf = self else {return}
+            strongSelf.chartData = dataArray
+            strongSelf.createDataSet()
         }
     }
     
@@ -326,15 +329,10 @@ extension ChartViewController {
     }
 }
 
+//MARK: - Stocks return calculation
 
 extension ChartViewController {
-    private func getCurrentMonth()->Int? {
-        let todayDate = Date()
-        let myCalendar = NSCalendar(calendarIdentifier: .gregorian)
-        let myComponents = myCalendar?.components(.month, from: todayDate)
-        let month = myComponents?.month
-        return month
-    }
+    
     private func returnYearChange() {
         let firstDayPrice = chartData.o[0]
         let lastIndex = chartData.c.count - 1

@@ -88,4 +88,12 @@ final class TimeConverter {
         return ("\(year)-\(month)-\(day)")
     }
     
+    func getCurrentMonth()->Int? {
+        let todayDate = Date()
+        let myCalendar = NSCalendar(calendarIdentifier: .gregorian)
+        let myComponents = myCalendar?.components(.month, from: todayDate)
+        let month = myComponents?.month
+        return month
+    }
+    
 }

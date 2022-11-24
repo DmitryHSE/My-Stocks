@@ -51,21 +51,23 @@ extension StockDetailsVC {
         logoImage.layer.cornerRadius = logoImage.frame.height/2
         marketCapLabel.text = "$"+String(format: "%.0f", (stockDetails.marketCapitalization/1000))+" mln"
         logoImage.image = downloadSVG(urlString: stockDetails.logo)
-        
-//        imageLoaderService.loadImage(from: URL(string: stockDetails.logo)!) { image in
-//            self.logoImage.image = image
-//        }
-        
     }
     
+}
+
+//MARK: - Fetch data
+
+extension StockDetailsVC {
+    
     private func getStockDetails() {
-        activityIndicator.isHidden = false // вернули индикатор
-        activityIndicator.startAnimating() // стали крутить индикатор
-        dataFetcherService.fetchStockDetailsData(stockName: ticker) { stockDetails in
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+        dataFetcherService.fetchStockDetailsData(stockName: ticker) { [weak self] stockDetails in
+            guard let strongSelf = self else {return}
             guard let stock = stockDetails else {return}
             DispatchQueue.main.async {
-                self.activityIndicator.stopAnimating()
-                self.setupUIElements(stockDetails: stock)
+                strongSelf.activityIndicator.stopAnimating()
+                strongSelf.setupUIElements(stockDetails: stock)
             }
         }
     }

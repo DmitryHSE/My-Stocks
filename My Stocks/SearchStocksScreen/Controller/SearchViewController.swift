@@ -118,10 +118,11 @@ extension SearchViewController {
     private func performSearchRequest(text: String?) {
         guard let text = text else {return}
 
-        searchedStocksPresenter.getStockSearchingResults(text: text) { SearchedStocksArray in
-            self.stocksForSearchCellArray = SearchedStocksArray
+        searchedStocksPresenter.getStockSearchingResults(text: text) { [weak self] SearchedStocksArray in
+            guard let strongSelf = self else {return}
+            strongSelf.stocksForSearchCellArray = SearchedStocksArray
             DispatchQueue.main.async {
-                self.tableView.reloadData()
+                strongSelf.tableView.reloadData()
             }
         }
     }

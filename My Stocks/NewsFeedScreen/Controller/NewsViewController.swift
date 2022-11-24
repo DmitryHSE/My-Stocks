@@ -113,12 +113,12 @@ extension NewsViewController {
     private func loadNewsFeed(){
         startActivitiIndicator()
         newsFeedHandler.loadNews(tikersArray: stocks) { [weak self] array in
-            guard let self = self else {return}
-            self.newsArray += array
-            self.newsArray = self.newsArray.sorted(by: {$1.datetime < $0.datetime})
+            guard let strongSelf = self else {return}
+            strongSelf.newsArray += array
+            strongSelf.newsArray = strongSelf.newsArray.sorted(by: {$1.datetime < $0.datetime})
             DispatchQueue.main.async {
-                self.tableView.reloadData()
-                self.stopActivityIndicator()
+                strongSelf.tableView.reloadData()
+                strongSelf.stopActivityIndicator()
             }
         }
     }

@@ -276,23 +276,25 @@ extension StocksViewController {
     
     private func getStocksData() {
         startActivitiIndicator()
-        stockListPresenter.loadStocksList(tikersArray: tikersArray) { index, stock in
+        stockListPresenter.loadStocksList(tikersArray: tikersArray) { [weak self] index, stock in
+            guard let strongSelf = self else {return}
             guard let stock = stock else {return}
-            self.stocksArray[index] = stock
+            strongSelf.stocksArray[index] = stock
             DispatchQueue.main.async {
-                self.tableView.reloadData()
+                strongSelf.tableView.reloadData()
             }
         }
-        stockImageHandler.fethStockImage(tikersArray: tikersArray) { index, stock in
+        stockImageHandler.fethStockImage(tikersArray: tikersArray) { [weak self] index, stock in
+            guard let strongSelf = self else {return}
             guard let stock = stock else {return}
-            self.stocksDetailArray[index] = stock
+            strongSelf.stocksDetailArray[index] = stock
             guard let url = URL(string: stock.logo) else {return}
-            self.imageLoaderService.loadImage(from: url) { image in
+            strongSelf.imageLoaderService.loadImage(from: url) { image in
                 guard let safeImage = image else {return}
-                self.logoArray[index] = safeImage
+                strongSelf.logoArray[index] = safeImage
                 DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                    self.stopActivityIndicator()
+                    strongSelf.tableView.reloadData()
+                    strongSelf.stopActivityIndicator()
                 }
             }
         }

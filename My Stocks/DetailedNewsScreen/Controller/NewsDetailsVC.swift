@@ -19,8 +19,19 @@ class NewsDetailsVC: UIViewController {
         setConstraints()
         configureNewsView()
     }
+}
+
+//MARK: - Configure UI Elements
+
+extension NewsDetailsVC {
     
-    func configureNewsView() {
+    private func setupViews() {
+        newsView.translatesAutoresizingMaskIntoConstraints = false
+        newsView = Bundle.main.loadNibNamed("DetailedNewsView", owner: self, options: nil)?.first as! DetailedNewsView
+        view.addSubview(newsView)
+    }
+    
+    private func configureNewsView() {
         newsView.delegate = self
         newsView.headerLabel.text = newsModel?.headline ?? ""
         newsView.timeLable.text = timeConverter.convertTimeStampToTimeString(stamp: newsModel.datetime)["time"]
@@ -33,19 +44,12 @@ class NewsDetailsVC: UIViewController {
     }
 }
 
-extension NewsDetailsVC {
-    private func setupViews() {
-        newsView.translatesAutoresizingMaskIntoConstraints = false
-        newsView = Bundle.main.loadNibNamed("DetailedNewsView", owner: self, options: nil)?.first as! DetailedNewsView
-        view.addSubview(newsView)
-    }
-}
-
-//MARK: - Protocols extensions
+//MARK: - Go orevious screen protocols extensions
 
 extension NewsDetailsVC: DismissProtocol {
     func performDismiss() {
         self.dismiss(animated: true)
     }
 }
+
 
