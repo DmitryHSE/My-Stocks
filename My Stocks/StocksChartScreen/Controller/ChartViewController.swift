@@ -227,7 +227,6 @@ class ChartViewController: UIViewController {
     
     lazy var candleChartView: CandleStickChartView = {
         let chartView = CandleStickChartView()
-       // chartView.backgroundColor = .systemCyan
         chartView.translatesAutoresizingMaskIntoConstraints = false
         chartView.leftAxis.enabled = false
         chartView.drawBordersEnabled = true
@@ -387,7 +386,6 @@ extension ChartViewController {
              
              logoImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
              logoImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-             //logoImage.trailingAnchor.constraint(equalTo: exitButton.leadingAnchor, constant: -5),
              logoImage.heightAnchor.constraint(equalToConstant: 30),
              logoImage.widthAnchor.constraint(equalToConstant: 30),
              

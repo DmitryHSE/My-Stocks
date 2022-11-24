@@ -37,11 +37,7 @@ class StocksViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupStorageForMainStockList()
-        if stocksArray.isEmpty {
-            stocksArray = Array(repeating: emptyStock, count: tikersArray.count)
-            logoArray = Array(repeating: UIImage(), count: tikersArray.count)
-            stocksDetailArray = Array(repeating: emptyDetail, count: tikersArray.count)
-        }
+        setupArrayForGetTheData()
         setupRefreshControll()
         setupActivityIndicator()
         setupSearchBar()
@@ -50,6 +46,20 @@ class StocksViewController: UIViewController {
         setupSearchButton()
     }
     
+    private func setupArrayForGetTheData() {
+        if stocksArray.isEmpty {
+            stocksArray = Array(repeating: emptyStock, count: tikersArray.count)
+            logoArray = Array(repeating: UIImage(), count: tikersArray.count)
+            stocksDetailArray = Array(repeating: emptyDetail, count: tikersArray.count)
+        }
+    }
+    
+}
+
+
+//MARK: - Storage
+
+extension StocksViewController {
     private func setupStorageForMainStockList() {
         let userDefaults = UserDefaults.standard
         if let array = userDefaults.stringArray(forKey: "mainList") {
@@ -100,12 +110,6 @@ extension StocksViewController: UISearchBarDelegate {
         definesPresentationContext = true
         navigationItem.hidesSearchBarWhenScrolling = true
     }
-    
-//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//        guard let text = searchBar.text else {return}
-//        print(text)
-//    }
-    
 }
 
 //MARK: - Table view
@@ -130,9 +134,7 @@ extension StocksViewController: UITableViewDelegate, UITableViewDataSource {
             }
            
             if let index = self.tikersArray.firstIndex(of: editingRow) {
-                
                 if self.isFiltering {
-    
                     self.filteredStocksArray.remove(at: indexPath.row)
                     self.tikersArray.remove(at: index)
                     self.stocksArray.remove(at: index)
@@ -185,10 +187,7 @@ extension StocksViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //self.presentStockDetailsScreen(ticker: stocksArray[indexPath.row].stockName)
         let chartVC = ChartViewController()
-        //chartVC.stockName = stocksArray[indexPath.row].stockName
-        //chartVC.configureView(stock: stocksArray[indexPath.row].stockName)
         chartVC.configureView(model: stocksArray[indexPath.row], details: stocksDetailArray[indexPath.row],logo: logoArray[indexPath.row])
         chartVC.modalPresentationStyle = .fullScreen
         self.present(chartVC, animated: true)
