@@ -216,6 +216,7 @@ class ChartViewController: UIViewController {
     lazy var candleChartView: CandleStickChartView = {
         let chartView = CandleStickChartView()
         chartView.translatesAutoresizingMaskIntoConstraints = false
+        chartView.legend.enabled = false //
         chartView.leftAxis.enabled = false
         chartView.drawBordersEnabled = true
         chartView.dragYEnabled = true
