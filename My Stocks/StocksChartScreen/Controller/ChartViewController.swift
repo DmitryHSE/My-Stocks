@@ -15,6 +15,12 @@ class ChartViewController: UIViewController {
         case fontSizeOfStockName = 26
         case fontSizeOfAnyLabel = 21
         case labelHeight = 32
+        case chartAxisFontSize = 14
+    }
+    
+    enum Fonts: String {
+        case labelsFont = "Avenir Next"
+        case chartFont = "Arial"
     }
     
     //MARK: - Logo image
@@ -33,7 +39,7 @@ class ChartViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "-"
         label.textAlignment = .left
-        label.font = UIFont(name: "Avenir Next", size: Constants.fontSizeOfStockName.rawValue)
+        label.font = UIFont(name: Fonts.labelsFont.rawValue, size: Constants.fontSizeOfStockName.rawValue)
         return label
     }()
     
@@ -66,7 +72,7 @@ class ChartViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Last price:"
         label.textAlignment = .left
-        label.font = UIFont(name: "Avenir Next", size: Constants.fontSizeOfAnyLabel.rawValue)
+        label.font = UIFont(name: Fonts.labelsFont.rawValue, size: Constants.fontSizeOfAnyLabel.rawValue)
         return label
     }()
     
@@ -75,7 +81,7 @@ class ChartViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "1y high:"
         label.textAlignment = .left
-        label.font = UIFont(name: "Avenir Next", size: Constants.fontSizeOfAnyLabel.rawValue)
+        label.font = UIFont(name: Fonts.labelsFont.rawValue, size: Constants.fontSizeOfAnyLabel.rawValue)
         return label
     }()
     
@@ -84,7 +90,7 @@ class ChartViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "1y low:"
         label.textAlignment = .left
-        label.font = UIFont(name: "Avenir Next", size: Constants.fontSizeOfAnyLabel.rawValue)
+        label.font = UIFont(name: Fonts.labelsFont.rawValue, size: Constants.fontSizeOfAnyLabel.rawValue)
         return label
     }()
     
@@ -93,7 +99,7 @@ class ChartViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "1y change:"
         label.textAlignment = .left
-        label.font = UIFont(name: "Avenir Next", size: Constants.fontSizeOfAnyLabel.rawValue)
+        label.font = UIFont(name: Fonts.labelsFont.rawValue, size: Constants.fontSizeOfAnyLabel.rawValue)
         return label
     }()
     
@@ -102,7 +108,7 @@ class ChartViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "MarketCap:"
         label.textAlignment = .left
-        label.font = UIFont(name: "Avenir Next", size: Constants.fontSizeOfAnyLabel.rawValue)
+        label.font = UIFont(name: Fonts.labelsFont.rawValue, size: Constants.fontSizeOfAnyLabel.rawValue)
         return label
     }()
     
@@ -111,7 +117,7 @@ class ChartViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Industry:"
         label.textAlignment = .left
-        label.font = UIFont(name: "Avenir Next", size: Constants.fontSizeOfAnyLabel.rawValue)
+        label.font = UIFont(name: Fonts.labelsFont.rawValue, size: Constants.fontSizeOfAnyLabel.rawValue)
         return label
     }()
     
@@ -120,7 +126,7 @@ class ChartViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Country:"
         label.textAlignment = .left
-        label.font = UIFont(name: "Avenir Next", size: Constants.fontSizeOfAnyLabel.rawValue)
+        label.font = UIFont(name: Fonts.labelsFont.rawValue, size: Constants.fontSizeOfAnyLabel.rawValue)
         return label
     }()
     
@@ -129,7 +135,7 @@ class ChartViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Courency:"
         label.textAlignment = .left
-        label.font = UIFont(name: "Avenir Next", size: Constants.fontSizeOfAnyLabel.rawValue)
+        label.font = UIFont(name: Fonts.labelsFont.rawValue, size: Constants.fontSizeOfAnyLabel.rawValue)
         return label
     }()
     
@@ -140,7 +146,7 @@ class ChartViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "-"
         label.textAlignment = .left
-        label.font = UIFont(name: "Avenir Next", size: Constants.fontSizeOfAnyLabel.rawValue)
+        label.font = UIFont(name: Fonts.labelsFont.rawValue, size: Constants.fontSizeOfAnyLabel.rawValue)
         return label
     }()
     
@@ -149,7 +155,7 @@ class ChartViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "-"
         label.textAlignment = .left
-        label.font = UIFont(name: "Avenir Next", size: Constants.fontSizeOfAnyLabel.rawValue)
+        label.font = UIFont(name: Fonts.labelsFont.rawValue, size: Constants.fontSizeOfAnyLabel.rawValue)
         return label
     }()
     
@@ -158,7 +164,7 @@ class ChartViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "-"
         label.textAlignment = .left
-        label.font = UIFont(name: "Avenir Next", size: Constants.fontSizeOfAnyLabel.rawValue)
+        label.font = UIFont(name: Fonts.labelsFont.rawValue, size: Constants.fontSizeOfAnyLabel.rawValue)
         return label
     }()
     
@@ -167,7 +173,7 @@ class ChartViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "-"
         label.textAlignment = .left
-        label.font = UIFont(name: "Avenir Next", size: Constants.fontSizeOfAnyLabel.rawValue)
+        label.font = UIFont(name: Fonts.labelsFont.rawValue, size: Constants.fontSizeOfAnyLabel.rawValue)
         return label
     }()
     
@@ -176,7 +182,7 @@ class ChartViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "-"
         label.textAlignment = .left
-        label.font = UIFont(name: "Avenir Next", size: Constants.fontSizeOfAnyLabel.rawValue)
+        label.font = UIFont(name: Fonts.labelsFont.rawValue, size: Constants.fontSizeOfAnyLabel.rawValue)
         return label
     }()
     
@@ -185,7 +191,7 @@ class ChartViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "-"
         label.textAlignment = .left
-        label.font = UIFont(name: "Avenir Next", size: Constants.fontSizeOfAnyLabel.rawValue)
+        label.font = UIFont(name: Fonts.labelsFont.rawValue, size: Constants.fontSizeOfAnyLabel.rawValue)
         return label
     }()
     
@@ -194,7 +200,7 @@ class ChartViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "-"
         label.textAlignment = .left
-        label.font = UIFont(name: "Avenir Next", size: Constants.fontSizeOfAnyLabel.rawValue)
+        label.font = UIFont(name: Fonts.labelsFont.rawValue, size: Constants.fontSizeOfAnyLabel.rawValue)
         return label
     }()
     
@@ -203,7 +209,7 @@ class ChartViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "-"
         label.textAlignment = .left
-        label.font = UIFont(name: "Avenir Next", size: Constants.fontSizeOfAnyLabel.rawValue)
+        label.font = UIFont(name: Fonts.labelsFont.rawValue, size: Constants.fontSizeOfAnyLabel.rawValue)
         return label
     }()
     
@@ -214,8 +220,8 @@ class ChartViewController: UIViewController {
         chartView.drawBordersEnabled = true
         chartView.dragYEnabled = true
         chartView.dragEnabled = true
-        chartView.rightAxis.labelFont = UIFont(name: "Arial", size: 14)!
-        chartView.xAxis.labelFont = UIFont(name: "Arial", size: 14)!
+        chartView.rightAxis.labelFont = UIFont(name: Fonts.chartFont.rawValue, size: Constants.chartAxisFontSize.rawValue)!
+        chartView.xAxis.labelFont = UIFont(name: Fonts.chartFont.rawValue, size: Constants.chartAxisFontSize.rawValue)!
         chartView.xAxis.labelPosition = .bottom
         chartView.animate(xAxisDuration: 2)
         chartView.highlightPerDragEnabled = true
