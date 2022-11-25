@@ -9,7 +9,7 @@ import UIKit
 
 class StockCell: UITableViewCell {
     
-    private var stockImageHandler = StockImageHandler()
+    private var stockImageHandler = StockDetailsLoader()
     var ticker = String()
     var favoriteStocksArray = [String]()
     let defaults = UserDefaults.standard

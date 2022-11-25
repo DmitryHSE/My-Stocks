@@ -10,7 +10,7 @@ import UIKit
 
 class SearchViewController: UIViewController {
     
-    private let searchedStocksPresenter = SearchedStocksDataHandler()
+    private let searchedStocksPresenter = SearchingResultsLoader()
     private var timer: Timer?
     var counterStocksInMailList: Int?
     

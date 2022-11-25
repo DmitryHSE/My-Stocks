@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class StockImageHandler {
+final class StockDetailsLoader {
     
     private let dataFetcherService = DataFetcherService()
     

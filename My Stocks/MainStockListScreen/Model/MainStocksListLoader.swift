@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class MainStocksListDataHandler {
+final class MainStocksListLoader {
     
     private let dataFetcherService = DataFetcherService()
     

@@ -9,9 +9,9 @@ import UIKit
 
 class StocksViewController: UIViewController {
     
-    private var stockListPresenter = MainStocksListDataHandler()
+    private var stockListPresenter = MainStocksListLoader()
     private var dataStorageManager = DataStorageManager()
-    private var stockImageHandler = StockImageHandler()
+    private var stockImageHandler = StockDetailsLoader()
     private let imageLoaderService = ImageLoaderService()
     @IBOutlet weak var tableView: UITableView!
     private let refreshControll = UIRefreshControl()
@@ -277,11 +277,13 @@ extension StocksViewController {
     
     private func getStocksData() {
         startActivitiIndicator()
+    
         stockListPresenter.loadStocksList(tikersArray: tikersArray) { [weak self] index, stock in
             guard let strongSelf = self else {return}
             guard let stock = stock else {return}
             strongSelf.stocksArray[index] = stock
         }
+        
         
 // тут пока разбираюсь с группой
         
@@ -322,6 +324,9 @@ extension StocksViewController {
             }
         }
     }
+    
+
+    
     private func removeEmptyImageFromLogo() {
         for (i,j) in logoArray.enumerated() {
             if j.scale == 1 {
@@ -329,16 +334,5 @@ extension StocksViewController {
             }
         }
     }
-//    private func loadStockImages(url: URL, index: Int) {
-//        imageLoaderService.loadImage(from: url) { [weak self] image in
-//            guard let strongSelf = self else {return}
-//            guard let safeImage = image else { return }
-//            strongSelf.logoArray[index] = safeImage
-//            DispatchQueue.main.async {
-//                strongSelf.tableView.reloadData()
-//                strongSelf.stopActivityIndicator()
-//            }
-//        }
-//    }
 }
 

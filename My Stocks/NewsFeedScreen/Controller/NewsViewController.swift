@@ -10,8 +10,8 @@ import UIKit
 class NewsViewController: UIViewController {
     
     private let dataFetcherService = DataFetcherService()
-    private let mainStocksListDataHandler = MainStocksListDataHandler()
-    private let newsFeedHandler = NewsFeedHandler()
+    private let mainStocksListDataHandler = MainStocksListLoader()
+    private let newsFeedHandler = NewsFeedLoader()
     
     private var newsArray = [NewsModel]()
     private var filteredNewsArray = [NewsModel]()
@@ -116,11 +116,10 @@ extension NewsViewController {
             guard let strongSelf = self else {return}
             guard let safeArray = loadedArray else {return}
             strongSelf.newsArray = safeArray.sorted(by: {$1.datetime < $0.datetime})
-                        DispatchQueue.main.async {
-                            strongSelf.tableView.reloadData()
-                            strongSelf.stopActivityIndicator()
-                        }
-            
+            DispatchQueue.main.async {
+                strongSelf.stopActivityIndicator()
+                strongSelf.tableViewAnimation()
+            }
         }
     }
 }
@@ -194,7 +193,7 @@ extension NewsViewController: UISearchResultsUpdating {
     }
 }
 
-//MARK: - Activity Indicator
+//MARK: - Activity Indicator and Table View animation
 
 extension NewsViewController {
     
@@ -203,7 +202,7 @@ extension NewsViewController {
         activityIndicator.color = .systemGray
         activityIndicator.center = self.view.center
         view.addSubview(activityIndicator)
-        // vie did load
+        
         activityIndicator.isHidden = true
         activityIndicator.hidesWhenStopped = true
     }
@@ -217,6 +216,24 @@ extension NewsViewController {
     private func stopActivityIndicator() {
         tableView.isHidden = false
         self.activityIndicator.stopAnimating()
+    }
+    
+    private func tableViewAnimation() {
+        tableView.reloadData()
+        let cells = tableView.visibleCells
+        let tableViewHeight = tableView.bounds.height
+        var delay = 0.0
+        for cell in cells {
+            cell.transform = CGAffineTransform(translationX: 0, y: tableViewHeight)
+            UIView.animate(withDuration: 1.2,
+                           delay: delay * 0.05,
+                           usingSpringWithDamping: 0.8,
+                           initialSpringVelocity: 0,
+                           options: .curveEaseInOut,
+                           animations: { cell.transform = CGAffineTransform.identity },
+                           completion: nil)
+            delay += 1
+        }
     }
 }
 
