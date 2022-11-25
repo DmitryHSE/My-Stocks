@@ -187,10 +187,6 @@
 		9F055BE128FFCBE10088D53B /* Handlers */ = {
 			isa = PBXGroup;
 			children = (
-				9F055BDD28FEE7D90088D53B /* MainStocksListDataHandler.swift */,
-				9F055BED290037BC0088D53B /* SearchedStocksDataHandler.swift */,
-				9F4E69C2292A74BE00F55AA0 /* StockImageHandler.swift */,
-				9F4E6A16292F52B900F55AA0 /* NewsFeedHandler.swift */,
 			);
 			path = Handlers;
 			sourceTree = "<group>";
@@ -198,6 +194,7 @@
 		9F2FCEEC2920EFA1003C8351 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				9F4E6A1A2930E62B00F55AA0 /* JsonModels */,
 				9F055BE128FFCBE10088D53B /* Handlers */,
 				9F2FCEED2920EFDF003C8351 /* DataFetcherService.swift */,
 				9F4E69C4292A850100F55AA0 /* ImageLoaderService.swift */,
@@ -220,7 +217,8 @@
 		9F4E69F6292E21F600F55AA0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9F055BD928FED1DA0088D53B /* DataModels.swift */,
+				9F055BDD28FEE7D90088D53B /* MainStocksListDataHandler.swift */,
+				9F4E69C2292A74BE00F55AA0 /* StockImageHandler.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -280,7 +278,7 @@
 		9F4E69FE292E22F400F55AA0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9F055BE328FFCC230088D53B /* SearchStocksModel.swift */,
+				9F055BED290037BC0088D53B /* SearchedStocksDataHandler.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -314,7 +312,6 @@
 		9F4E6A02292E237700F55AA0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9F055BF42900542F0088D53B /* StockDetailsModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -348,7 +345,7 @@
 		9F4E6A06292E23CE00F55AA0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9F4E69C0292A5BE500F55AA0 /* NewsModel.swift */,
+				9F4E6A16292F52B900F55AA0 /* NewsFeedHandler.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -415,7 +412,6 @@
 		9F4E6A0E292E246000F55AA0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9F4E69F3292E0D4F00F55AA0 /* ChartModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -443,6 +439,18 @@
 				9F4E69F1292E0C1100F55AA0 /* NumberFormatter.swift */,
 			);
 			path = Others;
+			sourceTree = "<group>";
+		};
+		9F4E6A1A2930E62B00F55AA0 /* JsonModels */ = {
+			isa = PBXGroup;
+			children = (
+				9F055BD928FED1DA0088D53B /* DataModels.swift */,
+				9F055BF42900542F0088D53B /* StockDetailsModel.swift */,
+				9F4E69F3292E0D4F00F55AA0 /* ChartModel.swift */,
+				9F055BE328FFCC230088D53B /* SearchStocksModel.swift */,
+				9F4E69C0292A5BE500F55AA0 /* NewsModel.swift */,
+			);
+			path = JsonModels;
 			sourceTree = "<group>";
 		};
 		9FE8A9242906BA4400AA3442 /* Cells */ = {

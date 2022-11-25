@@ -37,7 +37,7 @@ class StocksViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupStorageForMainStockList()
-        setupArrayForGetTheData()
+        setupArrayForGetData()
         setupRefreshControll()
         setupActivityIndicator()
         setupSearchBar()
@@ -47,7 +47,7 @@ class StocksViewController: UIViewController {
         setupSearchButton()
     }
     
-    private func setupArrayForGetTheData() {
+    private func setupArrayForGetData() {
         if stocksArray.isEmpty {
             stocksArray = Array(repeating: emptyStock, count: tikersArray.count)
             logoArray = Array(repeating: UIImage(), count: tikersArray.count)
@@ -281,9 +281,9 @@ extension StocksViewController {
             guard let strongSelf = self else {return}
             guard let stock = stock else {return}
             strongSelf.stocksArray[index] = stock
-            DispatchQueue.main.async {
-                strongSelf.tableView.reloadData()
-            }
+//            DispatchQueue.main.async {
+//                strongSelf.tableView.reloadData()
+//            }
         }
         stockImageHandler.fethStockImage(tikersArray: tikersArray) { [weak self] index, stock in
             guard let strongSelf = self else {return}
@@ -294,7 +294,6 @@ extension StocksViewController {
                 guard let safeImage = image else { return }
                 strongSelf.logoArray[index] = safeImage
                 DispatchQueue.main.async {
-                    
                     strongSelf.tableView.reloadData()
                     strongSelf.stopActivityIndicator()
                 }
