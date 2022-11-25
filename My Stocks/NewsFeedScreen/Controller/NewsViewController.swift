@@ -110,16 +110,17 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
 //MARK: - Fetch news feed
 
 extension NewsViewController {
-    private func loadNewsFeed(){
+    private func loadNewsFeed() {
         startActivitiIndicator()
-        newsFeedHandler.loadNews(tikersArray: stocks) { [weak self] array in
+        newsFeedHandler.loadNewsArray(tikersArray: stocks) { [weak self] loadedArray in
             guard let strongSelf = self else {return}
-            strongSelf.newsArray += array
-            strongSelf.newsArray = strongSelf.newsArray.sorted(by: {$1.datetime < $0.datetime})
-            DispatchQueue.main.async {
-                strongSelf.tableView.reloadData()
-                strongSelf.stopActivityIndicator()
-            }
+            guard let safeArray = loadedArray else {return}
+            strongSelf.newsArray = safeArray.sorted(by: {$1.datetime < $0.datetime})
+                        DispatchQueue.main.async {
+                            strongSelf.tableView.reloadData()
+                            strongSelf.stopActivityIndicator()
+                        }
+            
         }
     }
 }

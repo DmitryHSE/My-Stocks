@@ -11,12 +11,19 @@ final class NewsFeedHandler {
     
     private let dataFetcherService = DataFetcherService()
     
-    func loadNews(tikersArray: [String], completion: @escaping ([NewsModel]) -> Void ) {
+    func loadNewsArray(tikersArray: [String], completion: @escaping ([NewsModel]?) -> Void ) {
+        var newsModelsArray = [NewsModel]()
+        let group = DispatchGroup()
         for i in tikersArray {
+            group.enter()
             dataFetcherService.fetchNews(stockName: i) { array in
                 guard let model = array else {return}
-                completion(model)
+                newsModelsArray += model
+                group.leave()
             }
+        }
+        group.notify(queue: .main) {
+            completion(newsModelsArray)
         }
     }
 }

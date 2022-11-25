@@ -8,11 +8,13 @@
 import Foundation
 
 struct NewsModel: Codable {
-    let category: String
-    let datetime: Int
-    let headline: String
-    let id: Int
-    let image: String?
-    let related, source, summary: String
-    let url: String
+    var category: String = "n/a"
+    var datetime: Int = 0
+    var headline: String = "n/a"
+    var id: Int = 0
+    var image: String? // was optional
+    var related: String = "n/a"
+    var source: String = "n/a"
+    var summary: String = "n/a"
+    var url: String = ""
 }
