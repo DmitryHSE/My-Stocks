@@ -19,6 +19,7 @@ class StocksViewController: UIViewController {
     private let emptyDetail = StockDetailsModel()
     private var activityIndicator = UIActivityIndicatorView()
     
+    
     private var filteredStocksArray = [StockModel]()
     private var stocksArray = [StockModel]()
     private var stocksDetailArray = [StockDetailsModel]()
@@ -54,7 +55,6 @@ class StocksViewController: UIViewController {
             stocksDetailArray = Array(repeating: emptyDetail, count: tikersArray.count)
         }
     }
-    
 }
 
 
@@ -277,37 +277,12 @@ extension StocksViewController {
     
     private func getStocksData() {
         startActivitiIndicator()
-    
+        
         stockListPresenter.loadStocksList(tikersArray: tikersArray) { [weak self] index, stock in
             guard let strongSelf = self else {return}
             guard let stock = stock else {return}
             strongSelf.stocksArray[index] = stock
         }
-        
-        
-// тут пока разбираюсь с группой
-        
-//        stockImageHandler.fethStockDetailsArray(tikersArray: tikersArray) { [weak self] index, array in
-//            guard let strongSelf = self else {return}
-//            guard let safeStockDetailsArray = array else { return }
-//            strongSelf.stocksDetailArray = safeStockDetailsArray
-//            let group = DispatchGroup()
-//            for i in 0..<strongSelf.stocksDetailArray.count {
-//                group.enter()
-//                guard let url = URL(string: safeStockDetailsArray[i].logo) else {return}
-//                strongSelf.imageLoaderService.loadImage(from: url) { [weak self] image in
-//                    guard let strongSelf = self else {return}
-//                    guard let safeImage = image else { return }
-//                    strongSelf.logoArray[i] = safeImage
-//                    group.leave()
-//                }
-//
-//            }
-//            group.notify(queue: .main) {
-//                strongSelf.tableView.reloadData()
-//                strongSelf.stopActivityIndicator()
-//            }
-//        }
         
         stockImageHandler.fethStockImagesUrls(tikersArray: tikersArray) { [weak self] index, stock in
             guard let strongSelf = self else {return}
@@ -324,8 +299,6 @@ extension StocksViewController {
             }
         }
     }
-    
-
     
     private func removeEmptyImageFromLogo() {
         for (i,j) in logoArray.enumerated() {

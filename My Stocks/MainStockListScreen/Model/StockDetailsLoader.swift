@@ -10,6 +10,7 @@ import UIKit
 final class StockDetailsLoader {
     
     private let dataFetcherService = DataFetcherService()
+    private let imageLoaderService = ImageLoaderService()
     
     func fethStockImagesUrls(tikersArray: [String], completion: @escaping (Int, StockDetailsModel?) -> Void ) {
         for (index, item) in tikersArray.enumerated() {

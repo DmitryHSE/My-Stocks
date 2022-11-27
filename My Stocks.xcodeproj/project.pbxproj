@@ -184,18 +184,10 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		9F055BE128FFCBE10088D53B /* Handlers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Handlers;
-			sourceTree = "<group>";
-		};
 		9F2FCEEC2920EFA1003C8351 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
 				9F4E6A1A2930E62B00F55AA0 /* JsonModels */,
-				9F055BE128FFCBE10088D53B /* Handlers */,
 				9F2FCEED2920EFDF003C8351 /* DataFetcherService.swift */,
 				9F4E69C4292A850100F55AA0 /* ImageLoaderService.swift */,
 				9F2FCEEF2920EFEA003C8351 /* NetworkDataFetcher.swift */,
