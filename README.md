@@ -36,7 +36,7 @@
                 <img width="250" src="Resources/MainScreen.gif">
             </td>
             <td>
-                <img width="250" src="Resources/News.gif">
+                <img width="250" src="Resources/newsFeed.gif">
             </td>
                         <td>
                 <img width="250" src="Resources/Search.gif">
