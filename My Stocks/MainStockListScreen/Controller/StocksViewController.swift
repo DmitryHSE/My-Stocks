@@ -223,7 +223,7 @@ extension StocksViewController: UISearchResultsUpdating {
     
     private func filterContentForSearchText(_ searchText: String) {
         let text = searchText.uppercased()
-        filteredStocksArray = stocksArray.filter({ $0.stockName.contains(text) })
+        filteredStocksArray = stocksArray.filter({$0.stockName.contains(text)})
         tableView.reloadData()
     }
 }

@@ -99,10 +99,11 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let newsDetailsView = NewsDetailsVC()
-        newsDetailsView.newsModel = newsArray[indexPath.row]
-        newsDetailsView.modalPresentationStyle = .fullScreen
-        self.present(newsDetailsView, animated: true)
+        if isFiltering {
+            typeOfNewsPresentation(url: filteredNewsArray[indexPath.row].url,dataForCell: filteredNewsArray[indexPath.row])
+        } else {
+            typeOfNewsPresentation(url: newsArray[indexPath.row].url,dataForCell: newsArray[indexPath.row])
+        }
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }

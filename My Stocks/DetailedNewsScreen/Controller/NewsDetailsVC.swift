@@ -36,7 +36,7 @@ extension NewsDetailsVC {
         newsView.headerLabel.text = newsModel?.headline ?? ""
         newsView.timeLable.text = timeConverter.convertTimeStampToTimeDict(stamp: newsModel.datetime)[PeriodUnit.time.rawValue]
         newsView.dateLabel.text = timeConverter.convertTimeStampToTimeDict(stamp: newsModel.datetime)[PeriodUnit.date.rawValue]
-        newsView.textView.text = newsModel.summary
+        newsView.textView.text = newsModel.summary + " [...]"
     }
     
     private func setConstraints() {
